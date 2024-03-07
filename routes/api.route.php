@@ -16,7 +16,7 @@ $router->group('api')
         $router->middleware(JsonApiMiddleware::class)
             ->register(
                 function (RouteCreator $router) {
-                    $router->load(__DIR__ . 'api/*.php');
+                    $router->load(__DIR__ . '/api/*.php');
                 }
             );
     });

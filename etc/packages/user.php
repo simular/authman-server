@@ -30,7 +30,7 @@ return [
         'entity' => User::class,
 
         'srp' => [
-            'enabled' => true,
+            'enabled' => false,
             'prime' => null,
             'generator' => null,
             'key' => null,

@@ -28,6 +28,11 @@ class JwtAuthService
     public static function extractBasicAuth(string $credential): array
     {
         sscanf($credential, 'Basic %s', $auth);
+
+        if (!$auth) {
+            throw new \RuntimeException('Auth payload is empty', 400);
+        }
+
         $auth = base64_decode($auth);
 
         $auth = explode(':', $auth, 2) + ['', ''];

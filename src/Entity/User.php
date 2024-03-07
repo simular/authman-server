@@ -43,9 +43,6 @@ class User implements EntityInterface, UserEntityInterface
     #[CastNullable('uuid_bin', 'uuid_bin')]
     protected ?UuidInterface $id = null;
 
-    #[Column('username')]
-    protected string $username = '';
-
     #[Column('email')]
     protected string $email = '';
 
@@ -60,6 +57,9 @@ class User implements EntityInterface, UserEntityInterface
 
     #[Column('secret')]
     protected string $secret = '';
+
+    #[Column('sess_code')]
+    protected string $sessCode = '';
 
     #[Column('enabled')]
     #[Cast('bool')]
@@ -171,18 +171,6 @@ class User implements EntityInterface, UserEntityInterface
     public function setId(UuidInterface|string|null $id): static
     {
         $this->id = UUIDBin::tryWrap($id);
-
-        return $this;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): static
-    {
-        $this->username = $username;
 
         return $this;
     }
@@ -368,6 +356,18 @@ class User implements EntityInterface, UserEntityInterface
     public function setSecret(string $secret): static
     {
         $this->secret = SecretToolkit::encode($secret);
+
+        return $this;
+    }
+
+    public function getSessCode(): string
+    {
+        return $this->sessCode;
+    }
+
+    public function setSessCode(string $sessCode): static
+    {
+        $this->sessCode = $sessCode;
 
         return $this;
     }

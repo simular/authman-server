@@ -22,6 +22,7 @@ $router->group('web')
         enabled: (bool) env('FORCE_SSL')
     )
     ->register(function (RouteCreator $router) {
+        $router->load(__DIR__ . '/api.route.php');
         $router->load(__DIR__ . '/front.route.php');
         $router->load(__DIR__ . '/admin.route.php');
 
