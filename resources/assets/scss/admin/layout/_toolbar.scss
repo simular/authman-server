@@ -1,0 +1,13 @@
+// Part of earth file.
+
+#admin-toolbar {
+  .admin-toolbar-buttons > div,
+  .admin-toolbar-buttons > [x-data] {
+    display: grid;
+    gap: .5rem;
+
+    @media (min-width: 992px) {
+      display: block;
+    }
+  }
+}

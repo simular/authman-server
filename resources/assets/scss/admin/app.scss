@@ -1,0 +1,83 @@
+/*
+Template Name: Skote - Admin & Dashboard Template
+Author: Themesbrand
+Version: 3.2.0
+Website: https://themesbrand.com/
+Contact: themesbrand@gmail.com
+File: Main Css File
+*/
+
+//Fonts
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/fonts/fonts";
+
+//Core files
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "variables";
+@import "./node_modules/bootstrap/scss/mixins.scss";
+
+// Structure
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/general";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/topbar";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/page-head";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/footer";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/right-sidebar";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/vertical";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/horizontal-nav";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/structure/layouts";
+
+// Components
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/waves";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/avatar";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/accordion";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/helper";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/preloader";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/forms";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/widgets";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/demos";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/print";
+
+// Plugins
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/custom-scrollbar";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/calendar";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/dragula";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/session-timeout";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/range-slider";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/sweatalert2";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/rating";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/toastr";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/parsley";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/select2";
+
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/switch";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/colorpicker";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/timepicker";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/datepicker";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/bootstrap-touchspin";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/form-editors";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/form-upload";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/form-wizard";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/datatable";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/responsive-table";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/table-editable";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/apexcharts";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/echarts";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/flot";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/sparkline-chart";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/google-map";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/vector-maps";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/plugins/leaflet-maps";
+
+
+// Pages
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/authentication";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/ecommerce";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/email";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/file-manager";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/chat";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/projects";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/contacts";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/crypto";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/coming-soon";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/timeline";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/pages/extras-pages";

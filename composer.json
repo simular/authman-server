@@ -1,0 +1,90 @@
+{
+    "name": "lyrasoft/eva",
+    "description": "Home Land of LYRASOFT",
+    "homepage": "https://github.com/lyrasoft/eva",
+    "license": "MIT",
+    "minimum-stability": "beta",
+    "authors": [
+        {
+            "name": "Simon Asika",
+            "email": "asika32764@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*",
+        "windwalker/authentication": "^4.0",
+        "windwalker/authorization": "^4.0",
+        "windwalker/core": "^4.0",
+        "windwalker/di": "^4.0",
+        "windwalker/renderer": "^4.0",
+        "windwalker/dom": "^4.0",
+        "windwalker/edge": "^4.0",
+        "windwalker/orm": "^4.0",
+        "windwalker/session": "^4.0",
+        "windwalker/form": "^4.0",
+        "windwalker/unicorn": "^1.0",
+        "windwalker/srp": "^1.0",
+        "lyrasoft/luna": "^2.0",
+        "lyrasoft/toolkit": "^1.0",
+        "lyrasoft/theme-skote": "^3.2",
+        "lyrasoft/banner": "^1.0",
+        "lyrasoft/contact": "^1.0",
+        "symfony/mailer": "^5.4||^6.0||^7.0",
+        "dragonmantank/cron-expression": "^3.3",
+        "masterminds/html5": "^2.8",
+        "symfony/var-dumper": "^5.0||^6.0||^7.0",
+        "asika/cross-env": "^1.0",
+        "asika32764/pinyin": "^1.2",
+        "lyrasoft/backup": "^2.0",
+        "ramsey/uuid": "^4.7"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^7.8||^8.0"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "php windwalker pkg:install lyrasoft/luna --tag routes",
+            "Windwalker\\Core\\Composer\\StarterInstaller::rootInstall",
+            "Lyrasoft\\Toolkit\\Installer\\EarthInstaller::install",
+            "Lyrasoft\\Toolkit\\Installer\\EarthInstaller::npmrc",
+            "php windwalker run prepare"
+        ],
+        "post-autoload-dump": [
+            "php windwalker pkg:install --tag config",
+            "php windwalker pkg:install lyrasoft/toolkit --tag ide -f",
+            "php windwalker asset:sync || true",
+            "php windwalker cache:clear renderer",
+            "lyra pstorm:sniffer -p || true"
+        ],
+        "env": [
+            "Windwalker\\Core\\Composer\\StarterInstaller::genEnv",
+            "Lyrasoft\\Toolkit\\Installer\\EarthInstaller::npmrc",
+            "php windwalker pkg:install lyrasoft/toolkit --tag ide",
+            "php windwalker run prepare"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/bootstrap.php"
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.2"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+        }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:lyrasoft/theme-skote.git"
+        }
+    ]
+}

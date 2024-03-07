@@ -1,0 +1,2 @@
+# Deny html/php files inside vendor
+RewriteRule ^vendor/.*.(html|php)$ - [F,NC]

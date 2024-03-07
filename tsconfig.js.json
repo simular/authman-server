@@ -1,0 +1,20 @@
+{
+    "extends": [
+        "@windwalker-io/unicorn/tsconfig.js.json"
+    ],
+    "include": [
+        "vendor/**/src/Module/**/assets/**/*.ts",
+        "resources/assets/src/**/*.ts",
+        "src/Module/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules/**/*"
+    ],
+    "types": ["reflect-metadata"],
+    "compilerOptions": {
+        "allowJs": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noEmit": false
+    }
+}

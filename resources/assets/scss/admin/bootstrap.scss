@@ -1,0 +1,27 @@
+/*
+Template Name: Skote - Admin & Dashboard Template
+Author: Themesbrand
+Version: 3.2.0
+Website: https://themesbrand.com/
+Contact: themesbrand@gmail.com
+File: Custom Bootstrap Css File
+*/
+
+
+//Core files
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "variables";
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/reboot";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/backgrounds";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/badge";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/buttons";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/breadcrumb";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/card";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/dropdown";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/nav";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/table";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/pagination";
+@import "./vendor/lyrasoft/theme-skote/src/assets/scss/custom/components/progress";

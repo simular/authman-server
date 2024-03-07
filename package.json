@@ -1,0 +1,35 @@
+{
+    "name": "windwalker",
+    "private": true,
+    "scripts": {
+        "build": "cross-env node_modules/.bin/gulp",
+        "build:dev": "cross-env NODE_ENV=development node_modules/.bin/gulp",
+        "build:prod": "cross-env NODE_ENV=production node_modules/.bin/gulp",
+        "watch": "cross-env NODE_ENV=development node_modules/.bin/gulp --watching=1",
+        "watch:reload": "cross-env NODE_ENV=development node_modules/.bin/gulp --watching=1 --livereload=1",
+        "postinstall": "yarn build install"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-pro": "^6.0",
+        "@windwalker-io/core": "^4.0",
+        "@windwalker-io/fusion": "^1.0",
+        "@windwalker-io/srp": "^1.0",
+        "@windwalker-io/unicorn": "^1.0",
+        "animate.css": "^4.1.1",
+        "bootstrap": "^5.0.0",
+        "codemirror": "^5.63.3",
+        "jarallax": "^1.12.8",
+        "jquery": "^3.6.0",
+        "sortablejs": "^1.14.0",
+        "swiper": "^8.3.2",
+        "tinymce-i18n": "^22.5.2",
+        "wowjs": "^1.1.3",
+        "youtube-background": "^1.0.14"
+    },
+    "//": {
+        "workspaces": [
+            "vendor/windwalker/unicorn/*",
+            "vendor/windwalker/core/assets/*"
+        ]
+    }
+}
