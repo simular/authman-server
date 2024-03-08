@@ -2,11 +2,25 @@
 
 declare(strict_types=1);
 
+use Windwalker\Core\Http\CorsHandler;
+
 return array_merge(
     require __DIR__ . '/windwalker.php',
     [
         'middlewares' => [
-            \Windwalker\Core\Middleware\CorsMiddleware::class,
+            \Windwalker\DI\create(
+                \Windwalker\Core\Middleware\CorsMiddleware::class,
+                options: [
+                    'send_instantly' => true,
+                    'configure' => function (CorsHandler $cors) {
+                        return $cors->allowHeaders(
+                            [
+                                'Authorization'
+                            ]
+                        );
+                    }
+                ]
+            ),
             \Windwalker\Core\Middleware\RoutingMiddleware::class,
         ],
 

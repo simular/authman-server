@@ -12,7 +12,9 @@ use App\Service\JwtAuthService;
 use Lyrasoft\Luna\User\UserService;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
+use Windwalker\Core\Http\RequestAssert;
 use Windwalker\Core\Security\Exception\UnauthorizedException;
+use Windwalker\Crypt\Hasher\PasswordHasherInterface;
 use Windwalker\ORM\ORM;
 
 #[Controller]
@@ -23,7 +25,6 @@ class AuthController
     #[ApiEntry]
     public function authenticate(
         AppContext $app,
-        ORM $orm,
         UserService $userService,
         JwtAuthService $jwtAuthService
     ): array {
@@ -43,6 +44,41 @@ class AuthController
         $user->setPassword('');
         $user->setSecret('');
         $user->setSessCode('');
+
+        // Create JWT Token
+        $accessToken = $jwtAuthService->createAccessToken($user);
+        $refreshToken = $jwtAuthService->createRefreshToken($user);
+
+        $user = UserDTO::wrap($user);
+
+        return compact(
+            'accessToken',
+            'refreshToken',
+            'user'
+        );
+    }
+
+    public function register(
+        AppContext $app,
+        ORM $orm,
+        UserService $userService,
+        PasswordHasherInterface $hasher,
+        JwtAuthService $jwtAuthService
+    ): array {
+        [$email, $password] = $app->input('email', 'password')->values();
+
+        RequestAssert::assert($email, 'No Email');
+        RequestAssert::assert($password, 'No Password');
+
+        /** @var User $user */
+        $user = $userService->createUserEntity();
+        $user->setEmail($email);
+        $user->setPassword($hasher->hash($password));
+        $user->setRegistered('now');
+        $user->setEnabled(true);
+        $user->setVerified(true);
+
+        $user = $orm->createOne($user);
 
         // Create JWT Token
         $accessToken = $jwtAuthService->createAccessToken($user);

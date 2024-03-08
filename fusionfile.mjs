@@ -146,7 +146,7 @@ export async function admin() {
 export async function install() {
   installVendors(
     [
-      '@fortawesome/fontawesome-pro',
+      '@fortawesome/fontawesome-free',
       'wowjs',
       'animate.css',
       'jarallax',

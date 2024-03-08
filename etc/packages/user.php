@@ -14,7 +14,6 @@ use Lyrasoft\Luna\Subscriber\AdminSessionSubscriber;
 use Lyrasoft\Luna\Subscriber\RememberMeSubscriber;
 use Lyrasoft\Luna\Subscriber\UserAuthSubscriber;
 use Lyrasoft\Luna\Subscriber\UserSwitchSubscriber;
-use Lyrasoft\Luna\User\Handler\UserHandler;
 use Lyrasoft\Luna\User\Handler\UserHandlerInterface;
 use Lyrasoft\Luna\User\UserService;
 use Windwalker\Core\Application\AppContext;
@@ -39,7 +38,7 @@ return [
         ],
 
         'bindings' => [
-            UserHandlerInterface::class => UserHandler::class
+            UserHandlerInterface::class => \App\Auth\UserHandler::class
         ],
 
         'listeners' => [

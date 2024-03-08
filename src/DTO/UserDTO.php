@@ -13,6 +13,7 @@ class UserDTO extends AbstractDTO
         'email',
         'name',
         'avatar',
+        'params',
     ];
 
     protected function configure(object $data): void
