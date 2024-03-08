@@ -58,6 +58,7 @@ class AuthController
         );
     }
 
+    #[ApiEntry]
     public function register(
         AppContext $app,
         ORM $orm,

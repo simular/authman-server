@@ -119,7 +119,6 @@ $mig->up(
 
         $user = new User();
 
-        $user->setUsername('admin');
         $user->setEmail('webadmin@simular.co');
         $user->setName('Simular');
         $user->setPassword(password_hash('1234', PASSWORD_DEFAULT));

@@ -33,7 +33,6 @@ $seeder->import(
             $item = $mapper->createEntity();
 
             $item->setName($faker->name());
-            $item->setUsername($faker->userName());
             $item->setEmail($faker->safeEmail());
             $item->setPassword($pass);
             $item->setAvatar($faker->avatar(400));

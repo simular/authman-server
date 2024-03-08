@@ -11,7 +11,8 @@ use Windwalker\Core\Router\RouteCreator;
 
 $router->group('v1')
     ->prefix('v1')
+    ->controller(AuthController::class)
     ->register(function (RouteCreator $router) {
-        $router->any('v1_auth', '/auth/{task}')
-            ->controller(AuthController::class, 'index');
+        $router->any('v1_auth', '/auth/authenticate')
+            ->handler('authenticate');
     });
