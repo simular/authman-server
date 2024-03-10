@@ -91,8 +91,13 @@ return [
                     'database',
                     'request',
                     [
-                        SessionInterface::OPTION_AUTO_COMMIT => true
+                        // SessionInterface::OPTION_AUTO_COMMIT => true
                     ]
+                ),
+                'array' => SessionManager::createSession(
+                    'php',
+                    'array',
+                    'request',
                 ),
                 'null' => SessionManager::createSession(
                     'php',

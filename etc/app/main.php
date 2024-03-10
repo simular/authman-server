@@ -8,6 +8,7 @@ return array_merge(
     require __DIR__ . '/windwalker.php',
     [
         'middlewares' => [
+            \App\Middleware\ApiMiddleware::class,
             \Windwalker\DI\create(
                 \Windwalker\Core\Middleware\CorsMiddleware::class,
                 options: [
@@ -15,7 +16,8 @@ return array_merge(
                     'configure' => function (CorsHandler $cors) {
                         return $cors->allowHeaders(
                             [
-                                'Authorization'
+                                'Authorization',
+                                'Content-Type'
                             ]
                         );
                     }

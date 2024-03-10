@@ -121,11 +121,11 @@ $mig->up(
 
         $user->setEmail('webadmin@simular.co');
         $user->setName('Simular');
-        $user->setPassword(password_hash('1234', PASSWORD_DEFAULT));
         $user->setAvatar('https://avatars.githubusercontent.com/u/13175487#.jpg');
         $user->setEnabled(true);
         $user->setVerified(true);
         $user->setReceiveMail(true);
+        $userService->hashPasswordForSave($user, '1234');
 
         /** @var User $user */
         $user = $orm->createOne(User::class, $user);

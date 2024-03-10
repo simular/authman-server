@@ -10,7 +10,7 @@ use Windwalker\Core\Router\RouteCreator;
 /** @var RouteCreator $router */
 
 $router->group('api')
-    ->prefix('/api')
+    ->prefix('/api/v1')
     ->namespace('api')
     ->register(function (RouteCreator $router) {
         $router->middleware(JsonApiMiddleware::class)

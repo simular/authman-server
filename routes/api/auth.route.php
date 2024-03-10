@@ -9,10 +9,16 @@ use Windwalker\Core\Router\RouteCreator;
 
 /** @var RouteCreator $router */
 
-$router->group('v1')
-    ->prefix('v1')
+$router->group('auth')
+    ->prefix('auth')
     ->controller(AuthController::class)
     ->register(function (RouteCreator $router) {
-        $router->any('v1_auth', '/auth/authenticate')
+        $router->any('/authenticate')
             ->handler('authenticate');
+
+        $router->any('/challenge')
+            ->handler('challenge');
+
+        $router->post('/register')
+            ->handler('register');
     });
