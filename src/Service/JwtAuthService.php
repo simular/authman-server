@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\User;
+use App\Entity\UserSecret;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use JetBrains\PhpStorm\ArrayShape;
@@ -44,7 +45,7 @@ class JwtAuthService
         return $auth;
     }
 
-    public function createAccessToken(User $user): string
+    public function createAccessToken(User $user, UserSecret $userSecret): string
     {
         $now = chronos();
 
@@ -61,12 +62,12 @@ class JwtAuthService
 
         return JWT::encode(
             $data,
-            $user->getSecret(),
+            $userSecret->getDecodedServerSecret(),
             'HS512'
         );
     }
 
-    public function createRefreshToken(User $user): string
+    public function createRefreshToken(User $user, UserSecret $userSecret): string
     {
         $now = chronos();
 
@@ -83,7 +84,7 @@ class JwtAuthService
 
         return JWT::encode(
             $data,
-            $user->getSecret(),
+            $userSecret->getDecodedServerSecret(),
             'HS512'
         );
     }

@@ -1267,16 +1267,16 @@
         },
         {
             "name": "lyrasoft/luna",
-            "version": "2.1.9",
+            "version": "2.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyrasoft/luna.git",
-                "reference": "5eaeca16589cb8a579ee1477175048986da31756"
+                "reference": "f2b523dc1b1cd68272f1c75d188608c97ff37c7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyrasoft/luna/zipball/5eaeca16589cb8a579ee1477175048986da31756",
-                "reference": "5eaeca16589cb8a579ee1477175048986da31756",
+                "url": "https://api.github.com/repos/lyrasoft/luna/zipball/f2b523dc1b1cd68272f1c75d188608c97ff37c7c",
+                "reference": "f2b523dc1b1cd68272f1c75d188608c97ff37c7c",
                 "shasum": ""
             },
             "require": {
@@ -1335,9 +1335,9 @@
             "homepage": "https://github.com/lyrasoft/luna",
             "support": {
                 "issues": "https://github.com/lyrasoft/luna/issues",
-                "source": "https://github.com/lyrasoft/luna/tree/2.1.9"
+                "source": "https://github.com/lyrasoft/luna/tree/2.1.10"
             },
-            "time": "2024-02-21T12:50:59+00:00"
+            "time": "2024-03-09T07:43:51+00:00"
         },
         {
             "name": "lyrasoft/theme-skote",
@@ -4550,16 +4550,16 @@
         },
         {
             "name": "webmozart/glob",
-            "version": "4.6.0",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/glob.git",
-                "reference": "3c17f7dec3d9d0e87b575026011f2e75a56ed655"
+                "reference": "8a2842112d6916e61e0e15e316465b611f3abc17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/glob/zipball/3c17f7dec3d9d0e87b575026011f2e75a56ed655",
-                "reference": "3c17f7dec3d9d0e87b575026011f2e75a56ed655",
+                "url": "https://api.github.com/repos/webmozarts/glob/zipball/8a2842112d6916e61e0e15e316465b611f3abc17",
+                "reference": "8a2842112d6916e61e0e15e316465b611f3abc17",
                 "shasum": ""
             },
             "require": {
@@ -4593,9 +4593,9 @@
             "description": "A PHP implementation of Ant's glob.",
             "support": {
                 "issues": "https://github.com/webmozarts/glob/issues",
-                "source": "https://github.com/webmozarts/glob/tree/4.6.0"
+                "source": "https://github.com/webmozarts/glob/tree/4.7.0"
             },
-            "time": "2022-05-24T19:45:58+00:00"
+            "time": "2024-03-07T20:33:40+00:00"
         },
         {
             "name": "windwalker/core",

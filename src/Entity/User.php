@@ -25,9 +25,12 @@ use Windwalker\ORM\Attributes\UUIDBin;
 use Windwalker\ORM\Cast\JsonCast;
 use Windwalker\ORM\EntityInterface;
 use Windwalker\ORM\EntityTrait;
+use Windwalker\ORM\Event\AfterSaveEvent;
 use Windwalker\ORM\Event\BeforeSaveEvent;
 use Windwalker\ORM\Event\EnergizeEvent;
 use Windwalker\ORM\Metadata\EntityMetadata;
+
+use function Windwalker\Query\uuid2bin;
 
 /**
  * The User class.
@@ -55,11 +58,8 @@ class User implements EntityInterface, UserEntityInterface
     #[Column('password')]
     protected string $password = '';
 
-    #[Column('secret')]
-    protected string $secret = '';
-
-    #[Column('sess_code')]
-    protected string $sessCode = '';
+    #[Column('sess_valid_from')]
+    protected string $sessValidForm = '';
 
     #[Column('enabled')]
     #[Cast('bool')]
@@ -130,13 +130,27 @@ class User implements EntityInterface, UserEntityInterface
             unset($data['password']);
         }
 
-        if (isset($data['secret']) && !$data['secret']) {
-            $data['secret'] = SecretToolkit::genSecret();
+        if (isset($data['sess_valid_from']) && !$data['sess_valid_from']) {
+            $data['sess_valid_from'] = \Windwalker\chronos();
         }
+    }
 
-        if (isset($data['sess_code']) && !$data['sess_code']) {
-            $data['sess_code'] = SecretToolkit::genSecret();
-        }
+    #[AfterSaveEvent]
+    public static function afterSave(AfterSaveEvent $event): void
+    {
+        /** @var static $entity */
+        $entity = $event->getEntity();
+
+        $orm = $event->getORM();
+
+        $orm->findOneOrCreate(
+            UserSecret::class,
+            ['user_id' => $entity->getId()->getBytes()],
+            function (array $data) {
+                $data['server_secret'] = SecretToolkit::genSecret();
+                return $data;
+            }
+        );
     }
 
     public function can(string $action, ...$args): bool
@@ -348,26 +362,14 @@ class User implements EntityInterface, UserEntityInterface
         return $this->getId() !== null;
     }
 
-    public function getSecret(): string
+    public function getSessValidForm(): string
     {
-        return SecretToolkit::decodeIfHasPrefix($this->secret);
+        return $this->sessValidForm;
     }
 
-    public function setSecret(string $secret): static
+    public function setSessValidForm(string $sessValidForm): static
     {
-        $this->secret = SecretToolkit::encode($secret);
-
-        return $this;
-    }
-
-    public function getSessCode(): string
-    {
-        return $this->sessCode;
-    }
-
-    public function setSessCode(string $sessCode): static
-    {
-        $this->sessCode = $sessCode;
+        $this->sessValidForm = $sessValidForm;
 
         return $this;
     }

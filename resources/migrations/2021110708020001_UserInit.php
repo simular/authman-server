@@ -4,27 +4,35 @@ declare(strict_types=1);
 
 namespace App\Migration;
 
+use App\Entity\User;
+use App\Entity\UserRoleMap;
+use App\Entity\UserSecret;
+use App\Service\EncryptionService;
+use Lyrasoft\Luna\Auth\SRP\SRPService;
 use Lyrasoft\Luna\Entity\Session;
-use Lyrasoft\Luna\Entity\User;
 use Lyrasoft\Luna\Entity\UserRole;
-use Lyrasoft\Luna\Entity\UserRoleMap;
 use Lyrasoft\Luna\Entity\UserSocial;
 use Lyrasoft\Luna\User\UserService;
-use Unicorn\Enum\BasicState;
 use Windwalker\Core\Console\ConsoleApplication;
 use Windwalker\Core\Migration\Migration;
 use Windwalker\Database\Schema\Schema;
-use Windwalker\ORM\NestedSetMapper;
 use Windwalker\ORM\ORM;
 
 /**
  * Migration UP: 2021110708010001_UserInit.
  *
- * @var Migration          $mig
+ * @var Migration $mig
  * @var ConsoleApplication $app
  */
 $mig->up(
-    static function (UserService $userService, ORM $orm) use ($mig) {
+    static function (
+        UserService $userService,
+        ORM $orm,
+        SRPService $srpService,
+        EncryptionService $encryptionService
+    ) use (
+        $mig
+    ) {
         // User
         $mig->createTable(
             User::class,
@@ -34,8 +42,7 @@ $mig->up(
                 $schema->varchar('name')->comment('Name');
                 $schema->varchar('avatar')->comment('Avatar');
                 $schema->varchar('password')->length(1024)->comment('Password');
-                $schema->varchar('secret');
-                $schema->varchar('sess_code');
+                $schema->varchar('sess_valid_from');
                 $schema->tinyint('enabled')->comment('0: disabled, 1: enabled');
                 $schema->tinyint('verified')->comment('0: unverified, 1: verified');
                 $schema->varchar('activation')->comment('Activation code.');
@@ -48,6 +55,19 @@ $mig->up(
                 $schema->json('params')->comment('Params');
 
                 $schema->addIndex('email');
+            }
+        );
+
+        // User Secret
+        $mig->createTable(
+            UserSecret::class,
+            function (Schema $schema) {
+                $schema->uuidBinary('user_id');
+                $schema->varchar('secret');
+                $schema->varchar('master');
+                $schema->varchar('server_secret');
+
+                $schema->addIndex('user_id');
             }
         );
 
@@ -125,7 +145,25 @@ $mig->up(
         $user->setEnabled(true);
         $user->setVerified(true);
         $user->setReceiveMail(true);
-        $userService->hashPasswordForSave($user, '1234');
+
+        $pf = $srpService->generateVerifier($user->getEmail(), '1234');
+
+        $password = $srpService::encodePasswordVerifier($pf->salt, $pf->verifier);
+        $user->setPassword($password);
+
+        // $client = $srpService->getSRPClient();
+        // $a = $client->generateRandomSecret();
+        // $A = $client->generatePublic($a);
+
+        // $private = $encryptionService->generateEncryptedPrivateKeyFromUserInfo(
+        //     $srpService->getSRPServer(),
+        //     $user->getEmail(),
+        //     $pf->salt,
+        //     $pf->verifier,
+        //     $A
+        // );
+        //
+        // $user->setPrivateKey($private);
 
         /** @var User $user */
         $user = $orm->createOne(User::class, $user);

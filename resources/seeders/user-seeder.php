@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Seeder;
 
+use App\Cipher\SimpleSodiumCipher;
+use App\Entity\User;
+use App\Service\EncryptionService;
 use Lyrasoft\Luna\Access\AccessService;
-use Lyrasoft\Luna\Entity\User;
+use Lyrasoft\Luna\Auth\SRP\SRPService;
 use Lyrasoft\Luna\User\UserService;
 use Windwalker\Core\Seed\Seeder;
 use Windwalker\Crypt\Hasher\PasswordHasherInterface;
@@ -24,7 +27,9 @@ $seeder->import(
     static function (
         PasswordHasherInterface $password,
         UserService $userService,
-        AccessService $accessService
+        AccessService $accessService,
+        SRPService $srpService,
+        EncryptionService $encryptionService,
     ) use (
         $seeder,
         $orm,
@@ -35,10 +40,11 @@ $seeder->import(
         /** @var EntityMapper<User> $mapper */
         $mapper = $orm->mapper(User::class);
 
-        $pass = $password->hash('1234');
+        $pass = '1234';
         $basicRoles = $accessService->getBasicRoles();
+        $client = $srpService->getSRPClient();
 
-        foreach (range(1, 20) as $i) {
+        foreach (range(1, 50) as $i) {
             $item = $mapper->createEntity();
 
             $item->setName($faker->name());
@@ -49,7 +55,20 @@ $seeder->import(
             $item->setLastLogin($faker->dateTimeThisYear());
             $item->setRegistered($faker->dateTimeThisYear());
 
-            $userService->hashPasswordForSave($item, '1234');
+            $pf = $srpService->generateVerifier($item->getEmail(), $pass);
+            //
+            // $a = $client->generateRandomSecret();
+            // $A = $client->generatePublic($a);
+            //
+            // $private = $encryptionService->generateEncryptedPrivateKeyFromUserInfo(
+            //     $srpService->getSRPServer(),
+            //     $item->getEmail(),
+            //     $pf->salt,
+            //     $pf->verifier,
+            //     $A
+            // );
+
+            $item->setPassword($srpService::encodePasswordVerifier($pf->salt, $pf->verifier));
 
             $item = $mapper->createOne($item);
 

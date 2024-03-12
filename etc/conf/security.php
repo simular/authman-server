@@ -21,7 +21,7 @@ return [
 
         'factories' => [
             'instances' => [
-                'sodium' => create(SodiumCipher::class),
+                'sodium' => create(\App\Cipher\SimpleSodiumCipher::class),
                 'blowfish' => create(OpensslCipher::class, 'blowfish'),
             ],
         ],
