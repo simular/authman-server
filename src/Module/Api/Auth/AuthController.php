@@ -201,10 +201,6 @@ class AuthController
             $salt,
             $verifier,
         ] = $app->input('email', 'salt', 'verifier')->values();
-        
-        $foo = $app->input('foo');
-
-        $foo2 = $cipher->decrypt($foo, 'FOO', ENCODER_HEX);
 
         RequestAssert::assert($email, 'No Email');
 
