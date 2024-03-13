@@ -44,7 +44,7 @@ class SimpleSodiumCipher implements CipherInterface
         );
         $hmac = CryptHelper::substr(
             $message,
-            $length - static::SALT_SIZE
+            $length - static::HMAC_SIZE
         );
 
         $encKey = static::deriveHkdf($key, 'Enc', $salt);
@@ -52,7 +52,7 @@ class SimpleSodiumCipher implements CipherInterface
 
         sodium_memzero($message);
 
-        $calc = sodium_crypto_generichash($salt . $nonce . $encrypted, $hmacKey);
+        $calc = sodium_crypto_generichash($nonce . $salt . $encrypted, $hmacKey, static::HMAC_SIZE);
 
         if (!hash_equals($hmac, $calc)) {
             throw new \UnexpectedValueException('Invalid message authentication code');
@@ -142,7 +142,7 @@ class SimpleSodiumCipher implements CipherInterface
      *
      * @return  string
      */
-    protected static function deriveHkdf(
+    public static function deriveHkdf(
         #[\SensitiveParameter] Key|string $key,
         string $info,
         string $salt

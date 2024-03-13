@@ -7,6 +7,7 @@ namespace App\Module\Api\Auth;
 use App\Api\ApiControllerTrait;
 use App\Api\ApiEntry;
 use App\Attributes\Transaction;
+use App\Cipher\SimpleSodiumCipher;
 use App\DTO\UserDTO;
 use App\Entity\User;
 use App\Entity\UserSecret;
@@ -193,12 +194,17 @@ class AuthController
         AppContext $app,
         ORM $orm,
         UserService $userService,
+        CipherInterface $cipher
     ): array {
         [
             $email,
             $salt,
             $verifier,
         ] = $app->input('email', 'salt', 'verifier')->values();
+        
+        $foo = $app->input('foo');
+
+        $foo2 = $cipher->decrypt($foo, 'FOO', ENCODER_HEX);
 
         RequestAssert::assert($email, 'No Email');
 
