@@ -7,7 +7,6 @@ namespace App\Module\Api\Auth;
 use App\Api\ApiControllerTrait;
 use App\Api\ApiEntry;
 use App\Attributes\Transaction;
-use App\Cipher\SimpleSodiumCipher;
 use App\DTO\UserDTO;
 use App\Entity\User;
 use App\Entity\UserSecret;
@@ -57,6 +56,8 @@ class AuthController
             ErrorCode::INVALID_CREDENTIALS->throw();
         }
 
+        $userSecret = $orm->mustFindOne(UserSecret::class, ['user_id' => uuid2bin($user->getId())]);
+
         $password = $user->getPassword();
 
         if (!$srpService::isValidSRPHash($password)) {
@@ -65,6 +66,7 @@ class AuthController
 
         $pf = $srpService::decodePasswordVerifier($password);
 
+        // Run SRP step
         $e = $srpService->step1($email, $pf->salt, $pf->verifier);
 
         $sess = JWT::encode(
@@ -72,9 +74,13 @@ class AuthController
                 'exp' => time() + 10000,
                 'sess' => $sessId,
             ],
-            $user->getSecret(),
+            $userSecret->getServerSecret(),
             'HS512'
         );
+
+        // Detect if first login
+        $firstLogin = !$userSecret->getSecret() || !$userSecret->getMaster();
+        $session->set('first.login', $firstLogin);
 
         $this->releaseSessionDriver($app);
 
@@ -82,6 +88,7 @@ class AuthController
             'salt' => $pf->salt->toBase(16),
             'B' => $e->public->toBase(16),
             'sess' => $sess,
+            'firstLogin' => $firstLogin,
         ];
     }
 
@@ -106,7 +113,7 @@ class AuthController
             'M1',
             'sess',
             'encSecret',
-            'encMaster'
+            'encMaster',
         )->values();
 
         RequestAssert::assert($email, 'No email');
@@ -119,9 +126,14 @@ class AuthController
             ErrorCode::INVALID_CREDENTIALS->throw();
         }
 
+        $userSecret = $orm->mustFindOne(
+            UserSecret::class,
+            ['user_id' => uuid2bin($user->getId())]
+        );
+
         $payload = JWT::decode(
             $sess,
-            new Key($user->getSecret(), 'HS512')
+            new Key($userSecret->getServerSecret(), 'HS512')
         );
 
         $password = $user->getPassword();
@@ -142,15 +154,10 @@ class AuthController
                 $M1
             );
 
-            $userSecret = $orm->mustFindOne(
-                UserSecret::class,
-                ['user_id' => uuid2bin($user->getId())]
-            );
-
             // Save enc secrets
-            if ($encSecret && $encMaster) {
-                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret, ENCODER_HEX);
-                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret, ENCODER_HEX);
+            if ($session->get('first.login') && $encSecret && $encMaster) {
+                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBytes(), ENCODER_HEX);
+                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret->toBytes(), ENCODER_HEX);
 
                 $userSecret->setSecret(SecretToolkit::encode($encSecret->get()));
                 $userSecret->setMaster(SecretToolkit::encode($encMaster->get()));
@@ -176,12 +183,17 @@ class AuthController
 
             $this->releaseSessionDriver($app);
 
+            $encSecret = $userSecret->getSecret();
+            $encMaster = $userSecret->getMaster();
+
             return compact(
                 'key',
                 'proof',
                 'accessToken',
                 'refreshToken',
-                'user'
+                'user',
+                'encSecret',
+                'encMaster',
             );
         } catch (InvalidSessionProofException) {
             ErrorCode::INVALID_CREDENTIALS->throw();

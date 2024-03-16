@@ -9,6 +9,7 @@ use Windwalker\Crypt\SecretToolkit;
 use Windwalker\ORM\Attributes\CastNullable;
 use Windwalker\ORM\Attributes\Column;
 use Windwalker\ORM\Attributes\EntitySetup;
+use Windwalker\ORM\Attributes\PK;
 use Windwalker\ORM\Attributes\Table;
 use Windwalker\ORM\Attributes\UUIDBin;
 use Windwalker\ORM\EntityInterface;
@@ -21,7 +22,7 @@ class UserSecret implements EntityInterface
 {
     use EntityTrait;
 
-    #[Column('user_id')]
+    #[Column('user_id'), PK]
     #[UUIDBin]
     #[CastNullable('uuid_bin', 'uuid_bin')]
     protected UuidInterface $userId;

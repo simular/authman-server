@@ -183,6 +183,7 @@ $mig->down(
     static function () use ($mig) {
         $mig->dropTables(
             User::class,
+            UserSecret::class,
             UserSocial::class,
             UserRole::class,
             UserRoleMap::class,

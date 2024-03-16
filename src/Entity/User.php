@@ -25,6 +25,7 @@ use Windwalker\ORM\Attributes\UUIDBin;
 use Windwalker\ORM\Cast\JsonCast;
 use Windwalker\ORM\EntityInterface;
 use Windwalker\ORM\EntityTrait;
+use Windwalker\ORM\Event\AfterDeleteEvent;
 use Windwalker\ORM\Event\AfterSaveEvent;
 use Windwalker\ORM\Event\BeforeSaveEvent;
 use Windwalker\ORM\Event\EnergizeEvent;
@@ -151,6 +152,16 @@ class User implements EntityInterface, UserEntityInterface
                 return $data;
             }
         );
+    }
+
+    #[AfterDeleteEvent]
+    public static function afterDelete(AfterDeleteEvent $event): void
+    {
+        /** @var static $entity */
+        $entity = $event->getEntity();
+        $orm = $event->getORM();
+
+        $orm->deleteWhere(UserSecret::class, ['user_id' => uuid2bin($entity->getId())]);
     }
 
     public function can(string $action, ...$args): bool

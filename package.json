@@ -31,5 +31,6 @@
             "vendor/windwalker/unicorn/*",
             "vendor/windwalker/core/assets/*"
         ]
-    }
+    },
+    "devDependencies": {}
 }
