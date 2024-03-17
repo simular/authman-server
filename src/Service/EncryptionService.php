@@ -7,8 +7,11 @@ namespace App\Service;
 use App\Entity\User;
 use App\Entity\UserSecret;
 use Random\RandomException;
+use Windwalker\Crypt\SecretToolkit;
 use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Attributes\Service;
+
+use const Windwalker\Crypt\ENCODER_HEX;
 
 #[Service]
 class EncryptionService
@@ -31,14 +34,14 @@ class EncryptionService
      */
     public function createUserSecrets(string $password, string $salt): array
     {
-        $secretKey = random_bytes(16);
-        $masterKey = random_bytes(32);
+        $secretKey = SecretToolkit::genSecret(16, ENCODER_HEX);
+        $masterKey = SecretToolkit::genSecret(32, ENCODER_HEX);
         $kek = static::deriveKek($password, $salt);
 
         $encSecret = $this->cipher->encrypt($secretKey, $kek);
-        $encMaster = $this->cipher->encrypt($masterKey, $secretKey);
+        $encMaster = $this->cipher->encrypt($masterKey, SecretToolkit::decode($secretKey));
 
-        return [$encSecret, $encMaster];
+        return [$encSecret, $encMaster, $kek];
     }
 
     public static function deriveKek(string $password, string $salt): string
@@ -48,7 +51,8 @@ class EncryptionService
             $password,
             $salt,
             static::KEK_ITERATION_TIMES,
-            32
+            32,
+            true
         );
     }
 }

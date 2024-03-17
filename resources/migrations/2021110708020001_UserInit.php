@@ -67,8 +67,8 @@ $mig->up(
             UserSecret::class,
             function (Schema $schema) {
                 $schema->uuidBinary('user_id');
-                $schema->varchar('secret');
-                $schema->varchar('master');
+                $schema->varchar('secret')->length(512);
+                $schema->varchar('master')->length(512);
                 $schema->varchar('server_secret');
 
                 $schema->addIndex('user_id');

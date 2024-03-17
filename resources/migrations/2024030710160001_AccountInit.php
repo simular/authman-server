@@ -22,10 +22,7 @@ $mig->up(
             function (Schema $schema) {
                 $schema->primaryUuidBinary('id');
                 $schema->uuidBinary('user_id');
-                $schema->varchar('title');
-                $schema->varchar('secret');
-                $schema->varchar('url')->length(512);
-                $schema->varchar('icon');
+                $schema->longtext('content')->length(512);
                 $schema->datetime('created');
                 $schema->datetime('modified');
                 $schema->json('params');

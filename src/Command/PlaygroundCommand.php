@@ -4,16 +4,24 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Service\EncryptionService;
+use Brick\Math\BigInteger;
 use Symfony\Component\Console\Command\Command;
 use Windwalker\Console\CommandInterface;
 use Windwalker\Console\CommandWrapper;
 use Windwalker\Console\IOInterface;
+use Windwalker\Crypt\SecretToolkit;
+use Windwalker\Crypt\Symmetric\CipherInterface;
 
 #[CommandWrapper(
     description: ''
 )]
 class PlaygroundCommand implements CommandInterface
 {
+    public function __construct(protected EncryptionService $encryptionService, protected CipherInterface $cipher)
+    {
+    }
+
     /**
      * configure
      *
@@ -35,16 +43,17 @@ class PlaygroundCommand implements CommandInterface
      */
     public function execute(IOInterface $io): int
     {
-        show(
-            bin2hex(
-                hash_hkdf(
-                    'SHA256',
-                    'FOO',
-                    32,
-                    'Auth'
-                )
-            )
+        $pass = '1234';
+        $salt = BigInteger::fromBase(
+            '5650da90c28fbddb2c12dd72652cb5dc',
+            16
         );
+        [$encSecret, $encMaster, $kek] = $this->encryptionService->createUserSecrets($pass, $salt->toBytes());
+show($encSecret, $encMaster);
+        $s2 = $this->cipher->decrypt($encSecret, $kek);
+        $m2 = $this->cipher->decrypt($encMaster, SecretToolkit::decode($s2->get()));
+
+        show($s2, $m2);
 
         return 0;
     }

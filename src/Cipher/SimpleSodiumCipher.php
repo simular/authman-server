@@ -89,9 +89,9 @@ class SimpleSodiumCipher implements CipherInterface
             $encKey
         );
 
-        $hmac = sodium_crypto_generichash($salt . $nonce . $encrypted, $hmacKey, static::HMAC_SIZE);
+        $hmac = sodium_crypto_generichash($nonce . $salt . $encrypted, $hmacKey, static::HMAC_SIZE);
 
-        $message = $salt . $nonce . $encrypted . $hmac;
+        $message = $nonce . $salt . $encrypted . $hmac;
 
         // Wipe every superfluous piece of data from memory
         sodium_memzero($encKey);

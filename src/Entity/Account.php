@@ -37,17 +37,8 @@ class Account implements EntityInterface
     #[CastNullable('uuid_bin', 'uuid_bin')]
     protected UuidInterface $userId;
 
-    #[Column('title')]
-    protected string $title = '';
-
-    #[Column('secret')]
-    protected string $secret = '';
-
-    #[Column('url')]
-    protected string $url = '';
-
-    #[Column('icon')]
-    protected string $icon = '';
+    #[Column('content')]
+    protected string $content = '';
 
     #[Column('created')]
     #[CastNullable(ServerTimeCast::class)]
@@ -93,54 +84,6 @@ class Account implements EntityInterface
         return $this;
     }
 
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): static
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getSecret(): string
-    {
-        return $this->secret;
-    }
-
-    public function setSecret(string $secret): static
-    {
-        $this->secret = $secret;
-
-        return $this;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(string $url): static
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    public function getIcon(): string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): static
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     public function getCreated(): ?Chronos
     {
         return $this->created;
@@ -173,6 +116,18 @@ class Account implements EntityInterface
     public function setParams(array $params): static
     {
         $this->params = $params;
+
+        return $this;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }
