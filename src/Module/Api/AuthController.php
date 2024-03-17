@@ -20,6 +20,7 @@ use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
 use Windwalker\Core\Http\RequestAssert;
 use Windwalker\Core\Manager\SessionManager;
+use Windwalker\Crypt\SafeEncoder;
 use Windwalker\Crypt\SecretToolkit;
 use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Container;
@@ -178,7 +179,7 @@ class AuthController
 
             $this->releaseSessionDriver($app);
 
-            $encSecret = $userSecret->getSecret();
+            $encSecret = SecretToolkit::encode(SafeEncoder::decode('base64uel', $userSecret->getSecret()), ENCODER_HEX);
             $encMaster = $userSecret->getMaster();
 
             return compact(

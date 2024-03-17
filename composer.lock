@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b4aa177987c0e4480be4ee363f29935",
+    "content-hash": "7226883428e29fd7de6798eb1c6d4721",
     "packages": [
         {
             "name": "asika/cross-env",
@@ -4764,16 +4764,16 @@
         },
         {
             "name": "windwalker/framework",
-            "version": "4.1.3-beta4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/windwalker-io/framework.git",
-                "reference": "7c602c0d155966b771b20048fe5d003f9b057cdb"
+                "reference": "8356e762c60e05f295ba6140239d9e2dff04c9f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/framework/zipball/7c602c0d155966b771b20048fe5d003f9b057cdb",
-                "reference": "7c602c0d155966b771b20048fe5d003f9b057cdb",
+                "url": "https://api.github.com/repos/windwalker-io/framework/zipball/8356e762c60e05f295ba6140239d9e2dff04c9f4",
+                "reference": "8356e762c60e05f295ba6140239d9e2dff04c9f4",
                 "shasum": ""
             },
             "require": {
@@ -4900,6 +4900,7 @@
                 "symfony/yaml": "Install ~4.0 if you require YAML support.",
                 "webmozart/glob": "Install ^4.0 to support Ant-like glob()."
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "windwalker": {
@@ -5001,9 +5002,9 @@
             "homepage": "https://github.com/windwalker-io/framework",
             "support": {
                 "issues": "https://github.com/windwalker-io/framework/issues",
-                "source": "https://github.com/windwalker-io/framework/tree/4.1.3-beta4"
+                "source": "https://github.com/windwalker-io/framework/tree/master"
             },
-            "time": "2024-03-04T12:01:24+00:00"
+            "time": "2024-03-17T15:39:13+00:00"
         },
         {
             "name": "windwalker/srp",
@@ -5312,7 +5313,9 @@
     ],
     "aliases": [],
     "minimum-stability": "beta",
-    "stability-flags": [],
+    "stability-flags": {
+        "windwalker/framework": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -5323,5 +5326,5 @@
     "platform-overrides": {
         "php": "8.2"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

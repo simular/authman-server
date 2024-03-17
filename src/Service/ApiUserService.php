@@ -49,13 +49,9 @@ class ApiUserService extends UserService
         return [
             'password' => '1234',
             'salt' => '5650da90c28fbddb2c12dd72652cb5dc',
-            'kek' => 'hex:eb0d39c41b0c1993d9258472136f0b53',
-            'secret' => 'QCxj9oZ8wAE1ch_OQysk7U1q-njXmOiA3r7e4AIuRDgul3rRAQRcZ8enQ1ibb7nUBVQDR5hT2VrFLmTJ688PvHNSVE' .
-                'AKD-UH8oFsK4IFheYwmwimqaa5dhWPrMVT2HCpRtULaGvbdtibl2XwWGlpJ0RTbXAgylPMPIqpVNPbSR-x8ZU9Pf8lCT7qmOxF' .
-                'bLJklL-XAzI1H68r9xrn',
-            'master' => 'q4MjuHW7HhCddYxUpcsHpd9FYvhQdlc85IGO3Cw03LB7RbnlBJJJs6rOo9izB1eOEvKuQzwHepwrnnAcVtWvg2uQTu' .
-                'jwJhaU52Qiq86euF5RYSmDQSiuoGpRCjjexvv3JTsEEhkb6l5MoIptAuanJTGqjzGqpwwgzYhp9SjJdQ7zZgIm3cDpSmGihWu_' .
-                'ByD9p-4ve-87mEACatkK5Pq6-MIt9b4A9OpKytDG1ddbxN0Suno8KKkjJgSEbOE='
+            'kek' => 'hex:eb0d39c41b0c1993d9258472136f0b532a1eb731340fadc2a45446cb94b3f1cd',
+            'secret' => '9owrNAfGv2JaiNxAIlps3g_8Bppp5Vt4lWqxl9o-1nr0LhR9vUEH9vvrHDMxtaouDrPPw79ZrePLTASdo-XeqjclR24cYcJ1K45alIT2hIFhKIeL_F4gbovYwcrMgt00YVI0d6iV6jD4XfKW9WGfhOu5T7zn9ylq0kVE1zgQMZFttX4jUOFhKDzuHgvRZnvI7_WPeeI2wYViJKA_',
+            'master' => 'YdEgArusa8gGajicGrmY4f6xOGo6YXue_xCsD9m445hVaMgsDFwbwu1YvHmuGCwDtpBSK588P4n-b8JVIvxf7lnvTr9oC5yHH2dFrAizigjzlxLfZGnWtV1i8JpzHoVRmQv6qH3R_80EgZvPgj-cnCGcI9SDnOkrRhBDjwuwd5hkQ3FE-rtsF0nAuF2vrKBS12DNI5utKHK7xekvV4uYYG8ow7FbQu0mRbpMmT6S_ZCmkksdPwsOzyNkMMs='
         ];
     }
 }
