@@ -41,6 +41,10 @@ return [
             UserHandlerInterface::class => \App\Auth\UserHandler::class
         ],
 
+        'aliases' => [
+            UserService::class => \App\Service\ApiUserService::class
+        ],
+
         'listeners' => [
             AppContext::class => [
                 AdminSessionSubscriber::class,

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Lyrasoft\Luna\User\UserService;
 use Windwalker\Console\CommandWrapper;
 use Windwalker\Core\Attributes\Controller;
 use Windwalker\Core\Attributes\Csrf;
@@ -16,9 +17,12 @@ use Windwalker\DI\Attributes\Decorator;
 use Windwalker\DI\Attributes\Inject;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\DI\Attributes\Setup;
+use Windwalker\DI\Container;
 use Windwalker\Utilities\Arr;
 
 use function Windwalker\include_arrays;
+
+class_alias(\App\Entity\User::class, CurrentUser::class);
 
 return Arr::mergeRecursive(
     // Load with namespace,
@@ -28,7 +32,9 @@ return Arr::mergeRecursive(
             //
         ],
         'bindings' => [
-            //
+            CurrentUser::class => function (Container $container) {
+                return $container->get(UserService::class)->getCurrentUser();
+            },
         ],
         'aliases' => [
             //

@@ -6,9 +6,11 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Entity\UserSecret;
+use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use JetBrains\PhpStorm\ArrayShape;
+use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\Security\Exception\UnauthorizedException;
 use Windwalker\Crypt\Hasher\PasswordHasher;
 use Windwalker\Crypt\SecretToolkit;
@@ -17,32 +19,13 @@ use Windwalker\ORM\ORM;
 use Windwalker\Utilities\TypeCast;
 
 use function Windwalker\chronos;
+use function Windwalker\Query\uuid2bin;
 
 #[Service]
 class JwtAuthService
 {
     public function __construct(protected ORM $orm)
     {
-    }
-
-    #[ArrayShape(['string', 'string'])]
-    public static function extractBasicAuth(string $credential): array
-    {
-        sscanf($credential, 'Basic %s', $auth);
-
-        if (!$auth) {
-            throw new \RuntimeException('Auth payload is empty', 400);
-        }
-
-        $auth = base64_decode($auth);
-
-        $auth = explode(':', $auth, 2) + ['', ''];
-
-        if (!isset($auth[1]) || $auth[1] === '') {
-            throw new UnauthorizedException('No password', 400);
-        }
-
-        return $auth;
     }
 
     public function createAccessToken(User $user, UserSecret $userSecret): string
@@ -89,7 +72,14 @@ class JwtAuthService
         );
     }
 
-    public function extractToken(string $token, ?User &$user = null): array
+    public function extractAccessTokenFromHeader(string $authorization, ?User &$user = null): array
+    {
+        sscanf($authorization, 'Bearer %s', $token);
+
+        return $this->extractAccessToken($token, $user);
+    }
+
+    public function extractAccessToken(string $token, ?User &$user = null): array
     {
         $parts = explode('.', $token);
 
@@ -97,24 +87,33 @@ class JwtAuthService
             throw new \InvalidArgumentException('JWT format wrong.', 400);
         }
 
-        $payload = json_decode(base64_decode($parts[1]), true);
-        $data = $payload['data'];
+        $payload = json_decode(base64_decode($parts[1]), true, 512, JSON_THROW_ON_ERROR);
 
-        if (empty($data['id'])) {
+        if (empty($payload['id'])) {
             throw new \InvalidArgumentException('No user ID in JWT payload', 400);
         }
 
-        $user = $user = $this->orm->mustFindOne(User::class, $payload['data']['id']);
+        $user = $user = $this->orm->mustFindOne(User::class, ['id' => uuid2bin($payload['id'])]);
 
-        $user->setPassword('');
+        $userSecret = $user->getSecretEntity();
 
         $payload = JWT::decode(
             $token,
-            new Key($user->getSecret(), 'HS512')
+            new Key($userSecret->getDecodedServerSecret(), 'HS512')
         );
 
         if (!$payload) {
             throw new \RuntimeException('Invalid Payload', 400);
+        }
+
+        $issuedAt = Chronos::createFromFormat('U', (string) $payload->iat);
+
+        if ($issuedAt < $user->getSessValidForm()) {
+            $user = null;
+
+            $ex = new ExpiredException('User token expired');
+            $ex->setPayload($payload);
+            throw $ex;
         }
 
         return TypeCast::toArray($payload, true);

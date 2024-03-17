@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Seeder;
 
-use App\Cipher\SimpleSodiumCipher;
 use App\Entity\User;
+use App\Entity\UserSecret;
+use App\Entity\UserSocial;
+use App\Service\ApiUserService;
 use App\Service\EncryptionService;
+use Brick\Math\BigInteger;
 use Lyrasoft\Luna\Access\AccessService;
 use Lyrasoft\Luna\Auth\SRP\SRPService;
 use Lyrasoft\Luna\User\UserService;
@@ -15,6 +18,7 @@ use Windwalker\Crypt\Hasher\PasswordHasherInterface;
 use Windwalker\Database\DatabaseAdapter;
 use Windwalker\ORM\EntityMapper;
 use Windwalker\ORM\ORM;
+use Windwalker\SRP\Step\PasswordFile;
 
 /**
  * User Seeder
@@ -40,8 +44,14 @@ $seeder->import(
         /** @var EntityMapper<User> $mapper */
         $mapper = $orm->mapper(User::class);
 
-        $pass = '1234';
         $basicRoles = $accessService->getBasicRoles();
+
+        $secrets = ApiUserService::getTestSecrets();
+        $pass = $secrets['password'];
+        $salt = BigInteger::fromBase($secrets['salt'], 16);
+        $secret = $secrets['secret'];
+        $master = $secrets['master'];
+
         $client = $srpService->getSRPClient();
 
         foreach (range(1, 50) as $i) {
@@ -55,22 +65,28 @@ $seeder->import(
             $item->setLastLogin($faker->dateTimeThisYear());
             $item->setRegistered($faker->dateTimeThisYear());
 
-            $pf = $srpService->generateVerifier($item->getEmail(), $pass);
-            //
-            // $a = $client->generateRandomSecret();
-            // $A = $client->generatePublic($a);
-            //
-            // $private = $encryptionService->generateEncryptedPrivateKeyFromUserInfo(
-            //     $srpService->getSRPServer(),
-            //     $item->getEmail(),
-            //     $pf->salt,
-            //     $pf->verifier,
-            //     $A
-            // );
+            $x = $client->generatePasswordHash(
+                $salt,
+                $item->getEmail(),
+                $pass
+            );
 
-            $item->setPassword($srpService::encodePasswordVerifier($pf->salt, $pf->verifier));
+            // (g^x % N)
+            $verifier = $client->generateVerifier($x);
+
+            $pf = new PasswordFile($salt, $verifier);
+
+            $item->setPassword(
+                $srpService::encodePasswordVerifier($pf->salt, $pf->verifier)
+            );
 
             $item = $mapper->createOne($item);
+
+            $userSecret = $item->getSecretEntity(true);
+            $userSecret->setSecret($secret);
+            $userSecret->setMaster($master);
+
+            $orm->updateOne($userSecret);
 
             $accessService->addRolesToUser($item, $basicRoles);
 
@@ -81,6 +97,6 @@ $seeder->import(
 
 $seeder->clear(
     static function () use ($seeder, $orm, $db) {
-        $seeder->truncate(User::class);
+        $seeder->truncate(User::class, UserSecret::class, UserSocial::class);
     }
 );

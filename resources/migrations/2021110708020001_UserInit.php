@@ -7,7 +7,9 @@ namespace App\Migration;
 use App\Entity\User;
 use App\Entity\UserRoleMap;
 use App\Entity\UserSecret;
+use App\Service\ApiUserService;
 use App\Service\EncryptionService;
+use Brick\Math\BigInteger;
 use Lyrasoft\Luna\Auth\SRP\SRPService;
 use Lyrasoft\Luna\Entity\Session;
 use Lyrasoft\Luna\Entity\UserRole;
@@ -15,8 +17,10 @@ use Lyrasoft\Luna\Entity\UserSocial;
 use Lyrasoft\Luna\User\UserService;
 use Windwalker\Core\Console\ConsoleApplication;
 use Windwalker\Core\Migration\Migration;
+use Windwalker\Crypt\SecretToolkit;
 use Windwalker\Database\Schema\Schema;
 use Windwalker\ORM\ORM;
+use Windwalker\SRP\Step\PasswordFile;
 
 /**
  * Migration UP: 2021110708010001_UserInit.
@@ -54,7 +58,7 @@ $mig->up(
                 $schema->datetime('modified')->nullable(true)->comment('Modified Time');
                 $schema->json('params')->comment('Params');
 
-                $schema->addIndex('email');
+                $schema->addUniqueKey('email');
             }
         );
 
@@ -146,27 +150,35 @@ $mig->up(
         $user->setVerified(true);
         $user->setReceiveMail(true);
 
-        $pf = $srpService->generateVerifier($user->getEmail(), '1234');
+        $secrets = ApiUserService::getTestSecrets();
+        $pass = $secrets['password'];
+        $salt = BigInteger::fromBase($secrets['salt'], 16);
+        $secret = $secrets['secret'];
+        $master = $secrets['master'];
+
+        $client = $srpService->getSRPClient();
+        $x = $client->generatePasswordHash(
+            $salt,
+            $user->getEmail(),
+            $pass
+        );
+
+        // (g^x % N)
+        $verifier = $client->generateVerifier($x);
+
+        $pf = new PasswordFile($salt, $verifier);
 
         $password = $srpService::encodePasswordVerifier($pf->salt, $pf->verifier);
         $user->setPassword($password);
 
-        // $client = $srpService->getSRPClient();
-        // $a = $client->generateRandomSecret();
-        // $A = $client->generatePublic($a);
-
-        // $private = $encryptionService->generateEncryptedPrivateKeyFromUserInfo(
-        //     $srpService->getSRPServer(),
-        //     $user->getEmail(),
-        //     $pf->salt,
-        //     $pf->verifier,
-        //     $A
-        // );
-        //
-        // $user->setPrivateKey($private);
-
         /** @var User $user */
         $user = $orm->createOne(User::class, $user);
+
+        $userSecret = $user->getSecretEntity(true);
+        $userSecret->setSecret($secret);
+        $userSecret->setMaster($master);
+
+        $orm->updateOne($userSecret);
 
         $map = new UserRoleMap();
         $map->setUserId($user->getId());

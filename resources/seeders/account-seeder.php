@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Enum\DeviceType;
 use Windwalker\Core\Seed\Seeder;
 use Windwalker\Crypt\Hasher\PasswordHasher;
+use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\Database\DatabaseAdapter;
 use Windwalker\ORM\EntityMapper;
 use Windwalker\ORM\ORM;
@@ -22,21 +23,21 @@ use Windwalker\ORM\ORM;
  * @var DatabaseAdapter $db
  */
 $seeder->import(
-    static function () use ($seeder, $orm, $db) {
+    static function (CipherInterface $cipher) use ($seeder, $orm, $db) {
         $faker = $seeder->faker('en_US');
 
         /** @var EntityMapper<Account> $mapper */
         $mapper = $orm->mapper(Account::class);
-        $userIds = $orm->findColumn(
-            User::class,
-            'id',
-        );
+        $users = $orm->findList(User::class)->all();
 
-        foreach ($userIds as $userId) {
+        $secrets = [];
+
+        /** @var User $user */
+        foreach ($users as $user) {
             foreach (range(1, 12) as $i) {
                 $item = $mapper->createEntity();
 
-                $item->setUserId($userId);
+                $item->setUserId($user->getId());
                 $item->setIcon($faker->unsplashImage(150, 150));
                 $item->setTitle($faker->sentence());
                 $item->setUrl($faker->url());

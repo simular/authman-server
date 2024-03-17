@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Api\Auth;
+namespace App\Module\Api;
 
-use App\Api\ApiControllerTrait;
-use App\Api\ApiEntry;
 use App\Attributes\Transaction;
 use App\DTO\UserDTO;
 use App\Entity\User;
@@ -37,8 +35,6 @@ use const Windwalker\Crypt\ENCODER_HEX;
 #[Controller]
 class AuthController
 {
-    use ApiControllerTrait;
-
     public function challenge(
         AppContext $app,
         ORM $orm,
@@ -74,7 +70,7 @@ class AuthController
                 'exp' => time() + 10000,
                 'sess' => $sessId,
             ],
-            $userSecret->getServerSecret(),
+            $userSecret->getDecodedServerSecret(),
             'HS512'
         );
 
@@ -92,7 +88,6 @@ class AuthController
         ];
     }
 
-    #[ApiEntry]
     public function authenticate(
         AppContext $app,
         ORM $orm,
@@ -133,7 +128,7 @@ class AuthController
 
         $payload = JWT::decode(
             $sess,
-            new Key($userSecret->getServerSecret(), 'HS512')
+            new Key($userSecret->getDecodedServerSecret(), 'HS512')
         );
 
         $password = $user->getPassword();
@@ -200,7 +195,6 @@ class AuthController
         }
     }
 
-    #[ApiEntry]
     #[Transaction]
     public function register(
         AppContext $app,

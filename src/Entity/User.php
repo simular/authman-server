@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Service\ApiUserService;
 use DateTimeInterface;
 use Lyrasoft\Luna\Access\AccessService;
 use Lyrasoft\Luna\User\UserEntityInterface;
@@ -113,7 +114,7 @@ class User implements EntityInterface, UserEntityInterface
     {
         $event->storeCallback(
             'user.service',
-            fn(UserService $userService) => $userService
+            fn(ApiUserService $userService) => $userService
         );
 
         $event->storeCallback(
@@ -178,6 +179,14 @@ class User implements EntityInterface, UserEntityInterface
         $accessService = $this->retrieveMeta('access.service')();
 
         return $accessService->userInRoles($this, $roles);
+    }
+
+    public function getSecretEntity(bool $refresh = false): UserSecret
+    {
+        /** @var ApiUserService $userService */
+        $userService = $this->retrieveMeta('user.service')();
+
+        return $userService->mustGetUserSecret(['user_id' => uuid2bin($this->getId())], $refresh);
     }
 
     /**
