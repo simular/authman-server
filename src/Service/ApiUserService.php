@@ -50,8 +50,8 @@ class ApiUserService extends UserService
             'password' => '1234',
             'salt' => '5650da90c28fbddb2c12dd72652cb5dc',
             'kek' => 'hex:eb0d39c41b0c1993d9258472136f0b532a1eb731340fadc2a45446cb94b3f1cd',
-            'secret' => '9owrNAfGv2JaiNxAIlps3g_8Bppp5Vt4lWqxl9o-1nr0LhR9vUEH9vvrHDMxtaouDrPPw79ZrePLTASdo-XeqjclR24cYcJ1K45alIT2hIFhKIeL_F4gbovYwcrMgt00YVI0d6iV6jD4XfKW9WGfhOu5T7zn9ylq0kVE1zgQMZFttX4jUOFhKDzuHgvRZnvI7_WPeeI2wYViJKA_',
-            'master' => 'YdEgArusa8gGajicGrmY4f6xOGo6YXue_xCsD9m445hVaMgsDFwbwu1YvHmuGCwDtpBSK588P4n-b8JVIvxf7lnvTr9oC5yHH2dFrAizigjzlxLfZGnWtV1i8JpzHoVRmQv6qH3R_80EgZvPgj-cnCGcI9SDnOkrRhBDjwuwd5hkQ3FE-rtsF0nAuF2vrKBS12DNI5utKHK7xekvV4uYYG8ow7FbQu0mRbpMmT6S_ZCmkksdPwsOzyNkMMs='
+            'secret' => 'DlMx8Asm-UHPgQHOOf4O4uToYrLU4rZ1bvkWCKaIID8RCyPcwiVXdO8kZBTUXtuHDM0z4JhhflMBH4ycobdY4Z7lclutbov4U5Bb0kwZuHpynsoCK6nJXj5NjaLEtgwUYLZoEwoHJ_qDN_W76Qr1haS97KFpsCfR_1KCVW_jGWmCXApfDY4kkw==',
+            'master' => 'NvpLnuUpf8awYgsUsgw9WZC9r6ryQhxcHho9rpjVsl2wfKNot7l9DGY73aBLQIe-OVRSP6gFScwPzRoVllioBunEi_qbe8DQxObyWOyBEx_pCVVdKOyRlTl-PC6AaT5VxDIVpeKU6XrhXnoUOeCpY2yTbAV2VNIfAX13Cv_q_qUdBQLiXd7hFFiXoCe8aWPwD_ix7cIW04M='
         ];
     }
 }

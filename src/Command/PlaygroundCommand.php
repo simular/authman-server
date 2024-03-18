@@ -47,9 +47,9 @@ class PlaygroundCommand implements CommandInterface
      */
     public function execute(IOInterface $io): int
     {
-        $secrets = ApiUserService::getTestSecrets();
-
-        show($secrets['secret'], SafeEncoder::decode('base64url', $secrets['secret']));
+        // $secrets = ApiUserService::getTestSecrets();
+        //
+        // show($secrets['secret'], SafeEncoder::decode('base64url', $secrets['secret']));
 
         $pass = '1234';
         $salt = BigInteger::fromBase(
@@ -59,9 +59,9 @@ class PlaygroundCommand implements CommandInterface
         [$encSecret, $encMaster, $kek] = $this->encryptionService->createUserSecrets($pass, $salt->toBytes());
 
         $s2 = $this->cipher->decrypt($encSecret, $kek);
-        $m2 = $this->cipher->decrypt($encMaster, SecretToolkit::decode($s2->get()));
+        $m2 = $this->cipher->decrypt($encMaster, $s2->get());
 
-        show($s2, $m2);
+        show($s2->get(), $m2->get());
 
         return 0;
     }

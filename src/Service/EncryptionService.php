@@ -34,12 +34,12 @@ class EncryptionService
      */
     public function createUserSecrets(string $password, string $salt): array
     {
-        $secretKey = SecretToolkit::genSecret(16, ENCODER_HEX);
-        $masterKey = SecretToolkit::genSecret(32, ENCODER_HEX);
+        $secretKey = random_bytes(16);
+        $masterKey = random_bytes(32);
         $kek = static::deriveKek($password, $salt);
 
         $encSecret = $this->cipher->encrypt($secretKey, $kek);
-        $encMaster = $this->cipher->encrypt($masterKey, SecretToolkit::decode($secretKey));
+        $encMaster = $this->cipher->encrypt($masterKey, $secretKey);
 
         return [$encSecret, $encMaster, $kek];
     }

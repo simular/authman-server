@@ -152,8 +152,8 @@ class AuthController
 
             // Save enc secrets
             if ($session->get('first.login') && $encSecret && $encMaster) {
-                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBytes(), ENCODER_HEX);
-                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret->toBytes(), ENCODER_HEX);
+                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBytes());
+                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret->toBytes());
 
                 $userSecret->setSecret(SecretToolkit::encode($encSecret->get()));
                 $userSecret->setMaster(SecretToolkit::encode($encMaster->get()));
@@ -179,7 +179,7 @@ class AuthController
 
             $this->releaseSessionDriver($app);
 
-            $encSecret = SecretToolkit::encode(SafeEncoder::decode('base64uel', $userSecret->getSecret()), ENCODER_HEX);
+            $encSecret = $userSecret->getSecret();
             $encMaster = $userSecret->getMaster();
 
             return compact(

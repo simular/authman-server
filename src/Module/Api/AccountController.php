@@ -22,7 +22,7 @@ class AccountController
         #[Autowire]
         AccountRepository $repository,
         \CurrentUser $currentUser
-    ): Collection {
+    ): array {
         [
             $q,
             $page
@@ -44,6 +44,8 @@ class AccountController
             ->page($page)
             ->all(Account::class);
 
-        return $items;
+        return compact(
+            'items'
+        );
     }
 }

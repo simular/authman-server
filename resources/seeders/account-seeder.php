@@ -44,8 +44,7 @@ $seeder->import(
         $kek = $encryptionService::deriveKek($secrets['password'], hex2bin($salt));
 
         $secret = $cipher->decrypt($encSecret, $kek);
-        $master = $cipher->decrypt($encMaster, SecretToolkit::decode($secret->get()));
-        $master = SecretToolkit::decode($master->get());
+        $master = $cipher->decrypt($encMaster, $secret->get())->get();
 
         /** @var User $user */
         foreach ($users as $user) {
