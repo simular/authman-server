@@ -11,6 +11,7 @@ use App\Enum\DeviceType;
 use App\Service\ApiUserService;
 use App\Service\EncryptionService;
 use OTPHP\TOTP;
+use Unicorn\Flysystem\Base64DataUri;
 use Windwalker\Core\Seed\Seeder;
 use Windwalker\Crypt\Hasher\PasswordHasher;
 use Windwalker\Crypt\SecretToolkit;
@@ -44,7 +45,10 @@ $seeder->import(
         $kek = $encryptionService::deriveKek($secrets['password'], hex2bin($salt));
 
         $secret = $cipher->decrypt($encSecret, $kek);
-        $master = $cipher->decrypt($encMaster, $secret->get())->get();
+        $master = $cipher->decrypt($encMaster, $secret->get(false))->get(false);
+
+        $icon = file_get_contents(__DIR__ . '/data/seed-icon.png');
+        $iconBase64 = Base64DataUri::encode($icon, 'image/png');
 
         /** @var User $user */
         foreach ($users as $user) {
@@ -57,7 +61,7 @@ $seeder->import(
                 $content = [
                     'title' => $faker->sentence(),
                     'secret' => $totpSecret,
-                    'icon' => '',
+                    'icon' => $iconBase64,
                     'url' => $faker->url()
                 ];
 
