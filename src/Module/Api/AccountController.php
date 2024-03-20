@@ -6,17 +6,11 @@ namespace App\Module\Api;
 
 use App\Entity\Account;
 use App\Repository\AccountRepository;
-use Lyrasoft\Luna\User\UserService;
-use Unicorn\Flysystem\Base64DataUri;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
-use Windwalker\Data\Collection;
 use Windwalker\DI\Attributes\Autowire;
-
 use Windwalker\Filesystem\FileObject;
-use Windwalker\Filesystem\Filesystem;
 use Windwalker\Filesystem\TempFileObject;
-use Windwalker\Http\HttpClient;
 use Windwalker\Utilities\StrNormalize;
 
 use function Windwalker\fs;
@@ -34,7 +28,7 @@ class AccountController
     ): array {
         [
             $q,
-            $page
+            $page,
         ] = $app->input('q', 'page');
 
         $q = (string) $q;
@@ -45,7 +39,7 @@ class AccountController
                 $q,
                 [
                     'account.title',
-                    'account.url'
+                    'account.url',
                 ]
             )
             ->where('user_id', uuid2bin($currentUser->getId()))
@@ -61,13 +55,21 @@ class AccountController
     public function logoSearch(AppContext $app): array
     {
         $q = (string) $app->input('q');
-        $color = (string) $app->input('color');
+        $color = (string) $app->input('color') ?: '#ffffff';
 
         $dir = fs(WINDWALKER_ROOT . '/node_modules/@fortawesome/fontawesome-free/svgs');
 
         $searchText = strtolower(StrNormalize::toKebabCase($q));
 
         $directFile = $dir->appendPath('/solid/' . $searchText . '.svg');
+
+        if ($directFile->exists()) {
+            $image = $this->readImageIcon($directFile, $color, $app);
+
+            return compact('image');
+        }
+
+        $directFile = $dir->appendPath('/brands/' . $searchText . '.svg');
 
         if ($directFile->exists()) {
             $image = $this->readImageIcon($directFile, $color, $app);
@@ -85,7 +87,9 @@ class AccountController
             }
         }
 
-        return [];
+        return [
+            'image' => ''
+        ];
     }
 
     protected function readImageIcon(FileObject $file, string $color, AppContext $app): string
@@ -103,7 +107,7 @@ class AccountController
         $png = new TempFileObject(WINDWALKER_TEMP . '/' . $uid . '.png');
 
         $cmd = sprintf(
-            '%s  -background none -resize 96x96 -filter catrom -colors 16 %s %s',
+            '"%s"  -background none -resize 96x96 -filter catrom -colors 16 %s %s',
             env('IMAGICK_CLI') ?: 'convert',
             $tmp->getPathname(),
             $png->getPathname()
@@ -120,5 +124,5 @@ class AccountController
         $tmp->delete();
 
         return $image;
-}
+    }
 }
