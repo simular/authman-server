@@ -14,6 +14,8 @@ $router->group('account')
     ->controller(AccountController::class)
     ->register(function (RouteCreator $router) {
         $router->get('/list')
-            ->setOption('foo', '123')
             ->handler('items');
+
+        $router->get('/logo/search')
+            ->handler('logoSearch');
     });

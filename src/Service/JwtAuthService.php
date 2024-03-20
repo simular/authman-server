@@ -76,7 +76,11 @@ class JwtAuthService
     {
         sscanf($authorization, 'Bearer %s', $token);
 
-        return $this->extractAccessToken($token, $user);
+        if (!$token) {
+            return [];
+        }
+
+        return $this->extractAccessToken((string) $token, $user);
     }
 
     public function extractAccessToken(string $token, ?User &$user = null): array

@@ -38,7 +38,9 @@
         "asika32764/pinyin": "^1.2",
         "lyrasoft/backup": "^2.0",
         "ramsey/uuid": "^4.7",
-        "spomky-labs/otphp": "^11.2"
+        "spomky-labs/otphp": "^11.2",
+        "symfony/dom-crawler": "^7.0",
+        "symfony/css-selector": "^7.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^7.8||^8.0",
