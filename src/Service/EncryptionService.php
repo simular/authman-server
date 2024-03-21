@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Entity\User;
-use App\Entity\UserSecret;
 use Random\RandomException;
-use Windwalker\Crypt\SecretToolkit;
 use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Attributes\Service;
-
-use const Windwalker\Crypt\ENCODER_HEX;
+use Windwalker\Utilities\Cache\InstanceCacheTrait;
 
 #[Service]
 class EncryptionService
 {
+    use InstanceCacheTrait;
+
     public const KEK_ITERATION_TIMES = 500000;
 
-    public function __construct(protected CipherInterface $cipher)
+    public function __construct(readonly public CipherInterface $cipher)
     {
     }
 
@@ -53,6 +51,25 @@ class EncryptionService
             static::KEK_ITERATION_TIMES,
             32,
             true
+        );
+    }
+
+    public function getTestMasterKey(): string
+    {
+        return $this->once(
+            'test.master.key',
+            function () {
+                $secrets = ApiUserService::getTestSecrets();
+                $salt = $secrets['salt'];
+                $encSecret = $secrets['secret'];
+                $encMaster = $secrets['master'];
+
+                $kek = static::deriveKek($secrets['password'], hex2bin($salt));
+
+                $secret = $this->cipher->decrypt($encSecret, $kek);
+
+                return $this->cipher->decrypt($encMaster, $secret->get(false))->get(false);
+            }
         );
     }
 }

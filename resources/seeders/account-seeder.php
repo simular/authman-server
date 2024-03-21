@@ -37,18 +37,7 @@ $seeder->import(
         $mapper = $orm->mapper(Account::class);
         $users = $orm->findList(User::class)->all();
 
-        $secrets = ApiUserService::getTestSecrets();
-        $salt = $secrets['salt'];
-        $encSecret = $secrets['secret'];
-        $encMaster = $secrets['master'];
-
-        $kek = $encryptionService::deriveKek($secrets['password'], hex2bin($salt));
-
-        $secret = $cipher->decrypt($encSecret, $kek);
-        $master = $cipher->decrypt($encMaster, $secret->get(false))->get(false);
-
-        $icon = file_get_contents(__DIR__ . '/data/seed-icon.png');
-        $iconBase64 = Base64DataUri::encode($icon, 'image/png');
+        $master = $encryptionService->getTestMasterKey();
 
         /** @var User $user */
         foreach ($users as $user) {
@@ -61,7 +50,6 @@ $seeder->import(
                 $content = [
                     'title' => $faker->sentence(),
                     'secret' => $totpSecret,
-                    'icon' => $iconBase64,
                     'url' => $faker->url()
                 ];
 
@@ -70,6 +58,7 @@ $seeder->import(
 
                 $item->setContent($encContent);
                 $item->setUserId($user->getId());
+                $item->setImage('dev://test-image');
 
                 $account = $mapper->createOne($item);
 

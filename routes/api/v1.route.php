@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Routes;
 
 use App\Middleware\ApiAuthMiddleware;
-use App\Module\Api\AuthController;
 use Windwalker\Core\Middleware\JsonApiMiddleware;
 use Windwalker\Core\Router\RouteCreator;
 

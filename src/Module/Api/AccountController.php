@@ -4,17 +4,27 @@ declare(strict_types=1);
 
 namespace App\Module\Api;
 
+use App\Attributes\Transaction;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
+use App\Service\AccountService;
+use App\Service\EncryptionService;
+use Unicorn\Flysystem\Base64DataUri;
+use Unicorn\Upload\FileUploadManager;
+use Unicorn\Upload\FileUploadService;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
 use Windwalker\DI\Attributes\Autowire;
+use Windwalker\DI\Attributes\Service;
 use Windwalker\Filesystem\FileObject;
 use Windwalker\Filesystem\TempFileObject;
+use Windwalker\Http\Response\AttachmentResponse;
+use Windwalker\ORM\ORM;
 use Windwalker\Utilities\StrNormalize;
 
 use function Windwalker\fs;
 use function Windwalker\Query\uuid2bin;
+use function Windwalker\response;
 use function Windwalker\uid;
 
 #[Controller]
@@ -46,6 +56,16 @@ class AccountController
             ->order('account.created', 'DESC')
             ->page($page)
             ->all(Account::class);
+
+        $testImage = (string) $app->getNav()->to('api_v1_test_image')
+            ->full();
+
+        /** @var Account $item */
+        foreach ($items as $item) {
+            if ($item->getImage() === 'dev://test-image') {
+                $item->setImage($testImage);
+            }
+        }
 
         return compact(
             'items'
@@ -96,33 +116,65 @@ class AccountController
     {
         $svg = (string) $file->read();
         $svg = str_replace('<path ', "<path fill=\"$color\" ", $svg);
+        //
+        // $uid = uid();
+        //
+        // $tmp = new TempFileObject(WINDWALKER_TEMP . '/' . $uid . '.svg');
+        // $tmp->deleteWhenDestruct();
+        // $tmp->deleteWhenShutdown();
+        // $tmp->write($svg);
+        //
+        // $png = new TempFileObject(WINDWALKER_TEMP . '/' . $uid . '.png');
+        //
+        // $cmd = sprintf(
+        //     '"%s"  -background none -resize 96x96 -filter catrom -colors 16 %s %s',
+        //     env('IMAGICK_CLI') ?: 'convert',
+        //     $tmp->getPathname(),
+        //     $png->getPathname()
+        // );
+        // $process = $app->runProcess($cmd);
+        //
+        // if (!$process->isSuccessful()) {
+        //     throw new \RuntimeException($process->getErrorOutput());
+        // }
+        //
+        // $image = $png->readBase64DataUri('image/png');
+        //
+        // $png->delete();
+        // $tmp->delete();
 
-        $uid = uid();
+        return Base64DataUri::encode($svg, 'image/svg+xml');
+    }
 
-        $tmp = new TempFileObject(WINDWALKER_TEMP . '/' . $uid . '.svg');
-        $tmp->deleteWhenDestruct();
-        $tmp->deleteWhenShutdown();
-        $tmp->write($svg);
+    #[Transaction]
+    public function save(
+        AppContext $app,
+        ORM $orm,
+        #[Service(FileUploadManager::class, 'default')]
+        FileUploadService $fileUploadService
+    ): Account {
+        $item = $app->input('item');
+        $image = $app->input('image');
 
-        $png = new TempFileObject(WINDWALKER_TEMP . '/' . $uid . '.png');
+        $account = $orm->toEntity(Account::class, $item);
 
-        $cmd = sprintf(
-            '"%s"  -background none -resize 96x96 -filter catrom -colors 16 %s %s',
-            env('IMAGICK_CLI') ?: 'convert',
-            $tmp->getPathname(),
-            $png->getPathname()
+        $result = $fileUploadService->handleFileData(
+            $image,
+            'logo/' . (string) $account->getId() . '.png'
         );
-        $process = $app->runProcess($cmd);
+        $image = (string) $result?->getUri();
 
-        if (!$process->isSuccessful()) {
-            throw new \RuntimeException($process->getErrorOutput());
-        }
+        $account->setImage($image);
 
-        $image = $png->readBase64DataUri('image/png');
+        $account = $orm->createOne(Account::class, $account);
 
-        $png->delete();
-        $tmp->delete();
+        return $account;
+    }
 
-        return $image;
+    public function testImage(AccountService $accountService): AttachmentResponse
+    {
+        return response()
+            ->attachment()
+            ->withFileData($accountService->getTestImage(), 'text/plain');
     }
 }

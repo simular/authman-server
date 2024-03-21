@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\UserSecret;
 use Lyrasoft\Luna\User\UserService;
+use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\Query\Exception\NoResultException;
 

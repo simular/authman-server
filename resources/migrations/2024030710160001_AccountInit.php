@@ -23,6 +23,7 @@ $mig->up(
                 $schema->primaryUuidBinary('id');
                 $schema->uuidBinary('user_id');
                 $schema->longtext('content')->length(512);
+                $schema->varchar('image');
                 $schema->datetime('created');
                 $schema->datetime('modified');
                 $schema->json('params');
