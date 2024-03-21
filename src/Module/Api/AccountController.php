@@ -17,6 +17,7 @@ use Windwalker\Core\Attributes\Controller;
 use Windwalker\DI\Attributes\Autowire;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\Filesystem\FileObject;
+use Windwalker\Filesystem\Path;
 use Windwalker\Filesystem\TempFileObject;
 use Windwalker\Http\Response\AttachmentResponse;
 use Windwalker\ORM\ORM;
@@ -74,7 +75,7 @@ class AccountController
 
     public function logoSearch(AppContext $app): array
     {
-        $q = (string) $app->input('q');
+        $q = (string) $app->input('q') ?: 'key';
         $color = (string) $app->input('color') ?: '#ffffff';
 
         $dir = fs(WINDWALKER_ROOT . '/node_modules/@fortawesome/fontawesome-free/svgs');
@@ -85,16 +86,18 @@ class AccountController
 
         if ($directFile->exists()) {
             $image = $this->readImageIcon($directFile, $color, $app);
+            $icon = $directFile->getBasename('.svg');
 
-            return compact('image');
+            return compact('image', 'icon');
         }
 
         $directFile = $dir->appendPath('/brands/' . $searchText . '.svg');
 
         if ($directFile->exists()) {
             $image = $this->readImageIcon($directFile, $color, $app);
+            $icon = $directFile->getBasename('.svg');
 
-            return compact('image');
+            return compact('image', 'icon');
         }
 
         foreach ($dir->files(true) as $file) {
@@ -102,13 +105,15 @@ class AccountController
 
             if (str_contains($basename, $searchText)) {
                 $image = $this->readImageIcon($file, $color, $app);
+                $icon = $file->getBasename('.svg');
 
-                return compact('image');
+                return compact('image', 'icon');
             }
         }
 
         return [
-            'image' => ''
+            'image' => '',
+            'icon' => '',
         ];
     }
 
@@ -163,6 +168,11 @@ class AccountController
             'logo/' . (string) $account->getId() . '.png'
         );
         $image = (string) $result?->getUri();
+
+        if (!Path::isAbsolute($image)) {
+            $systemUri = $app->getSystemUri();
+            $image = $systemUri->addUriBase($image, $systemUri->root);
+        }
 
         $account->setImage($image);
 
