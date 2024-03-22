@@ -7,26 +7,22 @@ namespace App\Module\Api;
 use App\Attributes\Transaction;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
-use App\Service\AccountService;
-use App\Service\EncryptionService;
 use Unicorn\Flysystem\Base64DataUri;
 use Unicorn\Upload\FileUploadManager;
 use Unicorn\Upload\FileUploadService;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
+use Windwalker\Core\Security\Exception\UnauthorizedException;
 use Windwalker\DI\Attributes\Autowire;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\Filesystem\FileObject;
 use Windwalker\Filesystem\Path;
-use Windwalker\Filesystem\TempFileObject;
-use Windwalker\Http\Response\AttachmentResponse;
 use Windwalker\ORM\ORM;
 use Windwalker\Utilities\StrNormalize;
 
 use function Windwalker\fs;
 use function Windwalker\Query\uuid2bin;
 use function Windwalker\response;
-use function Windwalker\uid;
 
 #[Controller]
 class AccountController
@@ -37,13 +33,7 @@ class AccountController
         AccountRepository $repository,
         \CurrentUser $currentUser
     ): array {
-        [
-            $q,
-            $page,
-        ] = $app->input('q', 'page');
-
-        $q = (string) $q;
-        $page = min(1, (int) $page);
+        $q = (string) $app->input('q');
 
         $items = $repository->getApiListSelector()
             ->searchTextFor(
@@ -55,18 +45,9 @@ class AccountController
             )
             ->where('user_id', uuid2bin($currentUser->getId()))
             ->order('account.created', 'DESC')
-            ->page($page)
+            ->limit(0)
+            ->page(1)
             ->all(Account::class);
-
-        $testImage = (string) $app->getNav()->to('api_v1_test_image')
-            ->full();
-
-        /** @var Account $item */
-        foreach ($items as $item) {
-            if ($item->getImage() === 'dev://test-image') {
-                $item->setImage($testImage);
-            }
-        }
 
         return compact(
             'items'
@@ -155,36 +136,43 @@ class AccountController
     public function save(
         AppContext $app,
         ORM $orm,
-        #[Service(FileUploadManager::class, 'default')]
-        FileUploadService $fileUploadService
+        \CurrentUser $currentUser
     ): Account {
         $item = $app->input('item');
-        $image = $app->input('image');
 
         $account = $orm->toEntity(Account::class, $item);
 
-        $result = $fileUploadService->handleFileData(
-            $image,
-            'logo/' . (string) $account->getId() . '.png'
-        );
-        $image = (string) $result?->getUri();
-
-        if (!Path::isAbsolute($image)) {
-            $systemUri = $app->getSystemUri();
-            $image = $systemUri->addUriBase($image, $systemUri->root);
+        if ($account->getUserId()->toString() !== $currentUser->getId()->toString()) {
+            throw new UnauthorizedException('Invalid user ID');
         }
 
-        $account->setImage($image);
-
-        $account = $orm->createOne(Account::class, $account);
+        $account = $orm->createOne(Account::class, $item);
 
         return $account;
     }
 
-    public function testImage(AccountService $accountService): AttachmentResponse
+    #[Transaction]
+    public function delete(AppContext $app, ORM $orm, \CurrentUser $currentUser): true
     {
-        return response()
-            ->attachment()
-            ->withFileData($accountService->getTestImage(), 'text/plain');
+        $ids = (array) $app->input('ids');
+
+        if (!$ids) {
+            throw new \RuntimeException('No IDs');
+        }
+
+        $ids = array_map(fn ($id) => (string) uuid2bin($id), $ids);
+
+        $accounts = $orm->findList(Account::class, ['id' => $ids ?: [0]])->all();
+
+        /** @var Account $account */
+        foreach ($accounts as $account) {
+            if ($account->getUserId()->toString() !== $currentUser->getId()->toString()) {
+                throw new UnauthorizedException('Invalid user ID');
+            }
+
+            $orm->deleteWhere(Account::class, ['id' => $account->getId()->getBytes()]);
+        }
+
+        return true;
     }
 }

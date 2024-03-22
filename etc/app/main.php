@@ -19,7 +19,8 @@ return array_merge(
                                 'Authorization',
                                 'Content-Type'
                             ]
-                        );
+                        )
+                            ->allowMethods('*');
                     }
                 ]
             ),

@@ -40,9 +40,6 @@ class Account implements EntityInterface
     #[Column('content')]
     protected string $content = '';
 
-    #[Column('image')]
-    protected string $image = '';
-
     #[Column('created')]
     #[CastNullable(ServerTimeCast::class)]
     #[CreatedTime]
@@ -131,18 +128,6 @@ class Account implements EntityInterface
     public function setContent(string $content): static
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getImage(): string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
 
         return $this;
     }

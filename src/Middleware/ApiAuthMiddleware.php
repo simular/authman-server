@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Windwalker\Core\Security\Exception\UnauthorizedException;
 
 class ApiAuthMiddleware implements MiddlewareInterface
 {
@@ -28,9 +29,11 @@ class ApiAuthMiddleware implements MiddlewareInterface
 
         $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
 
-        if ($user) {
-            $this->userService->setCurrentUser($user);
+        if (!$user) {
+            throw new UnauthorizedException('User not found.');
         }
+
+        $this->userService->setCurrentUser($user);
 
         return $handler->handle($request);
     }

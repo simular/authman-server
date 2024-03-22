@@ -38,6 +38,8 @@ $seeder->import(
         $users = $orm->findList(User::class)->all();
 
         $master = $encryptionService->getTestMasterKey();
+        $icon = file_get_contents(WINDWALKER_SEEDERS . '/data/seed-icon.png');
+        $iconBase64 = Base64DataUri::encode($icon, 'image/png');
 
         /** @var User $user */
         foreach ($users as $user) {
@@ -50,7 +52,8 @@ $seeder->import(
                 $content = [
                     'title' => $faker->sentence(),
                     'secret' => $totpSecret,
-                    'url' => $faker->url()
+                    'url' => $faker->url(),
+                    'image' => $iconBase64,
                 ];
 
                 $contentJson = json_encode($content);
@@ -58,7 +61,6 @@ $seeder->import(
 
                 $item->setContent($encContent);
                 $item->setUserId($user->getId());
-                $item->setImage('dev://test-image');
 
                 $account = $mapper->createOne($item);
 

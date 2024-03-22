@@ -16,24 +16,4 @@ class AccountService
     public function __construct(protected EncryptionService $encryptionService)
     {
     }
-
-    public function getTestImage(): string
-    {
-        return $this->once(
-            'test.image',
-            function () {
-                // $master = $this->encryptionService->getTestMasterKey();
-
-                $icon = file_get_contents(WINDWALKER_SEEDERS . '/data/seed-icon.enc.txt');
-
-                return $icon;
-                // $iconBase64 = Base64DataUri::encode($icon, 'image/png');
-                //
-                // return $this->encryptionService->cipher->encrypt(
-                //     $iconBase64,
-                //     $master
-                // );
-            }
-        );
-    }
 }

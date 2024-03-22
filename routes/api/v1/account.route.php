@@ -19,9 +19,9 @@ $router->group('account')
         $router->get('/logo/search')
             ->handler('logoSearch');
 
-        $router->get('api_v1_test_image', '/test/image')
-            ->handler('testImage');
-
         $router->post('/save')
             ->handler('save');
+
+        $router->delete('/delete')
+            ->handler('delete');
     });
