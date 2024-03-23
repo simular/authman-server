@@ -8,7 +8,6 @@ use App\Service\ApiUserService;
 use DateTimeInterface;
 use Lyrasoft\Luna\Access\AccessService;
 use Lyrasoft\Luna\User\UserEntityInterface;
-use Lyrasoft\Luna\User\UserService;
 use Ramsey\Uuid\UuidInterface;
 use Windwalker\Core\DateTime\Chronos;
 use Windwalker\Core\DateTime\ServerTimeCast;
@@ -77,6 +76,9 @@ class User implements EntityInterface, UserEntityInterface
     #[Column('receive_mail')]
     #[Cast('bool')]
     protected bool $receiveMail = true;
+
+    #[Column('login_token')]
+    protected string $loginToken = '';
 
     #[Column('reset_token')]
     protected string $resetToken = '';
@@ -150,6 +152,7 @@ class User implements EntityInterface, UserEntityInterface
             ['user_id' => $entity->getId()->getBytes()],
             function (array $data) {
                 $data['server_secret'] = SecretToolkit::genSecret();
+
                 return $data;
             }
         );
@@ -390,6 +393,18 @@ class User implements EntityInterface, UserEntityInterface
     public function setSessValidForm(string $sessValidForm): static
     {
         $this->sessValidForm = $sessValidForm;
+
+        return $this;
+    }
+
+    public function getLoginToken(): string
+    {
+        return $this->loginToken;
+    }
+
+    public function setLoginToken(string $loginToken): static
+    {
+        $this->loginToken = $loginToken;
 
         return $this;
     }

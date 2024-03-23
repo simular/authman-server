@@ -51,7 +51,8 @@ $mig->up(
                 $schema->tinyint('verified')->comment('0: unverified, 1: verified');
                 $schema->varchar('activation')->comment('Activation code.');
                 $schema->tinyint('receive_mail')->defaultValue(0)->length(1);
-                $schema->varchar('reset_token')->comment('Reset Token');
+                $schema->varchar('login_token')->length(1536)->comment('Login Token');
+                $schema->varchar('reset_token')->length(1536)->comment('Reset Token');
                 $schema->datetime('last_reset')->nullable(true)->comment('Last Reset Time');
                 $schema->datetime('last_login')->nullable(true)->comment('Last Login Time');
                 $schema->datetime('registered')->nullable(true)->comment('Register Time');
@@ -152,7 +153,7 @@ $mig->up(
 
         $secrets = ApiUserService::getTestSecrets();
         $pass = $secrets['password'];
-        $salt = BigInteger::fromBase($secrets['salt'], 16);
+        $salt = BigInteger::fromBase($secrets['salt_hex'], 16);
         $secret = $secrets['secret'];
         $master = $secrets['master'];
 

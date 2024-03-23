@@ -21,6 +21,9 @@ enum ErrorCode: int
     #[Title('Email or password incorrect.')]
     case INVALID_CREDENTIALS = 40103;
 
+    #[Title('Invalid Session.')]
+    case INVALID_SESSION = 40104;
+
     // 403
     #[Title('This email has been used.')]
     case USER_EMAIL_EXISTS = 40303;

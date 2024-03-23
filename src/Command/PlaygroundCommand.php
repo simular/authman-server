@@ -56,12 +56,22 @@ class PlaygroundCommand implements CommandInterface
             '5650da90c28fbddb2c12dd72652cb5dc',
             16
         );
-        [$encSecret, $encMaster, $kek] = $this->encryptionService->createUserSecrets($pass, $salt->toBytes());
+        [$encSecret, $encMaster, $kek] = $this->encryptionService->createUserSecrets($pass, $salt->toBase(10));
 
         $s2 = $this->cipher->decrypt($encSecret, $kek);
-        $m2 = $this->cipher->decrypt($encMaster, $s2->get());
+        $m2 = $this->cipher->decrypt($encMaster, $s2->get(false));
 
-        show($s2->get(), $m2->get());
+        var_export(
+            [
+                'password' => $pass,
+                'salt' => $salt->toBase(10),
+                'salt_hex' => $salt->toBase(16),
+                'kek' => SecretToolkit::encode($kek, ENCODER_HEX),
+                'secret_hex' => bin2hex($s2->get(false)),
+                'secret' => $encSecret,
+                'master' => $encMaster
+            ]
+        );
 
         return 0;
     }

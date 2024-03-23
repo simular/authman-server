@@ -19,19 +19,12 @@ use Lyrasoft\Luna\User\UserService;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
 use Windwalker\Core\Http\RequestAssert;
-use Windwalker\Core\Manager\SessionManager;
-use Windwalker\Crypt\SafeEncoder;
-use Windwalker\Crypt\SecretToolkit;
 use Windwalker\Crypt\Symmetric\CipherInterface;
-use Windwalker\DI\Container;
 use Windwalker\ORM\ORM;
-use Windwalker\Session\Session;
 use Windwalker\SRP\Exception\InvalidSessionProofException;
 
 use function Windwalker\Query\uuid2bin;
-use function Windwalker\tid;
-
-use const Windwalker\Crypt\ENCODER_HEX;
+use function Windwalker\uid;
 
 #[Controller]
 class AuthController
@@ -39,14 +32,13 @@ class AuthController
     public function challenge(
         AppContext $app,
         ORM $orm,
+        SRPService $srpService,
     ): ?array {
         $email = $app->input('email');
 
         RequestAssert::assert($email, 'No email');
 
-        $sessId = tid();
-        [$srpService, $session] = $this->prepareSRPAndSession($app, $sessId);
-
+        $sessId = uid();
         $user = $orm->findOne(User::class, compact('email'));
 
         if (!$user) {
@@ -66,6 +58,25 @@ class AuthController
         // Run SRP step
         $e = $srpService->step1($email, $pf->salt, $pf->verifier);
 
+        // Detect if first login or secret updates
+        $firstLogin = (!$userSecret->getSecret() || !$userSecret->getMaster());
+
+        $loginToken = JWT::encode(
+            [
+                'exp' => time() + 10000,
+                'sess' => $sessId,
+                'b' => $e->secret->toBase(16),
+                'B' => $e->public->toBase(16),
+                'updateSecrets' => $firstLogin,
+            ],
+            $userSecret->getDecodedServerSecret(),
+            'HS512'
+        );
+
+        $user->setLoginToken($loginToken);
+
+        $orm->updateOne($user);
+
         $sess = JWT::encode(
             [
                 'exp' => time() + 10000,
@@ -75,12 +86,6 @@ class AuthController
             'HS512'
         );
 
-        // Detect if first login
-        $firstLogin = !$userSecret->getSecret() || !$userSecret->getMaster();
-        $session->set('first.login', $firstLogin);
-
-        $this->releaseSessionDriver($app);
-
         return [
             'salt' => $pf->salt->toBase(16),
             'B' => $e->public->toBase(16),
@@ -89,11 +94,13 @@ class AuthController
         ];
     }
 
+    #[Transaction]
     public function authenticate(
         AppContext $app,
         ORM $orm,
         JwtAuthService $jwtAuthService,
         CipherInterface $cipher,
+        SRPService $srpService,
         EncryptionService $encryptionService,
     ): array {
         [
@@ -127,10 +134,23 @@ class AuthController
             ['user_id' => uuid2bin($user->getId())]
         );
 
-        $payload = JWT::decode(
+        if (!$loginToken = $user->getLoginToken()) {
+            ErrorCode::INVALID_SESSION->throw();
+        }
+
+        $loginPayload = JWT::decode(
+            $loginToken,
+            new Key($userSecret->getDecodedServerSecret(), 'HS512')
+        );
+
+        $sessPayload = JWT::decode(
             $sess,
             new Key($userSecret->getDecodedServerSecret(), 'HS512')
         );
+
+        if ($loginPayload->sess !== $sessPayload->sess) {
+            ErrorCode::INVALID_SESSION->throw();
+        }
 
         $password = $user->getPassword();
 
@@ -140,23 +160,24 @@ class AuthController
         $M1 = BigInteger::fromBase($M1, 16);
 
         try {
-            [$srpService, $session] = $this->prepareSRPAndSession($app, $payload->sess);
-
-            $result = $srpService->step2(
+            $server = $srpService->getSRPServer();
+            $result = $server->step2(
                 $email,
                 $pf->salt,
                 $pf->verifier,
                 $A,
+                BigInteger::fromBase($loginPayload->B, 16),
+                BigInteger::fromBase($loginPayload->b, 16),
                 $M1
             );
 
             // Save enc secrets
-            if ($session->get('first.login') && $encSecret && $encMaster) {
-                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBytes());
-                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret->toBytes());
+            if ($loginPayload->updateSecrets && $encSecret && $encMaster) {
+                $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBase(10));
+                $encMaster = $cipher->decrypt($encMaster, $result->preMasterSecret->toBase(10));
 
-                $userSecret->setSecret(SecretToolkit::encode($encSecret->get()));
-                $userSecret->setMaster(SecretToolkit::encode($encMaster->get()));
+                $userSecret->setSecret($encSecret->get());
+                $userSecret->setMaster($encMaster->get());
 
                 $orm->updateOne($userSecret);
             }
@@ -174,13 +195,8 @@ class AuthController
             $key = $result->key->toBase(16);
             $proof = $result->proof->toBase(16);
 
-            $session->stop();
-            $session->destroy();
-
-            $this->releaseSessionDriver($app);
-
-            $encSecret = $userSecret->getSecret();
-            $encMaster = $userSecret->getMaster();
+            $encSecret = $cipher->encrypt($userSecret->getSecret(), $result->preMasterSecret->toBase(10));
+            $encMaster = $cipher->encrypt($userSecret->getMaster(), $result->preMasterSecret->toBase(10));
 
             return compact(
                 'key',
@@ -235,44 +251,5 @@ class AuthController
         $user = UserDTO::wrap($user);
 
         return compact('user');
-    }
-
-    /**
-     * @param  AppContext  $app
-     *
-     * @return  array{ 0: SRPService, 1: Session }
-     *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     * @throws \Windwalker\DI\Exception\DefinitionException
-     */
-    protected function prepareSRPAndSession(AppContext $app, string $sessId): array
-    {
-        // Replace Session driver
-        $app->getContainer()
-            ->bind(
-                Session::class,
-                fn(Container $container) => $container->get(SessionManager::class)
-                    ->get('database')
-            );
-
-        $srpService = $app->retrieve(SRPService::class);
-        $session = $app->retrieve(Session::class);
-
-        $session->stop();
-        $session->setId($sessId);
-
-        return [$srpService, $session];
-    }
-
-    protected function releaseSessionDriver(AppContext $app): void
-    {
-        // Replace Session driver
-        $app->getContainer()
-            ->bind(
-                Session::class,
-                fn(Container $container) => $container->get(SessionManager::class)
-                    ->get('array')
-            );
     }
 }

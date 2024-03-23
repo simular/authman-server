@@ -6,7 +6,6 @@ namespace App\Service;
 
 use App\Entity\UserSecret;
 use Lyrasoft\Luna\User\UserService;
-use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\Query\Exception\NoResultException;
 
@@ -49,10 +48,12 @@ class ApiUserService extends UserService
     {
         return [
             'password' => '1234',
-            'salt' => '5650da90c28fbddb2c12dd72652cb5dc',
-            'kek' => 'hex:eb0d39c41b0c1993d9258472136f0b532a1eb731340fadc2a45446cb94b3f1cd',
-            'secret' => 'DlMx8Asm-UHPgQHOOf4O4uToYrLU4rZ1bvkWCKaIID8RCyPcwiVXdO8kZBTUXtuHDM0z4JhhflMBH4ycobdY4Z7lclutbov4U5Bb0kwZuHpynsoCK6nJXj5NjaLEtgwUYLZoEwoHJ_qDN_W76Qr1haS97KFpsCfR_1KCVW_jGWmCXApfDY4kkw==',
-            'master' => 'NvpLnuUpf8awYgsUsgw9WZC9r6ryQhxcHho9rpjVsl2wfKNot7l9DGY73aBLQIe-OVRSP6gFScwPzRoVllioBunEi_qbe8DQxObyWOyBEx_pCVVdKOyRlTl-PC6AaT5VxDIVpeKU6XrhXnoUOeCpY2yTbAV2VNIfAX13Cv_q_qUdBQLiXd7hFFiXoCe8aWPwD_ix7cIW04M='
+            'salt' => '114733424420548414266050774842127201756',
+            'salt_hex' => '5650da90c28fbddb2c12dd72652cb5dc',
+            'kek' => 'hex:4674858f1b111e72df11e3c00a46c549a0eb4b8b108b4934a3294c05b95f1925',
+            'secret_hex' => '7d5cb4c5a3fb5f00c30f5289bd1e688a',
+            'secret' => 'CJDpDbvpXVxy2aRhLzgUDYsQzFfycZp0_l0IBLIDVoAx8Y-dTkDx04SDTtSGIzweyx9m6VbPaKu610aGMUpHbCRFt2eE9u3SGQuLMzIIRjZIoYEjlhBI-RlokcWJxnngoEFhB7PfGD-LT6m9dAqaZeecg8GDCx_m8MVVS0Qq-l0IAD_9mGkktA==',
+            'master' => 'YwZfnMVVjkKV8x8WNTKjR17DDWHvYUEmBFMO4jJ5ZO-XJGFcZMayMtYVrJE_6Q34EVxmH8mppLN5Y-gYd8xmeyXN61BM__8xdYmTwDdaKnSZwozsHEB8myT1k1Hh9Kml_GBcYpuDaZN7z_2LLqwjohYbQXcpknFxMwwz-mFST4L2gU1Xj-7r9mEjnqkkbWFM54kt5Cfd36c=',
         ];
     }
 }

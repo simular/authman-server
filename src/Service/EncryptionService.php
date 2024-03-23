@@ -64,7 +64,7 @@ class EncryptionService
                 $encSecret = $secrets['secret'];
                 $encMaster = $secrets['master'];
 
-                $kek = static::deriveKek($secrets['password'], hex2bin($salt));
+                $kek = static::deriveKek($secrets['password'], $salt);
 
                 $secret = $this->cipher->decrypt($encSecret, $kek);
 

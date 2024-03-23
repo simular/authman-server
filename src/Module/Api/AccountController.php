@@ -8,21 +8,16 @@ use App\Attributes\Transaction;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
 use Unicorn\Flysystem\Base64DataUri;
-use Unicorn\Upload\FileUploadManager;
-use Unicorn\Upload\FileUploadService;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
 use Windwalker\Core\Security\Exception\UnauthorizedException;
 use Windwalker\DI\Attributes\Autowire;
-use Windwalker\DI\Attributes\Service;
 use Windwalker\Filesystem\FileObject;
-use Windwalker\Filesystem\Path;
 use Windwalker\ORM\ORM;
 use Windwalker\Utilities\StrNormalize;
 
 use function Windwalker\fs;
 use function Windwalker\Query\uuid2bin;
-use function Windwalker\response;
 
 #[Controller]
 class AccountController
@@ -146,7 +141,15 @@ class AccountController
             throw new UnauthorizedException('Invalid user ID');
         }
 
-        $account = $orm->createOne(Account::class, $item);
+        $id = $account->getId();
+
+        $current = $orm->findOne(Account::class, $id);
+
+        if ($current) {
+            $orm->updateOne(Account::class, $account);
+        } else {
+            $account = $orm->createOne(Account::class, $account);
+        }
 
         return $account;
     }
@@ -160,7 +163,7 @@ class AccountController
             throw new \RuntimeException('No IDs');
         }
 
-        $ids = array_map(fn ($id) => (string) uuid2bin($id), $ids);
+        $ids = array_map(fn($id) => (string) uuid2bin($id), $ids);
 
         $accounts = $orm->findList(Account::class, ['id' => $ids ?: [0]])->all();
 
