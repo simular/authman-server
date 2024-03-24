@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Module\Api;
 
 use App\Attributes\Transaction;
+use App\DTO\UserDTO;
 use App\Entity\User;
 use App\Entity\UserSecret;
 use App\Service\JwtAuthService;
@@ -97,7 +98,7 @@ class PasswordController
         ORM $orm,
         SRPService $srpService,
         CipherInterface $cipher,
-    ): true {
+    ): array {
         [
             $email,
             $salt,
@@ -165,6 +166,8 @@ class PasswordController
 
         $orm->updateOne($user);
 
-        return true;
+        $user = UserDTO::wrap($user);
+
+        return compact('user');
     }
 }

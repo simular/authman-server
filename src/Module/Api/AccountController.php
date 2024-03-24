@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Module\Api;
 
 use App\Attributes\Transaction;
+use App\DTO\UserDTO;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
 use Unicorn\Flysystem\Base64DataUri;
@@ -44,8 +45,11 @@ class AccountController
             ->page(1)
             ->all(Account::class);
 
+        $user = UserDTO::wrap($currentUser);
+
         return compact(
-            'items'
+            'user',
+            'items',
         );
     }
 
