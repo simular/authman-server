@@ -13,6 +13,7 @@ class UserDTO extends AbstractDTO
         'email',
         'name',
         'avatar',
+        'lastReset',
         'params',
     ];
 
