@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Cipher\SimpleSodiumCipher;
 use Random\RandomException;
 use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\DI\Attributes\Service;
@@ -14,7 +15,8 @@ class EncryptionService
 {
     use InstanceCacheTrait;
 
-    public const KEK_ITERATION_TIMES = 500000;
+    // @see https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html (2024)
+    public const KEK_ITERATION_TIMES = 600000;
 
     public function __construct(readonly public CipherInterface $cipher)
     {
@@ -44,13 +46,12 @@ class EncryptionService
 
     public static function deriveKek(string $password, string $salt): string
     {
-        return hash_pbkdf2(
-            'SHA256',
+        return sodium_crypto_pwhash(
+            32,
             $password,
             $salt,
-            static::KEK_ITERATION_TIMES,
-            32,
-            true
+            SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE,
+            SODIUM_CRYPTO_PWHASH_MEMLIMIT_INTERACTIVE,
         );
     }
 
@@ -64,7 +65,7 @@ class EncryptionService
                 $encSecret = $secrets['secret'];
                 $encMaster = $secrets['master'];
 
-                $kek = static::deriveKek($secrets['password'], $salt);
+                $kek = static::deriveKek($secrets['password'], hex2bin($salt));
 
                 $secret = $this->cipher->decrypt($encSecret, $kek);
 

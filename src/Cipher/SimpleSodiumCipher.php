@@ -17,9 +17,7 @@ class SimpleSodiumCipher implements CipherInterface
     public const NONCE_SIZE = SODIUM_CRYPTO_BOX_NONCEBYTES;
     public const SALT_SIZE = 16;
     public const HKDF_SIZE = 32;
-    public const HMAC_SIZE = 64;
-
-    public const PBKDF_ITERATION_TIMES = 500000;
+    public const HMAC_SIZE = SODIUM_CRYPTO_AUTH_BYTES;
 
     public function decrypt(
         string $str,
@@ -47,14 +45,12 @@ class SimpleSodiumCipher implements CipherInterface
             $length - static::HMAC_SIZE
         );
 
-        $encKey = static::deriveHkdf($key, 'Enc', $salt);
-        $hmacKey = static::deriveHkdf($key, 'Auth', $salt);
+        $encKey = static::deriveSubKey($key, 'Enc', $salt);
+        $hmacKey = static::deriveSubKey($key, 'Auth', $salt);
 
         sodium_memzero($message);
 
-        $calc = sodium_crypto_generichash($nonce . $salt . $encrypted, $hmacKey, static::HMAC_SIZE);
-
-        if (!hash_equals($hmac, $calc)) {
+        if (!sodium_crypto_auth_verify($hmac, $nonce . $salt . $encrypted, $hmacKey)) {
             throw new \UnexpectedValueException('Invalid message authentication code');
         }
 
@@ -77,11 +73,11 @@ class SimpleSodiumCipher implements CipherInterface
     ): string {
         $str = HiddenString::strip($str);
 
-        $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+        $nonce = random_bytes(self::NONCE_SIZE);
         $salt = random_bytes(self::SALT_SIZE);
 
-        $encKey = static::deriveHkdf($key, 'Enc', $salt);
-        $hmacKey = static::deriveHkdf($key, 'Auth', $salt);
+        $encKey = static::deriveSubKey($key, 'Enc', $salt);
+        $hmacKey = static::deriveSubKey($key, 'Auth', $salt);
 
         $encrypted = sodium_crypto_secretbox(
             $str,
@@ -89,7 +85,7 @@ class SimpleSodiumCipher implements CipherInterface
             $encKey
         );
 
-        $hmac = sodium_crypto_generichash($nonce . $salt . $encrypted, $hmacKey, static::HMAC_SIZE);
+        $hmac = sodium_crypto_auth($nonce . $salt . $encrypted, $hmacKey);
 
         $message = $nonce . $salt . $encrypted . $hmac;
 
@@ -142,7 +138,7 @@ class SimpleSodiumCipher implements CipherInterface
      *
      * @return  string
      */
-    public static function deriveHkdf(
+    public static function deriveSubKey(
         #[\SensitiveParameter] Key|string $key,
         string $info,
         string $salt

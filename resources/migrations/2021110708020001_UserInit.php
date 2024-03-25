@@ -153,7 +153,7 @@ $mig->up(
 
         $secrets = ApiUserService::getTestSecrets();
         $pass = $secrets['password'];
-        $salt = BigInteger::fromBase($secrets['salt_hex'], 16);
+        $salt = BigInteger::fromBase($secrets['salt'], 16);
         $secret = $secrets['secret'];
         $master = $secrets['master'];
 
