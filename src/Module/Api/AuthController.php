@@ -8,6 +8,7 @@ use App\Attributes\Transaction;
 use App\DTO\UserDTO;
 use App\Entity\User;
 use App\Entity\UserSecret;
+use App\Enum\ApiTokenType;
 use App\Enum\ErrorCode;
 use App\Service\EncryptionService;
 use App\Service\JwtAuthService;
@@ -251,5 +252,31 @@ class AuthController
         $user = UserDTO::wrap($user);
 
         return compact('user');
+    }
+
+    public function refreshToken(
+        AppContext $app,
+        JwtAuthService $jwtAuthService
+    ): array {
+        $authHeader = $app->getHeader('Authorization');
+
+        $payload = $jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
+
+        if ($payload->getType() !== ApiTokenType::REFRESH) {
+            throw new \RuntimeException('Token is not refresh token', 400);
+        }
+
+        $exp = $payload->getExp();
+
+        if ($exp < time()) {
+            ErrorCode::REFRESH_TOKEN_EXPIRED->throw();
+        }
+
+        $userSecret = $user->getSecretEntity(true);
+
+        $accessToken = $jwtAuthService->createAccessToken($user, $userSecret);
+        $refreshToken = $jwtAuthService->createRefreshToken($user, $userSecret);
+
+        return compact('accessToken', 'refreshToken');
     }
 }

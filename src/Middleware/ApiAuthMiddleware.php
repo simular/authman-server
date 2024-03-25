@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
+use App\Enum\ApiTokenType;
 use App\Service\ApiUserService;
 use App\Service\JwtAuthService;
 use Lyrasoft\Luna\User\UserService;
@@ -27,13 +28,18 @@ class ApiAuthMiddleware implements MiddlewareInterface
     {
         $authHeader = $request->getHeaderLine('Authorization');
 
-        $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
+        if ($authHeader) {
+            $payload = $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
 
-        if (!$user) {
-            throw new UnauthorizedException('User not found.');
+            // If not access token, let's ignore this token
+            if ($payload->getType() === ApiTokenType::ACCESS) {
+                if (!$user) {
+                    throw new UnauthorizedException('User not found.');
+                }
+
+                $this->userService->setCurrentUser($user);
+            }
         }
-
-        $this->userService->setCurrentUser($user);
 
         return $handler->handle($request);
     }

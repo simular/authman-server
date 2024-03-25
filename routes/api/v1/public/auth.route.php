@@ -21,4 +21,7 @@ $router->group('auth')
 
         $router->post('/register')
             ->handler('register');
+
+        $router->any('/refreshToken')
+            ->handler('refreshToken');
     });

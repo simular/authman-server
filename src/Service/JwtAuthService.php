@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Data\ApiTokenPayload;
 use App\Entity\User;
 use App\Entity\UserSecret;
+use App\Enum\ErrorCode;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -34,10 +36,9 @@ class JwtAuthService
 
         $data = [
             'iat' => (int) $now->toUnix(),
-            'jti' => PasswordHasher::genRandomPassword(32),
-            'iss' => 'Simular',
+            'iss' => static::getIssuer(),
             'nbf' => (int) $now->toUnix(),
-            'exp' => $now->modify('+3months')->toUnix(),
+            'exp' => $now->modify('+7days')->toUnix(),
             'email' => $user->getEmail(),
             'id' => $user->getId(),
             'type' => 'access'
@@ -56,8 +57,7 @@ class JwtAuthService
 
         $data = [
             'iat' => (int) $now->toUnix(),
-            'jti' => PasswordHasher::genRandomPassword(32),
-            'iss' => 'Simular',
+            'iss' => static::getIssuer(),
             'nbf' => (int) $now->toUnix(),
             'exp' => $now->modify('+6month')->toUnix(),
             'email' => $user->getEmail(),
@@ -72,39 +72,47 @@ class JwtAuthService
         );
     }
 
-    public function extractAccessTokenFromHeader(string $authorization, ?User &$user = null): array
+    public function extractAccessTokenFromHeader(string $authorization, ?User &$user = null): ApiTokenPayload
     {
         sscanf($authorization, 'Bearer %s', $token);
 
         if (!$token) {
-            return [];
+            throw new \RuntimeException('Token is empty.', 400);
         }
 
         return $this->extractAccessToken((string) $token, $user);
     }
 
-    public function extractAccessToken(string $token, ?User &$user = null): array
+    public function extractAccessToken(string $token, ?User &$user = null): ApiTokenPayload
     {
         $parts = explode('.', $token);
 
         if (!isset($parts[1])) {
-            throw new \InvalidArgumentException('JWT format wrong.', 400);
+            throw new \RuntimeException('JWT format wrong.', 400);
         }
 
         $payload = json_decode(base64_decode($parts[1]), true, 512, JSON_THROW_ON_ERROR);
 
         if (empty($payload['id'])) {
-            throw new \InvalidArgumentException('No user ID in JWT payload', 400);
+            throw new \RuntimeException('No user ID in JWT payload', 400);
+        }
+
+        if ($payload['iss'] !== static::getIssuer()) {
+            throw new \RuntimeException('Invalid token', 400);
         }
 
         $user = $user = $this->orm->mustFindOne(User::class, ['id' => uuid2bin($payload['id'])]);
 
         $userSecret = $user->getSecretEntity();
 
-        $payload = JWT::decode(
-            $token,
-            new Key($userSecret->getDecodedServerSecret(), 'HS512')
-        );
+        try {
+            $payload = JWT::decode(
+                $token,
+                new Key($userSecret->getDecodedServerSecret(), 'HS512')
+            );
+        } catch (ExpiredException $e) {
+            ErrorCode::ACCESS_TOKEN_EXPIRED->throw();
+        }
 
         if (!$payload) {
             throw new \RuntimeException('Invalid Payload', 400);
@@ -120,6 +128,13 @@ class JwtAuthService
             throw $ex;
         }
 
-        return TypeCast::toArray($payload, true);
+        return ApiTokenPayload::wrap(
+            TypeCast::toArray($payload, true)
+        );
+    }
+
+    public static function getIssuer(): string
+    {
+        return env('JWT_ISSUER') ?: 'Authman';
     }
 }
