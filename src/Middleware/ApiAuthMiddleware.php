@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Middleware;
 
+use App\Entity\User;
 use App\Enum\ApiTokenType;
+use App\Enum\ErrorCode;
 use App\Service\ApiUserService;
 use App\Service\JwtAuthService;
 use Lyrasoft\Luna\User\UserService;
@@ -29,18 +31,30 @@ class ApiAuthMiddleware implements MiddlewareInterface
         $authHeader = $request->getHeaderLine('Authorization');
 
         if ($authHeader) {
-            $payload = $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
+            $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
 
-            // If not access token, let's ignore this token
-            if ($payload->getType() === ApiTokenType::ACCESS) {
-                if (!$user) {
-                    throw new UnauthorizedException('User not found.');
-                }
+            $this->checkLastReset($request, $user);
 
-                $this->userService->setCurrentUser($user);
-            }
+            $this->userService->setCurrentUser($user);
         }
 
         return $handler->handle($request);
+    }
+
+    /**
+     * @param  ServerRequestInterface  $request
+     * @param  User|null   $user
+     *
+     * @return  void
+     */
+    protected function checkLastReset(ServerRequestInterface $request, ?User $user): void
+    {
+        $clientLastReset = $request->getHeaderLine('X-Password-Last-Reset');
+
+        $serverLastReset = (string) $user->getLastReset()?->toUnix();
+
+        if ($clientLastReset !== $serverLastReset) {
+            ErrorCode::PASSWORD_CHANGED->throw();
+        }
     }
 }

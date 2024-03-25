@@ -17,7 +17,8 @@ return array_merge(
                         return $cors->allowHeaders(
                             [
                                 'Authorization',
-                                'Content-Type'
+                                'Content-Type',
+                                'X-Password-Last-Reset'
                             ]
                         )
                             ->allowMethods('*');

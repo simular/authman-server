@@ -24,7 +24,10 @@ enum ErrorCode: int
     #[Title('Invalid Session.')]
     case INVALID_SESSION = 40104;
 
+    #[Title('Password changed.')]
+    case PASSWORD_CHANGED = 40105;
+
     // 403
     #[Title('This email has been used.')]
-    case USER_EMAIL_EXISTS = 40303;
+    case USER_EMAIL_EXISTS = 40301;
 }

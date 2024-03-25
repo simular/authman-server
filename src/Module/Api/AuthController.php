@@ -260,11 +260,7 @@ class AuthController
     ): array {
         $authHeader = $app->getHeader('Authorization');
 
-        $payload = $jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
-
-        if ($payload->getType() !== ApiTokenType::REFRESH) {
-            throw new \RuntimeException('Token is not refresh token', 400);
-        }
+        $payload = $jwtAuthService->extractAccessTokenFromHeader($authHeader, $user, ApiTokenType::REFRESH);
 
         $exp = $payload->getExp();
 
@@ -278,5 +274,10 @@ class AuthController
         $refreshToken = $jwtAuthService->createRefreshToken($user, $userSecret);
 
         return compact('accessToken', 'refreshToken');
+    }
+
+    public function me(\CurrentUser $currentUser): \CurrentUser
+    {
+        return $currentUser;
     }
 }

@@ -7,15 +7,12 @@ namespace App\Service;
 use App\Data\ApiTokenPayload;
 use App\Entity\User;
 use App\Entity\UserSecret;
+use App\Enum\ApiTokenType;
 use App\Enum\ErrorCode;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use JetBrains\PhpStorm\ArrayShape;
 use Windwalker\Core\DateTime\Chronos;
-use Windwalker\Core\Security\Exception\UnauthorizedException;
-use Windwalker\Crypt\Hasher\PasswordHasher;
-use Windwalker\Crypt\SecretToolkit;
 use Windwalker\DI\Attributes\Service;
 use Windwalker\ORM\ORM;
 use Windwalker\Utilities\TypeCast;
@@ -41,7 +38,7 @@ class JwtAuthService
             'exp' => $now->modify('+7days')->toUnix(),
             'email' => $user->getEmail(),
             'id' => $user->getId(),
-            'type' => 'access'
+            'type' => 'access',
         ];
 
         return JWT::encode(
@@ -62,7 +59,7 @@ class JwtAuthService
             'exp' => $now->modify('+6month')->toUnix(),
             'email' => $user->getEmail(),
             'id' => $user->getId(),
-            'type' => 'refresh'
+            'type' => 'refresh',
         ];
 
         return JWT::encode(
@@ -72,19 +69,25 @@ class JwtAuthService
         );
     }
 
-    public function extractAccessTokenFromHeader(string $authorization, ?User &$user = null): ApiTokenPayload
-    {
+    public function extractAccessTokenFromHeader(
+        string $authorization,
+        ?User &$user = null,
+        ApiTokenType $type = ApiTokenType::ACCESS
+    ): ApiTokenPayload {
         sscanf($authorization, 'Bearer %s', $token);
 
         if (!$token) {
             throw new \RuntimeException('Token is empty.', 400);
         }
 
-        return $this->extractAccessToken((string) $token, $user);
+        return $this->extractAccessToken((string) $token, $user, $type);
     }
 
-    public function extractAccessToken(string $token, ?User &$user = null): ApiTokenPayload
-    {
+    public function extractAccessToken(
+        string $token,
+        ?User &$user = null,
+        ApiTokenType $type = ApiTokenType::ACCESS
+    ): ApiTokenPayload {
         $parts = explode('.', $token);
 
         if (!isset($parts[1])) {
@@ -118,7 +121,13 @@ class JwtAuthService
             throw new \RuntimeException('Invalid Payload', 400);
         }
 
-        $issuedAt = Chronos::createFromFormat('U', (string) $payload->iat);
+        $payload = ApiTokenPayload::wrap(TypeCast::toArray($payload, true));
+
+        if ($payload->getType() !== $type) {
+            throw new \RuntimeException('Token type is not ' . $type->getTitle(), 400);
+        }
+
+        $issuedAt = Chronos::createFromFormat('U', (string) $payload->getIat());
 
         if ($issuedAt < $user->getSessValidForm()) {
             $user = null;
@@ -128,9 +137,7 @@ class JwtAuthService
             throw $ex;
         }
 
-        return ApiTokenPayload::wrap(
-            TypeCast::toArray($payload, true)
-        );
+        return $payload;
     }
 
     public static function getIssuer(): string

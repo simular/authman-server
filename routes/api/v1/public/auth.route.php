@@ -24,4 +24,7 @@ $router->group('auth')
 
         $router->any('/refreshToken')
             ->handler('refreshToken');
+
+        $router->any('/me')
+            ->handler('me');
     });
