@@ -22,6 +22,9 @@ $router->group('account')
         $router->post('/save')
             ->handler('save');
 
+        $router->post('/saveMultiple')
+            ->handler('saveMultiple');
+
         $router->delete('/delete')
             ->handler('delete');
     });

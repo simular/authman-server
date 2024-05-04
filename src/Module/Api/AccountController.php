@@ -159,6 +159,43 @@ class AccountController
     }
 
     #[Transaction]
+    public function saveMultiple(
+        AppContext $app,
+        ORM $orm,
+        \CurrentUser $currentUser
+    ): array {
+        $items = $app->input('items');
+
+        $accounts = [];
+
+        foreach ($items as $item) {
+            $account = $orm->toEntity(Account::class, $item);
+
+            if ($account->getUserId()->toString() !== $currentUser->getId()->toString()) {
+                throw new UnauthorizedException('Invalid user ID');
+            }
+
+            $accounts[] = $account;
+        }
+
+        foreach ($accounts as $i => $account) {
+            $id = $account->getId();
+
+            $current = $orm->findOne(Account::class, $id);
+
+            if ($current) {
+                $orm->updateOne(Account::class, $account);
+            } else {
+                $account = $orm->createOne(Account::class, $account);
+            }
+
+            $accounts[$i] = $accounts;
+        }
+
+        return $accounts;
+    }
+
+    #[Transaction]
     public function delete(AppContext $app, ORM $orm, \CurrentUser $currentUser): true
     {
         $ids = (array) $app->input('ids');
