@@ -117,32 +117,6 @@ export async function images() {
   // Compile end
 }
 
-export async function admin() {
-  fusion.watch([
-    'vendor/lyrasoft/theme-skote/src/**/*',
-    'resources/assets/scss/admin/**/*.scss'
-  ]);
-
-  return wait(
-    sass(
-      'resources/assets/scss/admin/app.scss',
-      'www/assets/css/admin/app.css'
-    ),
-    sass(
-      'resources/assets/scss/admin/bootstrap.scss',
-      'www/assets/css/admin/bootstrap.css'
-    ),
-    sass(
-      'resources/assets/scss/admin/icons.scss',
-      'www/assets/css/admin/icons.css'
-    ),
-    babel(
-      'theme/admin/src/assets/js/app.js',
-      'www/assets/js/admin/app.js'
-    )
-  );
-}
-
 export async function install() {
   installVendors(
     [
@@ -154,12 +128,6 @@ export async function install() {
       'youtube-background',
     ]
   );
-
-  src('vendor/lyrasoft/theme-skote/').pipe(symlink('theme/admin'))
-    .on('end', () => {
-      src('theme/admin/dist/assets/libs/').pipe(symlink('www/assets/vendor/admin/'));
-      src('theme/admin/dist/assets/fonts/').pipe(symlink('www/assets/css/fonts/'));
-    });
 }
 
 export default parallel(css, js, images);

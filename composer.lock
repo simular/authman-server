@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c8ecc57f9f1539b1ca298c9583957e6",
+    "content-hash": "e9d875c3b6222de46f675da9bfce1c73",
     "packages": [
         {
             "name": "asika/cross-env",
@@ -106,58 +106,6 @@
                 "source": "https://github.com/asika32764/php-object-metadata/tree/1.0"
             },
             "time": "2024-01-23T07:24:13+00:00"
-        },
-        {
-            "name": "asika32764/pinyin",
-            "version": "1.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/asika32764/php-thl-pinyin.git",
-                "reference": "06b042e5c28fca205f4e0446990c726051f2a79e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/asika32764/php-thl-pinyin/zipball/06b042e5c28fca205f4e0446990c726051f2a79e",
-                "reference": "06b042e5c28fca205f4e0446990c726051f2a79e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "8.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "THL\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Wei-Hao Syu",
-                    "email": "whsyu@thl.tw"
-                }
-            ],
-            "description": "Romanization tool for Traditional Chinese - Fork to fix PHP8.1",
-            "keywords": [
-                "Chinese",
-                "Pinyin",
-                "bopomofo"
-            ],
-            "support": {
-                "source": "https://github.com/asika32764/php-thl-pinyin/tree/1.2.4"
-            },
-            "time": "2023-07-06T04:51:25+00:00"
         },
         {
             "name": "brick/math",
@@ -900,16 +848,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "3.6.2",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "8e00dd330ff8ef944492037c5dd17da00b85daa6"
+                "reference": "2dbfb53bf8909257e710cf6091d10a9ca7500742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/8e00dd330ff8ef944492037c5dd17da00b85daa6",
-                "reference": "8e00dd330ff8ef944492037c5dd17da00b85daa6",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/2dbfb53bf8909257e710cf6091d10a9ca7500742",
+                "reference": "2dbfb53bf8909257e710cf6091d10a9ca7500742",
                 "shasum": ""
             },
             "require": {
@@ -956,7 +904,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/3.6.2"
+                "source": "https://github.com/Intervention/image/tree/3.6.3"
             },
             "funding": [
                 {
@@ -968,7 +916,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-26T15:29:43+00:00"
+            "time": "2024-05-02T09:03:18+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -1106,166 +1054,6 @@
             "time": "2020-06-13T08:05:20+00:00"
         },
         {
-            "name": "lyrasoft/backup",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lyrasoft/backup-package.git",
-                "reference": "25ff3b406375c13a24d826c5ee81c216dfce6b18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lyrasoft/backup-package/zipball/25ff3b406375c13a24d826c5ee81c216dfce6b18",
-                "reference": "25ff3b406375c13a24d826c5ee81c216dfce6b18",
-                "shasum": ""
-            },
-            "require": {
-                "firebase/php-jwt": "^5.0||^6.0",
-                "maennchen/zipstream-php": "^2.0||^3.0",
-                "php": ">=8.0",
-                "symfony/console": "^5.0||^6.0||^7.0",
-                "symfony/process": "^5.0||^6.0||^7.0",
-                "windwalker/data": "^4.0",
-                "windwalker/http": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "windwalker": {
-                    "packages": [
-                        "Lyrasoft\\Backup\\BackupPackage"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lyrasoft\\Backup\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "support": {
-                "issues": "https://github.com/lyrasoft/backup-package/issues",
-                "source": "https://github.com/lyrasoft/backup-package/tree/2.0.2"
-            },
-            "time": "2024-01-26T08:11:14+00:00"
-        },
-        {
-            "name": "lyrasoft/banner",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lyrasoft/luna-banner.git",
-                "reference": "af7058381f6e5ef9114b2598694112727a1dd0e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lyrasoft/luna-banner/zipball/af7058381f6e5ef9114b2598694112727a1dd0e5",
-                "reference": "af7058381f6e5ef9114b2598694112727a1dd0e5",
-                "shasum": ""
-            },
-            "require": {
-                "lyrasoft/luna": "^2.0",
-                "php": ">=8.2"
-            },
-            "type": "windwalker-package",
-            "extra": {
-                "windwalker": {
-                    "packages": [
-                        "Lyrasoft\\Banner\\BannerPackage"
-                    ],
-                    "modules": [
-                        "src/Module"
-                    ],
-                    "assets": {
-                        "vendors": {
-                            "swiper": "^8.3.2"
-                        },
-                        "suggest": {
-                            "youtube-background": "^1.0.14"
-                        },
-                        "exposes": [
-                            "swiper",
-                            "youtube-background"
-                        ]
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lyrasoft\\Banner\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Simon Asika",
-                    "email": "asika32764@gmail.com"
-                }
-            ],
-            "description": "Luna Banner package",
-            "support": {
-                "issues": "https://github.com/lyrasoft/luna-banner/issues",
-                "source": "https://github.com/lyrasoft/luna-banner/tree/1.1.1"
-            },
-            "time": "2024-04-30T07:54:27+00:00"
-        },
-        {
-            "name": "lyrasoft/contact",
-            "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lyrasoft/luna-contact.git",
-                "reference": "6dde943226530109f72b6ae836bf3fd4a71d5633"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lyrasoft/luna-contact/zipball/6dde943226530109f72b6ae836bf3fd4a71d5633",
-                "reference": "6dde943226530109f72b6ae836bf3fd4a71d5633",
-                "shasum": ""
-            },
-            "require": {
-                "lyrasoft/luna": "^1.0||^2.0",
-                "myclabs/php-enum": "^1.8"
-            },
-            "type": "windwalker-package",
-            "extra": {
-                "windwalker": {
-                    "packages": [
-                        "Lyrasoft\\Contact\\ContactPackage"
-                    ],
-                    "modules": [
-                        "src/Module"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lyrasoft\\Contact\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Simon Asika",
-                    "email": "asika32764@gmail.com"
-                }
-            ],
-            "description": "LYRASOFT contact package",
-            "support": {
-                "issues": "https://github.com/lyrasoft/luna-contact/issues",
-                "source": "https://github.com/lyrasoft/luna-contact/tree/1.0.3"
-            },
-            "time": "2023-11-12T09:11:37+00:00"
-        },
-        {
             "name": "lyrasoft/luna",
             "version": "2.1.12",
             "source": {
@@ -1340,35 +1128,6 @@
             "time": "2024-04-24T10:50:38+00:00"
         },
         {
-            "name": "lyrasoft/theme-skote",
-            "version": "3.2.0.18",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:lyrasoft/theme-skote.git",
-                "reference": "e690d2ad8a5b50288c0a937976036df99d2de367"
-            },
-            "type": "theme",
-            "extra": {
-                "windwalker": {
-                    "packages": [
-                        "Lyrasoft\\Theme\\Skote\\SkotePackage"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Lyrasoft\\Theme\\Skote\\": "php/"
-                }
-            },
-            "authors": [
-                {
-                    "name": "Simon Asika",
-                    "email": "asika32764@gmail.com"
-                }
-            ],
-            "time": "2023-11-21T06:38:53+00:00"
-        },
-        {
             "name": "lyrasoft/toolkit",
             "version": "1.1.2",
             "source": {
@@ -1420,87 +1179,6 @@
                 "source": "https://github.com/lyrasoft/toolkit/tree/1.1.2"
             },
             "time": "2024-01-24T09:56:41+00:00"
-        },
-        {
-            "name": "maennchen/zipstream-php",
-            "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/maennchen/ZipStream-PHP.git",
-                "reference": "b8174494eda667f7d13876b4a7bfef0f62a7c0d1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/b8174494eda667f7d13876b4a7bfef0f62a7c0d1",
-                "reference": "b8174494eda667f7d13876b4a7bfef0f62a7c0d1",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "ext-zlib": "*",
-                "php-64bit": "^8.1"
-            },
-            "require-dev": {
-                "ext-zip": "*",
-                "friendsofphp/php-cs-fixer": "^3.16",
-                "guzzlehttp/guzzle": "^7.5",
-                "mikey179/vfsstream": "^1.6",
-                "php-coveralls/php-coveralls": "^2.5",
-                "phpunit/phpunit": "^10.0",
-                "vimeo/psalm": "^5.0"
-            },
-            "suggest": {
-                "guzzlehttp/psr7": "^2.4",
-                "psr/http-message": "^2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ZipStream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Duncan",
-                    "email": "pabs@pablotron.org"
-                },
-                {
-                    "name": "Jonatan Männchen",
-                    "email": "jonatan@maennchen.ch"
-                },
-                {
-                    "name": "Jesse Donat",
-                    "email": "donatj@gmail.com"
-                },
-                {
-                    "name": "András Kolesár",
-                    "email": "kolesar@kolesar.hu"
-                }
-            ],
-            "description": "ZipStream is a library for dynamically streaming dynamic zip files from PHP without writing to the disk at all on the server.",
-            "keywords": [
-                "stream",
-                "zip"
-            ],
-            "support": {
-                "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/3.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/maennchen",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/zipstream",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2023-06-21T14:59:35+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -1733,69 +1411,6 @@
             "time": "2024-04-12T21:02:21+00:00"
         },
         {
-            "name": "myclabs/php-enum",
-            "version": "1.8.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/php-enum.git",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a867478eae49c9f59ece437ae7f9506bfaa27483",
-                "reference": "a867478eae49c9f59ece437ae7f9506bfaa27483",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.3 || ^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5",
-                "squizlabs/php_codesniffer": "1.*",
-                "vimeo/psalm": "^4.6.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MyCLabs\\Enum\\": "src/"
-                },
-                "classmap": [
-                    "stubs/Stringable.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP Enum contributors",
-                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
-                }
-            ],
-            "description": "PHP Enum implementation",
-            "homepage": "http://github.com/myclabs/php-enum",
-            "keywords": [
-                "enum"
-            ],
-            "support": {
-                "issues": "https://github.com/myclabs/php-enum/issues",
-                "source": "https://github.com/myclabs/php-enum/tree/1.8.4"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/mnapoli",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/myclabs/php-enum",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-08-04T09:53:51+00:00"
-        },
-        {
             "name": "nikic/fast-route",
             "version": "v1.3.0",
             "source": {
@@ -1905,16 +1520,16 @@
         },
         {
             "name": "paragonie/constant_time_encoding",
-            "version": "v2.6.3",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/constant_time_encoding.git",
-                "reference": "58c3f47f650c94ec05a151692652a868995d2938"
+                "reference": "52a0d99e69f56b9ec27ace92ba56897fe6993105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/58c3f47f650c94ec05a151692652a868995d2938",
-                "reference": "58c3f47f650c94ec05a151692652a868995d2938",
+                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/52a0d99e69f56b9ec27ace92ba56897fe6993105",
+                "reference": "52a0d99e69f56b9ec27ace92ba56897fe6993105",
                 "shasum": ""
             },
             "require": {
@@ -1968,7 +1583,7 @@
                 "issues": "https://github.com/paragonie/constant_time_encoding/issues",
                 "source": "https://github.com/paragonie/constant_time_encoding"
             },
-            "time": "2022-06-14T06:56:20+00:00"
+            "time": "2024-05-08T12:18:48+00:00"
         },
         {
             "name": "psr/cache",
@@ -3039,16 +2654,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "b08a4ad89e84b29cec285b7b1f781a7ae51cf4bc"
+                "reference": "843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/b08a4ad89e84b29cec285b7b1f781a7ae51cf4bc",
-                "reference": "b08a4ad89e84b29cec285b7b1f781a7ae51cf4bc",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc",
+                "reference": "843f2f7ac5e4c5bf0ec77daef23ca6d4d8922adc",
                 "shasum": ""
             },
             "require": {
@@ -3084,7 +2699,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v7.0.7"
+                "source": "https://github.com/symfony/css-selector/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3100,20 +2715,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf"
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/7c3aff79d10325257a001fcf92d991f24fc967cf",
-                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
                 "shasum": ""
             },
             "require": {
@@ -3122,7 +2737,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -3151,7 +2766,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -3167,20 +2782,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-23T14:45:45+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "7cb4ae7166a8a36916be390dbb3819474fb06a29"
+                "reference": "fc26d2e4472df45340e8b8fb43cb708d468eaa84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/7cb4ae7166a8a36916be390dbb3819474fb06a29",
-                "reference": "7cb4ae7166a8a36916be390dbb3819474fb06a29",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/fc26d2e4472df45340e8b8fb43cb708d468eaa84",
+                "reference": "fc26d2e4472df45340e8b8fb43cb708d468eaa84",
                 "shasum": ""
             },
             "require": {
@@ -3218,7 +2833,7 @@
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dom-crawler/tree/v7.0.7"
+                "source": "https://github.com/symfony/dom-crawler/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3234,20 +2849,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/dotenv",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "0fd573c141e1990848702d56329050efd5bf25cc"
+                "reference": "83026885fde02508235fc9dd175f227290542c99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/0fd573c141e1990848702d56329050efd5bf25cc",
-                "reference": "0fd573c141e1990848702d56329050efd5bf25cc",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/83026885fde02508235fc9dd175f227290542c99",
+                "reference": "83026885fde02508235fc9dd175f227290542c99",
                 "shasum": ""
             },
             "require": {
@@ -3292,7 +2907,7 @@
                 "environment"
             ],
             "support": {
-                "source": "https://github.com/symfony/dotenv/tree/v7.0.7"
+                "source": "https://github.com/symfony/dotenv/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3308,20 +2923,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-05-02T08:41:59+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "db2a7fab994d67d92356bb39c367db115d9d30f9"
+                "reference": "522d2772d6c7bab843b0c52466dc7844622bacc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/db2a7fab994d67d92356bb39c367db115d9d30f9",
-                "reference": "db2a7fab994d67d92356bb39c367db115d9d30f9",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/522d2772d6c7bab843b0c52466dc7844622bacc2",
+                "reference": "522d2772d6c7bab843b0c52466dc7844622bacc2",
                 "shasum": ""
             },
             "require": {
@@ -3372,7 +2987,7 @@
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher/tree/v7.0.7"
+                "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3388,20 +3003,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
-            "version": "v3.4.2",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher-contracts.git",
-                "reference": "4e64b49bf370ade88e567de29465762e316e4224"
+                "reference": "8f93aec25d41b72493c6ddff14e916177c9efc50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/4e64b49bf370ade88e567de29465762e316e4224",
-                "reference": "4e64b49bf370ade88e567de29465762e316e4224",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/8f93aec25d41b72493c6ddff14e916177c9efc50",
+                "reference": "8f93aec25d41b72493c6ddff14e916177c9efc50",
                 "shasum": ""
             },
             "require": {
@@ -3411,7 +3026,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -3448,7 +3063,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher-contracts/tree/v3.4.2"
+                "source": "https://github.com/symfony/event-dispatcher-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -3464,20 +3079,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/mailer",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "4ff41a7c7998a88cfdc31b5841ef64d9246fc56a"
+                "reference": "d891fb20d441bc82237e50b0042afa8859b2666a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/4ff41a7c7998a88cfdc31b5841ef64d9246fc56a",
-                "reference": "4ff41a7c7998a88cfdc31b5841ef64d9246fc56a",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/d891fb20d441bc82237e50b0042afa8859b2666a",
+                "reference": "d891fb20d441bc82237e50b0042afa8859b2666a",
                 "shasum": ""
             },
             "require": {
@@ -3528,7 +3143,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v7.0.7"
+                "source": "https://github.com/symfony/mailer/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3544,20 +3159,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-05-02T08:41:59+00:00"
         },
         {
             "name": "symfony/mime",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "3adbf110c306546f6f00337f421d2edca0e8d3c0"
+                "reference": "b79638146f25c878d08c014a290ac0d9d5085e00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/3adbf110c306546f6f00337f421d2edca0e8d3c0",
-                "reference": "3adbf110c306546f6f00337f421d2edca0e8d3c0",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/b79638146f25c878d08c014a290ac0d9d5085e00",
+                "reference": "b79638146f25c878d08c014a290ac0d9d5085e00",
                 "shasum": ""
             },
             "require": {
@@ -3612,7 +3227,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v7.0.7"
+                "source": "https://github.com/symfony/mime/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3628,20 +3243,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "23cc173858776ad451e31f053b1c9f47840b2cfa"
+                "reference": "9564f64c16f99e29f252eafc642965e8fcb755ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/23cc173858776ad451e31f053b1c9f47840b2cfa",
-                "reference": "23cc173858776ad451e31f053b1c9f47840b2cfa",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/9564f64c16f99e29f252eafc642965e8fcb755ce",
+                "reference": "9564f64c16f99e29f252eafc642965e8fcb755ce",
                 "shasum": ""
             },
             "require": {
@@ -3679,7 +3294,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v7.0.7"
+                "source": "https://github.com/symfony/options-resolver/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -3695,7 +3310,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4331,16 +3946,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "3839e56b94dd1dbd13235d27504e66baf23faba0"
+                "reference": "2f00ea0dec48a0674c4bfc3cf5244447282129a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/3839e56b94dd1dbd13235d27504e66baf23faba0",
-                "reference": "3839e56b94dd1dbd13235d27504e66baf23faba0",
+                "url": "https://api.github.com/repos/symfony/process/zipball/2f00ea0dec48a0674c4bfc3cf5244447282129a5",
+                "reference": "2f00ea0dec48a0674c4bfc3cf5244447282129a5",
                 "shasum": ""
             },
             "require": {
@@ -4372,7 +3987,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v7.0.7"
+                "source": "https://github.com/symfony/process/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -4388,25 +4003,26 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v3.4.2",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "11bbf19a0fb7b36345861e85c5768844c552906e"
+                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/11bbf19a0fb7b36345861e85c5768844c552906e",
-                "reference": "11bbf19a0fb7b36345861e85c5768844c552906e",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
+                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "psr/container": "^1.1|^2.0"
+                "psr/container": "^1.1|^2.0",
+                "symfony/deprecation-contracts": "^2.5|^3"
             },
             "conflict": {
                 "ext-psr": "<1.1|>=2"
@@ -4414,7 +4030,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -4454,7 +4070,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v3.4.2"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -4470,20 +4086,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-19T21:51:00+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "41a7a24aa1dc82adf46a06bc292d1923acfe6b84"
+                "reference": "13c750a45ac43c45f45d944d22499768aa1b72d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/41a7a24aa1dc82adf46a06bc292d1923acfe6b84",
-                "reference": "41a7a24aa1dc82adf46a06bc292d1923acfe6b84",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/13c750a45ac43c45f45d944d22499768aa1b72d8",
+                "reference": "13c750a45ac43c45f45d944d22499768aa1b72d8",
                 "shasum": ""
             },
             "require": {
@@ -4516,7 +4132,7 @@
             "description": "Provides a way to profile code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v7.0.7"
+                "source": "https://github.com/symfony/stopwatch/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -4532,20 +4148,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/string",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "e405b5424dc2528e02e31ba26b83a79fd4eb8f63"
+                "reference": "ffe3085b909b72708bf57eae13b64570fe9fd7af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/e405b5424dc2528e02e31ba26b83a79fd4eb8f63",
-                "reference": "e405b5424dc2528e02e31ba26b83a79fd4eb8f63",
+                "url": "https://api.github.com/repos/symfony/string/zipball/ffe3085b909b72708bf57eae13b64570fe9fd7af",
+                "reference": "ffe3085b909b72708bf57eae13b64570fe9fd7af",
                 "shasum": ""
             },
             "require": {
@@ -4559,6 +4175,7 @@
                 "symfony/translation-contracts": "<2.5"
             },
             "require-dev": {
+                "symfony/emoji": "^7.1",
                 "symfony/error-handler": "^6.4|^7.0",
                 "symfony/http-client": "^6.4|^7.0",
                 "symfony/intl": "^6.4|^7.0",
@@ -4602,7 +4219,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.0.7"
+                "source": "https://github.com/symfony/string/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -4618,20 +4235,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-05-02T08:41:59+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v7.0.7",
+            "version": "v7.1.0-BETA1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "d1627b66fd87c8b4d90cabe5671c29d575690924"
+                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/d1627b66fd87c8b4d90cabe5671c29d575690924",
-                "reference": "d1627b66fd87c8b4d90cabe5671c29d575690924",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/be16ed8fa69d9596707fcb2382ea0f71c0825b10",
+                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10",
                 "shasum": ""
             },
             "require": {
@@ -4685,7 +4302,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v7.0.7"
+                "source": "https://github.com/symfony/var-dumper/tree/v7.1.0-BETA1"
             },
             "funding": [
                 {
@@ -4701,7 +4318,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:29:19+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4811,17 +4428,248 @@
             "time": "2024-03-07T20:33:40+00:00"
         },
         {
-            "name": "windwalker/core",
-            "version": "4.1.8",
+            "name": "windwalker/attributes",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/windwalker-io/core.git",
-                "reference": "243c608c0119d258824993d821b9d78528db97d3"
+                "url": "https://github.com/windwalker-io/attributes.git",
+                "reference": "7f976367db8a790e8a180b22ccb34d5f7167f2e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/core/zipball/243c608c0119d258824993d821b9d78528db97d3",
-                "reference": "243c608c0119d258824993d821b9d78528db97d3",
+                "url": "https://api.github.com/repos/windwalker-io/attributes/zipball/7f976367db8a790e8a180b22ccb34d5f7167f2e0",
+                "reference": "7f976367db8a790e8a180b22ccb34d5f7167f2e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/scalars": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Attributes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Attributes package, provides PHP8 Attributes resolving interface.",
+            "homepage": "https://github.com/windwalker-io/attributes",
+            "keywords": [
+                "attributes",
+                "framework",
+                "php8",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/attributes/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/authentication",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/authentication.git",
+                "reference": "1e22f4b4db3cddfc6239f750d2e7fb3298fd9f6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/authentication/zipball/1e22f4b4db3cddfc6239f750d2e7fb3298fd9f6f",
+                "reference": "1e22f4b4db3cddfc6239f750d2e7fb3298fd9f6f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Authentication\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Authentication package",
+            "homepage": "https://github.com/windwalker-io/authentication",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "framework",
+                "user",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/authentication/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/authorization",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/authorization.git",
+                "reference": "194740f119a1b34c6f6148a2670088f2349f6efb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/authorization/zipball/194740f119a1b34c6f6148a2670088f2349f6efb",
+                "reference": "194740f119a1b34c6f6148a2670088f2349f6efb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Authorization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Authorization package",
+            "homepage": "https://github.com/windwalker-io/authorization",
+            "keywords": [
+                "auth",
+                "authorization",
+                "framework",
+                "user",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/authorization/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/cache",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/cache.git",
+                "reference": "5ae473b058117d680f2675676ddead012009666d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/cache/zipball/5ae473b058117d680f2675676ddead012009666d",
+                "reference": "5ae473b058117d680f2675676ddead012009666d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "psr/cache": "^1.0||^2.0||^3.0",
+                "psr/log": "^1.0||^2.0||^3.0",
+                "psr/simple-cache": "^1.0||^2.0||^3.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "provide": {
+                "psr/cache-implementation": "1.0|2.0|3.0",
+                "psr/simple-cache-implementation": "1.0|2,0|3.0"
+            },
+            "require-dev": {
+                "league/flysystem": "^2.0",
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/filesystem": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "windwalker": {
+                    "packages": [
+                        "Windwalker\\Cache\\CachePackage"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Cache package",
+            "homepage": "https://github.com/windwalker-io/cache",
+            "keywords": [
+                "cache",
+                "framework",
+                "psr-16",
+                "psr-6",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/cache/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/core",
+            "version": "4.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/core.git",
+                "reference": "ee843eafe90595d05801e7a286eb2999976adf1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/core/zipball/ee843eafe90595d05801e7a286eb2999976adf1e",
+                "reference": "ee843eafe90595d05801e7a286eb2999976adf1e",
                 "shasum": ""
             },
             "require": {
@@ -4891,160 +4739,889 @@
             "homepage": "https://github.com/windwalker-io/core",
             "support": {
                 "issues": "https://github.com/windwalker-io/core/issues",
-                "source": "https://github.com/windwalker-io/core/tree/4.1.8"
+                "source": "https://github.com/windwalker-io/core/tree/4.1.9"
             },
-            "time": "2024-02-15T08:23:06+00:00"
+            "time": "2024-05-09T08:55:17+00:00"
         },
         {
-            "name": "windwalker/framework",
-            "version": "dev-master",
+            "name": "windwalker/crypt",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/windwalker-io/framework.git",
-                "reference": "d3a7cfa6e6a63bd54152d8f9deb24cea60be3da0"
+                "url": "https://github.com/windwalker-io/crypt.git",
+                "reference": "823fc76e2959128dd635e852663e659ad29bb029"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/framework/zipball/d3a7cfa6e6a63bd54152d8f9deb24cea60be3da0",
-                "reference": "d3a7cfa6e6a63bd54152d8f9deb24cea60be3da0",
+                "url": "https://api.github.com/repos/windwalker-io/crypt/zipball/823fc76e2959128dd635e852663e659ad29bb029",
+                "reference": "823fc76e2959128dd635e852663e659ad29bb029",
                 "shasum": ""
             },
             "require": {
-                "asika/object-metadata": "^1.0",
-                "composer/ca-bundle": "^1.2",
-                "ext-dom": "*",
-                "ext-json": "*",
                 "paragonie/constant_time_encoding": "^2.3",
+                "php": ">=8.2.0"
+            },
+            "require-dev": {
+                "ext-openssl": "*",
+                "ext-sodium": "*",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "ext-openssl": "Install openssl to support legacy openssl cipher.",
+                "ext-sodium": "Install sodium to support sodium cipher."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Crypt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Crypt package",
+            "homepage": "https://github.com/windwalker-io/crypt",
+            "keywords": [
+                "crypt",
+                "framework",
+                "libsodium",
+                "openssl",
+                "sodium",
+                "symmetric",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/crypt/tree/4.1.3"
+            },
+            "time": "2024-05-09T08:52:35+00:00"
+        },
+        {
+            "name": "windwalker/data",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/data.git",
+                "reference": "57fe746eeac44ba023de3f7d17bd392c3bb54a57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/data/zipball/57fe746eeac44ba023de3f7d17bd392c3bb54a57",
+                "reference": "57fe746eeac44ba023de3f7d17bd392c3bb54a57",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=8.2.0",
-                "psr/cache": "^1.0||^2.0||^3.0",
+                "windwalker/scalars": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "laktak/hjson": "^2.1",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "symfony/yaml": "^5.0||^6.0||^7.0",
+                "windwalker/filesystem": "^4.0",
+                "windwalker/stream": "^4.0",
+                "windwalker/test": "^4.0",
+                "yosymfony/toml": "^1.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Data\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Data package",
+            "homepage": "https://github.com/windwalker-io/data",
+            "keywords": [
+                "framework",
+                "utilities",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/data/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/database",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/database.git",
+                "reference": "b5333fd73046b81436998fff201c0a752d23f775"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/database/zipball/b5333fd73046b81436998fff201c0a752d23f775",
+                "reference": "b5333fd73046b81436998fff201c0a752d23f775",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/cache": "^4.0",
+                "windwalker/data": "^4.0",
+                "windwalker/event": "^4.0",
+                "windwalker/pool": "^4.0",
+                "windwalker/query": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "asika/sql-splitter": "^1.0",
+                "jdorn/sql-formatter": "^1.2",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "windwalker": {
+                    "packages": [
+                        "Windwalker\\Database\\DatabasePackage"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Database\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Database package",
+            "homepage": "https://github.com/windwalker-io/database",
+            "keywords": [
+                "database",
+                "db",
+                "framework",
+                "mysql",
+                "pdo",
+                "postgresql",
+                "sqlsrv",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/database/tree/4.1.3"
+            },
+            "time": "2024-05-09T08:52:35+00:00"
+        },
+        {
+            "name": "windwalker/di",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/di.git",
+                "reference": "84bdb37e5ffb5369a294c412902352463d36a88c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/di/zipball/84bdb37e5ffb5369a294c412902352463d36a88c",
+                "reference": "84bdb37e5ffb5369a294c412902352463d36a88c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
                 "psr/container": "^1.0||^2.0",
+                "windwalker/attributes": "^4.0",
+                "windwalker/data": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "provide": {
+                "psr/container-implementation": "1.0|2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\DI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker DI package",
+            "homepage": "https://github.com/windwalker-io/di",
+            "keywords": [
+                "di",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/di/tree/4.1.3"
+            },
+            "time": "2024-05-09T06:34:11+00:00"
+        },
+        {
+            "name": "windwalker/environment",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/environment.git",
+                "reference": "3819e9936f35b07344e0af4fe9c630a6cef47a01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/environment/zipball/3819e9936f35b07344e0af4fe9c630a6cef47a01",
+                "reference": "3819e9936f35b07344e0af4fe9c630a6cef47a01",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Environment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Environment package",
+            "homepage": "https://github.com/windwalker-io/environment",
+            "keywords": [
+                "environment",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/environment/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/event",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/event.git",
+                "reference": "5c6e791b188c84445347c4877c57ff92d3829960"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/event/zipball/5c6e791b188c84445347c4877c57ff92d3829960",
+                "reference": "5c6e791b188c84445347c4877c57ff92d3829960",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
                 "psr/event-dispatcher": "^1.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "provide": {
+                "psr/event-dispatcher-implementation": "1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "react/event-loop": "^1.1",
+                "reactivex/rxphp": "^2.0",
+                "windwalker/promise": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "reactivex/rxphp": "Support EventEmitter::observe() pattern."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Event\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Event package",
+            "homepage": "https://github.com/windwalker-io/event",
+            "keywords": [
+                "event",
+                "event-dispatcher",
+                "framework",
+                "observable",
+                "psr-14",
+                "rx",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/event/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/filesystem",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/filesystem.git",
+                "reference": "844d5e3c463897aea1aa92a9a25dca51bbaa10cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/filesystem/zipball/844d5e3c463897aea1aa92a9a25dca51bbaa10cd",
+                "reference": "844d5e3c463897aea1aa92a9a25dca51bbaa10cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "psr/http-message": "^1.0||^2.0",
+                "windwalker/scalars": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "webmozart/glob": "^4.1",
+                "windwalker/stream": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "webmozart/glob": "Install ^4.0 to support Ant-like glob().",
+                "windwalker/validator": "Install ^4.0 to support regex() filter."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Filesystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Filesystem package",
+            "homepage": "https://github.com/windwalker-io/filesystem",
+            "keywords": [
+                "filesystem",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/filesystem/tree/4.1.3"
+            },
+            "time": "2024-05-09T08:21:05+00:00"
+        },
+        {
+            "name": "windwalker/filter",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/filter.git",
+                "reference": "441ce5b87bb27516ce18ba6d5d253a7681fc27c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/filter/zipball/441ce5b87bb27516ce18ba6d5d253a7681fc27c9",
+                "reference": "441ce5b87bb27516ce18ba6d5d253a7681fc27c9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Filter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Filter package",
+            "homepage": "https://github.com/windwalker-io/filter",
+            "keywords": [
+                "filter",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/filter/tree/4.1.3"
+            },
+            "time": "2024-01-23T08:28:17+00:00"
+        },
+        {
+            "name": "windwalker/http",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/http.git",
+                "reference": "0b0300d10ec4abc756f914325d4e47279904a03a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/http/zipball/0b0300d10ec4abc756f914325d4e47279904a03a",
+                "reference": "0b0300d10ec4abc756f914325d4e47279904a03a",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.2",
+                "php": ">=8.2.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0||^2.0",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0",
-                "psr/log": "^1.0||^2.0||^3.0",
-                "psr/simple-cache": "^1.0||^2.0||^3.0",
-                "symfony/options-resolver": "^5.0||^6.0||^7.0",
-                "symfony/polyfill-php83": "^1.27"
+                "windwalker/event": "^4.0",
+                "windwalker/stream": "^4.0",
+                "windwalker/uri": "^4.0",
+                "windwalker/utilities": "^4.0"
             },
             "provide": {
-                "psr/cache-implementation": "1.0|2.0|3.0",
-                "psr/container-implementation": "1.0|2.0",
-                "psr/event-dispatcher-implementation": "1.0",
                 "psr/http-client-implementation": "1.0",
                 "psr/http-factory-implementation": "1.0",
-                "psr/http-message-implementation": "1.0|2.0",
-                "psr/simple-cache-implementation": "1.0|2,0|3.0"
-            },
-            "replace": {
-                "windwalker/attributes": "self.version",
-                "windwalker/authentication": "self.version",
-                "windwalker/authorization": "self.version",
-                "windwalker/cache": "self.version",
-                "windwalker/crypt": "self.version",
-                "windwalker/data": "self.version",
-                "windwalker/database": "self.version",
-                "windwalker/di": "self.version",
-                "windwalker/dom": "self.version",
-                "windwalker/edge": "self.version",
-                "windwalker/environment": "self.version",
-                "windwalker/event": "self.version",
-                "windwalker/filesystem": "self.version",
-                "windwalker/filter": "self.version",
-                "windwalker/form": "self.version",
-                "windwalker/html": "self.version",
-                "windwalker/http": "self.version",
-                "windwalker/language": "self.version",
-                "windwalker/orm": "self.version",
-                "windwalker/pool": "self.version",
-                "windwalker/promise": "self.version",
-                "windwalker/query": "self.version",
-                "windwalker/queue": "self.version",
-                "windwalker/reactor": "self.version",
-                "windwalker/renderer": "self.version",
-                "windwalker/scalars": "self.version",
-                "windwalker/session": "self.version",
-                "windwalker/stream": "self.version",
-                "windwalker/test": "self.version",
-                "windwalker/uri": "self.version",
-                "windwalker/utilities": "self.version"
+                "psr/http-message-implementation": "1.0|2.0"
             },
             "require-dev": {
-                "asika/simple-benchmark": "^3.0",
-                "asika/sql-splitter": "^1.0",
-                "composer/semver": "^3.0",
-                "doctrine/inflector": "^2.0",
-                "ext-openssl": "*",
-                "ext-pdo": "*",
-                "ext-sodium": "*",
-                "guzzlehttp/promises": "^1.3||^2.0",
-                "guzzlehttp/uri-template": "^1.0",
-                "illuminate/view": "^6.0||^7.0||^8.0||^9.0||^10.0||^11.0",
-                "jdorn/sql-formatter": "^1.2",
-                "laktak/hjson": "^2.1",
-                "laravel/serializable-closure": "^1.0",
-                "league/flysystem": "^2.0",
-                "league/plates": "^3.4",
-                "masterminds/html5": "^2.7",
                 "mikey179/vfsstream": "^1.6",
-                "mockery/mockery": "^1.4",
-                "mustache/mustache": "^2.0",
-                "myclabs/php-enum": "^1.8",
-                "phpunit/phpunit": "^8.4||^9.0||^10.0",
-                "react/event-loop": "^1.1",
-                "react/http": "^1.0",
-                "react/promise": "^2.7",
-                "react/socket": "^1.5",
-                "reactivex/rxphp": "^2.0",
-                "rize/uri-template": "^0.3.5",
-                "roave/security-advisories": "dev-master",
-                "squizlabs/php_codesniffer": "^3.0",
-                "swoole/ide-helper": "^4.0||^5.0",
-                "symfony/css-selector": "^5.0||^6.0||^7.0",
-                "symfony/dom-crawler": "^5.0||^6.0||^7.0",
-                "symfony/options-resolver": "^5.0||^6.0||^7.0",
-                "symfony/polyfill-php82": "^1.26",
-                "symfony/process": "^5.1||^6.0||^7.0",
-                "symfony/string": "^5.2||^6.0||^7.0",
-                "symfony/var-dumper": "^5.0||^6.0",
-                "symfony/yaml": "^5.0||^6.0||^7.0",
-                "twig/twig": "^2.0||^3.0",
-                "webmozart/glob": "^4.1",
-                "yosymfony/toml": "^1.0"
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
             },
             "suggest": {
-                "aws/aws-sdk-php": "If you want to use AWS SQS as queue service.",
-                "chrisboulton/php-resque": "Install <= 1.2 if you want to use PHP Resque (Redis) as queue service.",
-                "doctrine/inflector": "Install ~1.0 to use inflector.",
-                "ext-openssl": "Install openssl to support legacy openssl cipher.",
-                "ext-sodium": "Install sodium to support sodium cipher.",
-                "guzzlehttp/uri-template": "Install this to support URI Template expand()",
-                "iron-io/iron_mq": "If you want to use Iron.io as queue service.",
-                "laravel/serializable-closure": "Install ^1.0 to support serializable Closure.",
-                "pda/pheanstalk": "If you want to use Beanstalkd queue as service.",
-                "php-amqplib/php-amqplib": "If you want to use RabbitMQ as queue service.",
-                "php-http/httplug": "Install ~2.0 if you require HttpClient as HttpPlug implementation.",
-                "reactivex/rxphp": "Support EventEmitter::observe() pattern.",
-                "relay/relay": "Install ^2.0 to support PSR-15 middlewares.",
-                "rize/uri-template": "Install this to support URI Template expand() and extract()",
-                "symfony/string": "Install ^5.2 to use inflector.",
-                "symfony/yaml": "Install ~4.0 if you require YAML support.",
-                "webmozart/glob": "Install ^4.0 to support Ant-like glob()."
+                "relay/relay": "Install ^2.0 to support PSR-15 middlewares."
             },
-            "default-branch": true,
-            "type": "library",
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Http package",
+            "homepage": "https://github.com/windwalker-io/http",
+            "keywords": [
+                "framework",
+                "http",
+                "psr17",
+                "psr7",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/http/tree/4.1.3"
+            },
+            "time": "2024-01-26T07:33:14+00:00"
+        },
+        {
+            "name": "windwalker/language",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/language.git",
+                "reference": "e7cf2a041de06eb2a2a41cb878ec9aa82539d34a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/language/zipball/e7cf2a041de06eb2a2a41cb878ec9aa82539d34a",
+                "reference": "e7cf2a041de06eb2a2a41cb878ec9aa82539d34a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/data": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
             "extra": {
                 "windwalker": {
                     "packages": [
-                        "Windwalker\\Cache\\CachePackage",
-                        "Windwalker\\Database\\DatabasePackage",
-                        "Windwalker\\Form\\FormPackage",
-                        "Windwalker\\Language\\LanguagePackage",
-                        "Windwalker\\Queue\\QueuePackage",
-                        "Windwalker\\Reactor\\ReactorPackage",
-                        "Windwalker\\Renderer\\RendererPackage",
+                        "Windwalker\\Language\\LanguagePackage"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Language\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Language package",
+            "homepage": "https://github.com/windwalker-io/language",
+            "keywords": [
+                "framework",
+                "language",
+                "multi-language",
+                "translation",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/language/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/orm",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/orm.git",
+                "reference": "4d8deb9fbe6b493b9befc7b61862781d0711a725"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/orm/zipball/4d8deb9fbe6b493b9befc7b61862781d0711a725",
+                "reference": "4d8deb9fbe6b493b9befc7b61862781d0711a725",
+                "shasum": ""
+            },
+            "require": {
+                "asika/object-metadata": "^1.0",
+                "php": ">=8.2.0",
+                "symfony/polyfill-php83": "^1.27",
+                "windwalker/attributes": "^4.0",
+                "windwalker/database": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "myclabs/php-enum": "^1.8",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\ORM\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker ORM package",
+            "homepage": "https://github.com/windwalker-io/orm",
+            "keywords": [
+                "database",
+                "datamapper",
+                "framework",
+                "mysql",
+                "orm",
+                "pdo",
+                "postgresql",
+                "sqlsrv",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/orm/tree/4.1.3"
+            },
+            "time": "2024-05-09T08:52:35+00:00"
+        },
+        {
+            "name": "windwalker/pool",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/pool.git",
+                "reference": "18ff61428fb1768b87b3cf51d1333002efc41220"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/pool/zipball/18ff61428fb1768b87b3cf51d1333002efc41220",
+                "reference": "18ff61428fb1768b87b3cf51d1333002efc41220",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "psr/log": "^1.0||^2.0||^3.0",
+                "symfony/options-resolver": "^5.0||^6.0||^7.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/reactor": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Pool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Pool package",
+            "homepage": "https://github.com/windwalker-io/pool",
+            "keywords": [
+                "connection pool",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/pool/tree/4.1.3"
+            },
+            "time": "2024-01-10T14:39:09+00:00"
+        },
+        {
+            "name": "windwalker/query",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/query.git",
+                "reference": "d3b5f46fc364c243006fcd334c66b2096fd88836"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/query/zipball/d3b5f46fc364c243006fcd334c66b2096fd88836",
+                "reference": "d3b5f46fc364c243006fcd334c66b2096fd88836",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "jdorn/sql-formatter": "^1.2",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/data": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Query\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Query package",
+            "homepage": "https://github.com/windwalker-io/query",
+            "keywords": [
+                "database",
+                "framework",
+                "query builder",
+                "sql",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/query/tree/4.1.3"
+            },
+            "time": "2024-03-04T12:01:24+00:00"
+        },
+        {
+            "name": "windwalker/scalars",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/scalars.git",
+                "reference": "d23c463298ce0aebbb5a976d83f7407075deef87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/scalars/zipball/d23c463298ce0aebbb5a976d83f7407075deef87",
+                "reference": "d23c463298ce0aebbb5a976d83f7407075deef87",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "doctrine/inflector": "^2.0",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/data": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "doctrine/inflector": "Install ~1.0 to use inflector."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Scalars\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Scalars package",
+            "homepage": "https://github.com/windwalker-io/scalars",
+            "keywords": [
+                "Array object",
+                "framework",
+                "scalar object",
+                "utilities",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/scalars/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/session",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/session.git",
+                "reference": "a8808d44750dc609c1eaf468a191bef66ca05096"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/session/zipball/a8808d44750dc609c1eaf468a191bef66ca05096",
+                "reference": "a8808d44750dc609c1eaf468a191bef66ca05096",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/cache": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "asika/sql-splitter": "^1.0",
+                "mikey179/vfsstream": "^1.6",
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "webmozart/glob": "^4.1",
+                "windwalker/data": "^4.0",
+                "windwalker/database": "^4.0",
+                "windwalker/filesystem": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "windwalker": {
+                    "packages": [
                         "Windwalker\\Session\\SessionPackage"
                     ]
                 },
@@ -5054,90 +5631,27 @@
             },
             "autoload": {
                 "files": [
-                    "packages/attributes/src/bootstrap.php",
-                    "packages/authentication/src/bootstrap.php",
-                    "packages/authorization/src/bootstrap.php",
-                    "packages/bootstrap.php",
-                    "packages/cache/src/bootstrap.php",
-                    "packages/crypt/src/bootstrap.php",
-                    "packages/data/src/bootstrap.php",
-                    "packages/database/src/bootstrap.php",
-                    "packages/di/src/bootstrap.php",
-                    "packages/dom/src/bootstrap.php",
-                    "packages/edge/src/bootstrap.php",
-                    "packages/environment/src/bootstrap.php",
-                    "packages/event/src/bootstrap.php",
-                    "packages/filesystem/src/bootstrap.php",
-                    "packages/filter/src/bootstrap.php",
-                    "packages/form/src/bootstrap.php",
-                    "packages/html/src/bootstrap.php",
-                    "packages/http/src/bootstrap.php",
-                    "packages/language/src/bootstrap.php",
-                    "packages/orm/src/bootstrap.php",
-                    "packages/pool/src/bootstrap.php",
-                    "packages/promise/src/bootstrap.php",
-                    "packages/query/src/bootstrap.php",
-                    "packages/queue/src/bootstrap.php",
-                    "packages/reactor/src/bootstrap.php",
-                    "packages/renderer/src/bootstrap.php",
-                    "packages/scalars/src/bootstrap.php",
-                    "packages/session/src/bootstrap.php",
-                    "packages/stream/src/bootstrap.php",
-                    "packages/test/src/bootstrap.php",
-                    "packages/uri/src/bootstrap.php",
-                    "packages/utilities/src/bootstrap.php"
+                    "src/bootstrap.php"
                 ],
                 "psr-4": {
-                    "Windwalker\\DI\\": "packages/di/src",
-                    "Windwalker\\DOM\\": "packages/dom/src",
-                    "Windwalker\\ORM\\": "packages/orm/src",
-                    "Windwalker\\Uri\\": "packages/uri/src",
-                    "Windwalker\\Data\\": "packages/data/src",
-                    "Windwalker\\Edge\\": "packages/edge/src",
-                    "Windwalker\\Form\\": "packages/form/src",
-                    "Windwalker\\Html\\": "packages/html/src",
-                    "Windwalker\\Http\\": "packages/http/src",
-                    "Windwalker\\Pool\\": "packages/pool/src",
-                    "Windwalker\\Test\\": "packages/test/src",
-                    "Windwalker\\Cache\\": "packages/cache/src",
-                    "Windwalker\\Crypt\\": "packages/crypt/src",
-                    "Windwalker\\Event\\": "packages/event/src",
-                    "Windwalker\\Query\\": "packages/query/src",
-                    "Windwalker\\Queue\\": "packages/queue/src",
-                    "Windwalker\\Filter\\": "packages/filter/src",
-                    "Windwalker\\Stream\\": "packages/stream/src",
-                    "Windwalker\\Promise\\": "packages/promise/src",
-                    "Windwalker\\Reactor\\": "packages/reactor/src",
-                    "Windwalker\\Scalars\\": "packages/scalars/src",
-                    "Windwalker\\Session\\": "packages/session/src",
-                    "Windwalker\\Database\\": "packages/database/src",
-                    "Windwalker\\Language\\": "packages/language/src",
-                    "Windwalker\\Renderer\\": "packages/renderer/src",
-                    "Windwalker\\Utilities\\": "packages/utilities/src",
-                    "Windwalker\\Attributes\\": "packages/attributes/src",
-                    "Windwalker\\Filesystem\\": "packages/filesystem/src",
-                    "Windwalker\\Environment\\": "packages/environment/src",
-                    "Windwalker\\Authorization\\": "packages/authorization/src",
-                    "Windwalker\\Authentication\\": "packages/authentication/src"
+                    "Windwalker\\Session\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Simon Asika",
-                    "email": "asika32764@gmail.com"
-                }
+            "description": "Windwalker Session package",
+            "homepage": "https://github.com/windwalker-io/session",
+            "keywords": [
+                "framework",
+                "session",
+                "windwalker"
             ],
-            "description": "The next generation PHP framework.",
-            "homepage": "https://github.com/windwalker-io/framework",
             "support": {
-                "issues": "https://github.com/windwalker-io/framework/issues",
-                "source": "https://github.com/windwalker-io/framework/tree/master"
+                "source": "https://github.com/windwalker-io/session/tree/4.1.3"
             },
-            "time": "2024-03-23T14:52:47+00:00"
+            "time": "2024-05-09T08:52:35+00:00"
         },
         {
             "name": "windwalker/srp",
@@ -5189,6 +5703,113 @@
                 "source": "https://github.com/windwalker-io/srp/tree/1.0.1"
             },
             "time": "2023-11-19T07:30:25+00:00"
+        },
+        {
+            "name": "windwalker/stream",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/stream.git",
+                "reference": "9d87e95747b8509c5d146f349844e51ff604fd90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/stream/zipball/9d87e95747b8509c5d146f349844e51ff604fd90",
+                "reference": "9d87e95747b8509c5d146f349844e51ff604fd90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "psr/http-message": "^1.0||^2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0|2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Stream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Stream package",
+            "homepage": "https://github.com/windwalker-io/stream",
+            "keywords": [
+                "framework",
+                "psr7",
+                "stream",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/stream/tree/4.1.3"
+            },
+            "time": "2024-01-13T15:00:58+00:00"
+        },
+        {
+            "name": "windwalker/test",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/test.git",
+                "reference": "797410c2b28c934fffbd1a0704d681ca200a005d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/test/zipball/797410c2b28c934fffbd1a0704d681ca200a005d",
+                "reference": "797410c2b28c934fffbd1a0704d681ca200a005d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Test\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Test package",
+            "homepage": "https://github.com/windwalker-io/test",
+            "keywords": [
+                "framework",
+                "test",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/test/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
         },
         {
             "name": "windwalker/unicorn",
@@ -5258,6 +5879,133 @@
                 "source": "https://github.com/windwalker-io/unicorn/tree/1.1.12"
             },
             "time": "2024-04-26T08:03:37+00:00"
+        },
+        {
+            "name": "windwalker/uri",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/uri.git",
+                "reference": "4e5d4117dce35a35246f05d312f47c9c1b973546"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/uri/zipball/4e5d4117dce35a35246f05d312f47c9c1b973546",
+                "reference": "4e5d4117dce35a35246f05d312f47c9c1b973546",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0||^2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "provide": {
+                "psr/http-factory-implementation": "~1.0",
+                "psr/http-message-implementation": "1.0|2.0"
+            },
+            "require-dev": {
+                "guzzlehttp/uri-template": "^1.0",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "rize/uri-template": "^0.3.5",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "guzzlehttp/uri-template": "Install this to support URI Template expand()",
+                "rize/uri-template": "Install this to support URI Template expand() and extract()"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Uri\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Uri package",
+            "homepage": "https://github.com/windwalker-io/uri",
+            "keywords": [
+                "framework",
+                "http",
+                "psr17",
+                "psr7",
+                "uri",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/uri/tree/4.1.3"
+            },
+            "time": "2024-01-23T08:28:17+00:00"
+        },
+        {
+            "name": "windwalker/utilities",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/utilities.git",
+                "reference": "200b80313929075128a49dc3be6b85da4d92ea01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/utilities/zipball/200b80313929075128a49dc3be6b85da4d92ea01",
+                "reference": "200b80313929075128a49dc3be6b85da4d92ea01",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0"
+            },
+            "require-dev": {
+                "myclabs/php-enum": "^1.8",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "symfony/options-resolver": "^5.0||^6.0||^7.0",
+                "symfony/string": "^5.2||^6.0||^7.0",
+                "windwalker/attributes": "^4.0",
+                "windwalker/scalars": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "suggest": {
+                "laravel/serializable-closure": "Install ^1.0 to support serializable Closure.",
+                "symfony/string": "Install to use inflector."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Utilities\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Utilities package",
+            "homepage": "https://github.com/windwalker-io/utilities",
+            "keywords": [
+                "framework",
+                "utilities",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/utilities/tree/4.1.3"
+            },
+            "time": "2024-05-09T08:52:35+00:00"
         }
     ],
     "packages-dev": [
@@ -5446,9 +6194,7 @@
     ],
     "aliases": [],
     "minimum-stability": "beta",
-    "stability-flags": {
-        "windwalker/framework": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

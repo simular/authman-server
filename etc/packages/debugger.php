@@ -12,7 +12,7 @@ return [
 
         'listeners' => [
             \Windwalker\Core\Application\AppContext::class => [
-                \Windwalker\Debugger\Subscriber\DebuggerSubscriber::class
+                // \Windwalker\Debugger\Subscriber\DebuggerSubscriber::class
             ]
         ],
 

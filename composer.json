@@ -17,34 +17,24 @@
         "windwalker/authorization": "^4.0",
         "windwalker/core": "^4.0",
         "windwalker/di": "^4.0",
-        "windwalker/renderer": "^4.0",
-        "windwalker/dom": "^4.0",
-        "windwalker/edge": "^4.0",
         "windwalker/orm": "^4.0",
         "windwalker/session": "^4.0",
-        "windwalker/form": "^4.0",
         "windwalker/unicorn": "^1.0",
         "windwalker/srp": "^1.0",
         "lyrasoft/luna": "^2.0",
         "lyrasoft/toolkit": "^1.0",
-        "lyrasoft/theme-skote": "^3.2",
-        "lyrasoft/banner": "^1.0",
-        "lyrasoft/contact": "^1.0",
         "symfony/mailer": "^5.4||^6.0||^7.0",
         "dragonmantank/cron-expression": "^3.3",
         "masterminds/html5": "^2.8",
         "symfony/var-dumper": "^5.0||^6.0||^7.0",
         "asika/cross-env": "^1.0",
-        "asika32764/pinyin": "^1.2",
-        "lyrasoft/backup": "^2.0",
         "ramsey/uuid": "^4.7",
         "spomky-labs/otphp": "^11.2",
         "symfony/dom-crawler": "^7.0",
         "symfony/css-selector": "^7.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^7.8||^8.0",
-        "windwalker/framework": "dev-master"
+        "nunomaduro/collision": "^7.8||^8.0"
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -84,11 +74,5 @@
     "extra": {
         "branch-alias": {
         }
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:lyrasoft/theme-skote.git"
-        }
-    ]
+    }
 }
