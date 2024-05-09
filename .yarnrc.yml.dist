@@ -1,5 +1,0 @@
-npmScopes:
-  fortawesome:
-    npmAlwaysAuth: true
-    npmAuthToken: "${FA_TOKEN}"
-    npmRegistryServer: "https://npm.fontawesome.com/"
