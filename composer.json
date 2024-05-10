@@ -31,7 +31,10 @@
         "ramsey/uuid": "^4.7",
         "spomky-labs/otphp": "^11.2",
         "symfony/dom-crawler": "^7.0",
-        "symfony/css-selector": "^7.0"
+        "symfony/css-selector": "^7.0",
+        "windwalker/dom": "^4.1",
+        "windwalker/renderer": "*",
+        "windwalker/edge": "^4.1"
     },
     "require-dev": {
         "nunomaduro/collision": "^7.8||^8.0"

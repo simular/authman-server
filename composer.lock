@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9d875c3b6222de46f675da9bfce1c73",
+    "content-hash": "76b26d77ffb6793954608296513ca916",
     "packages": [
         {
             "name": "asika/cross-env",
@@ -4991,6 +4991,119 @@
             "time": "2024-05-09T06:34:11+00:00"
         },
         {
+            "name": "windwalker/dom",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/dom.git",
+                "reference": "375e7236fd38f6abaf078bf89df88fa0fef42643"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/dom/zipball/375e7236fd38f6abaf078bf89df88fa0fef42643",
+                "reference": "375e7236fd38f6abaf078bf89df88fa0fef42643",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "masterminds/html5": "^2.7",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "symfony/css-selector": "^5.0||^6.0||^7.0",
+                "symfony/dom-crawler": "^5.0||^6.0||^7.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\DOM\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker DOM package",
+            "homepage": "https://github.com/windwalker-io/dom",
+            "keywords": [
+                "dom",
+                "framework",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/dom/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
+            "name": "windwalker/edge",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/edge.git",
+                "reference": "1599792f838a944986e189a90ffacd850c242416"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/edge/zipball/1599792f838a944986e189a90ffacd850c242416",
+                "reference": "1599792f838a944986e189a90ffacd850c242416",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/data": "^4.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "windwalker/dom": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Edge\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Edge package",
+            "homepage": "https://github.com/windwalker-io/edge",
+            "keywords": [
+                "blade",
+                "edge",
+                "framework",
+                "template",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/edge/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
+        },
+        {
             "name": "windwalker/environment",
             "version": "4.1.3",
             "source": {
@@ -5528,6 +5641,73 @@
                 "source": "https://github.com/windwalker-io/query/tree/4.1.3"
             },
             "time": "2024-03-04T12:01:24+00:00"
+        },
+        {
+            "name": "windwalker/renderer",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/windwalker-io/renderer.git",
+                "reference": "05a8300caece042bc734eeb2f5095ebce3c252d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/windwalker-io/renderer/zipball/05a8300caece042bc734eeb2f5095ebce3c252d3",
+                "reference": "05a8300caece042bc734eeb2f5095ebce3c252d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2.0",
+                "windwalker/utilities": "^4.0"
+            },
+            "require-dev": {
+                "illuminate/view": "^6.0||^7.0||^8.0||^9.0||^10.0||^11.0",
+                "league/plates": "^3.4",
+                "mustache/mustache": "^2.0",
+                "phpunit/phpunit": "^8.0||^9.0||^10.0",
+                "twig/twig": "^2.0||^3.0",
+                "windwalker/dom": "^4.0",
+                "windwalker/filesystem": "^4.0",
+                "windwalker/test": "^4.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "windwalker": {
+                    "packages": [
+                        "Windwalker\\Renderer\\RendererPackage"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Windwalker\\Renderer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Windwalker Renderer package",
+            "homepage": "https://github.com/windwalker-io/renderer",
+            "keywords": [
+                "blade",
+                "edge",
+                "framework",
+                "mustach",
+                "plates",
+                "renderer",
+                "windwalker"
+            ],
+            "support": {
+                "source": "https://github.com/windwalker-io/renderer/tree/4.1.3"
+            },
+            "time": "2023-11-10T14:37:06+00:00"
         },
         {
             "name": "windwalker/scalars",
