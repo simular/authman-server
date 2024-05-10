@@ -18,6 +18,7 @@ use Lyrasoft\Luna\Middleware\LocaleMiddleware;
 use Windwalker\Core\Middleware\CsrfMiddleware;
 use Windwalker\Core\Middleware\MaintenanceMiddleware;
 use Windwalker\Core\Middleware\SefMiddleware;
+use Windwalker\Core\Router\Navigator;
 use Windwalker\Core\Router\RouteCreator;
 
 /** @var RouteCreator $router */
@@ -41,9 +42,7 @@ $router->group('front')
     )
     ->register(function (RouteCreator $router) {
         $router->get('home', '/')
-            ->alias('foo')
-            ->handler(HomeController::class)
-            ->view(HomeView::class);
+            ->redirect(fn (Navigator $nav) => $nav->createRouteUri('api/v1'));
 
         $router->load(__DIR__ . '/front/*.php');
 
