@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Routes;
 
+use App\Middleware\ApiAuthMiddleware;
 use App\Module\Api\AuthController;
 use Windwalker\Core\Router\RouteCreator;
 
@@ -26,5 +27,10 @@ $router->group('auth')
             ->handler('refreshToken');
 
         $router->any('/me')
-            ->handler('me');
+            ->handler('me')
+            ->middleware(ApiAuthMiddleware::class);
+
+        $router->any('/delete/me')
+            ->handler('deleteMe')
+            ->middleware(ApiAuthMiddleware::class);
     });

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enum\ErrorCode;
 use Lyrasoft\Luna\User\UserService;
 use Windwalker\Console\CommandWrapper;
 use Windwalker\Core\Attributes\Controller;
@@ -33,7 +34,13 @@ return Arr::mergeRecursive(
         ],
         'bindings' => [
             CurrentUser::class => function (Container $container) {
-                return $container->get(UserService::class)->getCurrentUser();
+                $user = $container->get(UserService::class)->getCurrentUser();
+
+                if (!$user->isLogin()) {
+                    ErrorCode::USER_NOT_FOUND->throw();
+                }
+
+                return $user;
             },
         ],
         'aliases' => [

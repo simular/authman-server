@@ -27,6 +27,9 @@ enum ErrorCode: int
     #[Title('Password changed.')]
     case PASSWORD_CHANGED = 40105;
 
+    #[Title('User not found.')]
+    case USER_NOT_FOUND = 40106;
+
     // 403
     #[Title('This email has been used.')]
     case USER_EMAIL_EXISTS = 40301;

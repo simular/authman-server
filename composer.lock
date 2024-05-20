@@ -721,26 +721,26 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.10.0",
+            "version": "v6.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "a49db6f0a5033aef5143295342f1c95521b075ff"
+                "reference": "500501c2ce893c824c801da135d02661199f60c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/a49db6f0a5033aef5143295342f1c95521b075ff",
-                "reference": "a49db6f0a5033aef5143295342f1c95521b075ff",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/500501c2ce893c824c801da135d02661199f60c5",
+                "reference": "500501c2ce893c824c801da135d02661199f60c5",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4||^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
-                "guzzlehttp/guzzle": "^6.5||^7.4",
+                "guzzlehttp/guzzle": "^7.4",
                 "phpspec/prophecy-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.5",
-                "psr/cache": "^1.0||^2.0",
+                "psr/cache": "^2.0||^3.0",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0"
             },
@@ -778,9 +778,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.10.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.10.1"
             },
-            "time": "2023-12-01T16:26:39+00:00"
+            "time": "2024-05-18T18:05:11+00:00"
         },
         {
             "name": "intervention/gif",
@@ -848,16 +848,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "3.6.3",
+            "version": "3.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "2dbfb53bf8909257e710cf6091d10a9ca7500742"
+                "reference": "193324ec88bc5ad4039e57ce9b926ae28dfde813"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/2dbfb53bf8909257e710cf6091d10a9ca7500742",
-                "reference": "2dbfb53bf8909257e710cf6091d10a9ca7500742",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/193324ec88bc5ad4039e57ce9b926ae28dfde813",
+                "reference": "193324ec88bc5ad4039e57ce9b926ae28dfde813",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +904,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/3.6.3"
+                "source": "https://github.com/Intervention/image/tree/3.6.4"
             },
             "funding": [
                 {
@@ -916,7 +916,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-02T09:03:18+00:00"
+            "time": "2024-05-08T13:53:15+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -1055,16 +1055,16 @@
         },
         {
             "name": "lyrasoft/luna",
-            "version": "2.1.12",
+            "version": "2.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lyrasoft/luna.git",
-                "reference": "56ea80f7c25410a33ad14627d10a30755e154da1"
+                "reference": "4f632ee45c21425b41a3b85c84fb41a389d3af5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lyrasoft/luna/zipball/56ea80f7c25410a33ad14627d10a30755e154da1",
-                "reference": "56ea80f7c25410a33ad14627d10a30755e154da1",
+                "url": "https://api.github.com/repos/lyrasoft/luna/zipball/4f632ee45c21425b41a3b85c84fb41a389d3af5e",
+                "reference": "4f632ee45c21425b41a3b85c84fb41a389d3af5e",
                 "shasum": ""
             },
             "require": {
@@ -1123,9 +1123,9 @@
             "homepage": "https://github.com/lyrasoft/luna",
             "support": {
                 "issues": "https://github.com/lyrasoft/luna/issues",
-                "source": "https://github.com/lyrasoft/luna/tree/2.1.12"
+                "source": "https://github.com/lyrasoft/luna/tree/2.1.14"
             },
-            "time": "2024-04-24T10:50:38+00:00"
+            "time": "2024-05-19T08:55:39+00:00"
         },
         {
             "name": "lyrasoft/toolkit",
@@ -1791,20 +1791,20 @@
         },
         {
             "name": "psr/http-factory",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-factory.git",
-                "reference": "e616d01114759c4c489f93b099585439f795fe35"
+                "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/e616d01114759c4c489f93b099585439f795fe35",
-                "reference": "e616d01114759c4c489f93b099585439f795fe35",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+                "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.0",
+                "php": ">=7.1",
                 "psr/http-message": "^1.0 || ^2.0"
             },
             "type": "library",
@@ -1828,7 +1828,7 @@
                     "homepage": "https://www.php-fig.org/"
                 }
             ],
-            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "description": "PSR-17: Common interfaces for PSR-7 HTTP message factories",
             "keywords": [
                 "factory",
                 "http",
@@ -1840,9 +1840,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-factory/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-factory"
             },
-            "time": "2023-04-10T20:10:41+00:00"
+            "time": "2024-04-15T12:06:14+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2654,7 +2654,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -2699,7 +2699,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/css-selector/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -2786,7 +2786,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -2833,7 +2833,7 @@
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dom-crawler/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/dom-crawler/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -2853,7 +2853,7 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
@@ -2907,7 +2907,7 @@
                 "environment"
             ],
             "support": {
-                "source": "https://github.com/symfony/dotenv/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/dotenv/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -2927,7 +2927,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2987,7 +2987,7 @@
             "description": "Provides tools that allow your application components to communicate with each other by dispatching events and listening to them",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -3083,16 +3083,16 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "d891fb20d441bc82237e50b0042afa8859b2666a"
+                "reference": "6a8f4907e0d3b1dee97400c6034c03918da7c4f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/d891fb20d441bc82237e50b0042afa8859b2666a",
-                "reference": "d891fb20d441bc82237e50b0042afa8859b2666a",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/6a8f4907e0d3b1dee97400c6034c03918da7c4f1",
+                "reference": "6a8f4907e0d3b1dee97400c6034c03918da7c4f1",
                 "shasum": ""
             },
             "require": {
@@ -3143,7 +3143,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/mailer/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -3159,11 +3159,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-02T08:41:59+00:00"
+            "time": "2024-05-17T10:55:18+00:00"
         },
         {
             "name": "symfony/mime",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
@@ -3227,7 +3227,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/mime/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -3247,7 +3247,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -3294,7 +3294,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/options-resolver/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -3946,16 +3946,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "2f00ea0dec48a0674c4bfc3cf5244447282129a5"
+                "reference": "56c8a1ea51eb70003fee94a78c7d6d0f44832ce7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/2f00ea0dec48a0674c4bfc3cf5244447282129a5",
-                "reference": "2f00ea0dec48a0674c4bfc3cf5244447282129a5",
+                "url": "https://api.github.com/repos/symfony/process/zipball/56c8a1ea51eb70003fee94a78c7d6d0f44832ce7",
+                "reference": "56c8a1ea51eb70003fee94a78c7d6d0f44832ce7",
                 "shasum": ""
             },
             "require": {
@@ -3987,7 +3987,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/process/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -4003,7 +4003,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-17T10:55:18+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -4090,7 +4090,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -4132,7 +4132,7 @@
             "description": "Provides a way to profile code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/stopwatch/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -4152,16 +4152,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "ffe3085b909b72708bf57eae13b64570fe9fd7af"
+                "reference": "6f41b185e742737917e6f2e3eca37767fba5f17a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/ffe3085b909b72708bf57eae13b64570fe9fd7af",
-                "reference": "ffe3085b909b72708bf57eae13b64570fe9fd7af",
+                "url": "https://api.github.com/repos/symfony/string/zipball/6f41b185e742737917e6f2e3eca37767fba5f17a",
+                "reference": "6f41b185e742737917e6f2e3eca37767fba5f17a",
                 "shasum": ""
             },
             "require": {
@@ -4219,7 +4219,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/string/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -4235,20 +4235,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-02T08:41:59+00:00"
+            "time": "2024-05-17T10:55:18+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v7.1.0-BETA1",
+            "version": "v7.1.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10"
+                "reference": "d4dea606849134a58accb223914589b5227a2b50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/be16ed8fa69d9596707fcb2382ea0f71c0825b10",
-                "reference": "be16ed8fa69d9596707fcb2382ea0f71c0825b10",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/d4dea606849134a58accb223914589b5227a2b50",
+                "reference": "d4dea606849134a58accb223914589b5227a2b50",
                 "shasum": ""
             },
             "require": {
@@ -4302,7 +4302,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v7.1.0-BETA1"
+                "source": "https://github.com/symfony/var-dumper/tree/v7.1.0-RC1"
             },
             "funding": [
                 {
@@ -4318,7 +4318,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T09:32:20+00:00"
+            "time": "2024-05-17T10:55:18+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4934,16 +4934,16 @@
         },
         {
             "name": "windwalker/di",
-            "version": "4.1.3",
+            "version": "4.1.4-beta2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/windwalker-io/di.git",
-                "reference": "84bdb37e5ffb5369a294c412902352463d36a88c"
+                "reference": "58a698b3e0610e829e750fe0f20224b1d2ac5df0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/di/zipball/84bdb37e5ffb5369a294c412902352463d36a88c",
-                "reference": "84bdb37e5ffb5369a294c412902352463d36a88c",
+                "url": "https://api.github.com/repos/windwalker-io/di/zipball/58a698b3e0610e829e750fe0f20224b1d2ac5df0",
+                "reference": "58a698b3e0610e829e750fe0f20224b1d2ac5df0",
                 "shasum": ""
             },
             "require": {
@@ -4986,9 +4986,9 @@
                 "windwalker"
             ],
             "support": {
-                "source": "https://github.com/windwalker-io/di/tree/4.1.3"
+                "source": "https://github.com/windwalker-io/di/tree/4.1.4-beta2"
             },
-            "time": "2024-05-09T06:34:11+00:00"
+            "time": "2024-05-14T11:09:06+00:00"
         },
         {
             "name": "windwalker/dom",
@@ -5469,16 +5469,16 @@
         },
         {
             "name": "windwalker/orm",
-            "version": "4.1.3",
+            "version": "4.1.4-beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/windwalker-io/orm.git",
-                "reference": "4d8deb9fbe6b493b9befc7b61862781d0711a725"
+                "reference": "65dee75e7f7f4fcad92f098cb8280ecaa80acb92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/windwalker-io/orm/zipball/4d8deb9fbe6b493b9befc7b61862781d0711a725",
-                "reference": "4d8deb9fbe6b493b9befc7b61862781d0711a725",
+                "url": "https://api.github.com/repos/windwalker-io/orm/zipball/65dee75e7f7f4fcad92f098cb8280ecaa80acb92",
+                "reference": "65dee75e7f7f4fcad92f098cb8280ecaa80acb92",
                 "shasum": ""
             },
             "require": {
@@ -5526,9 +5526,9 @@
                 "windwalker"
             ],
             "support": {
-                "source": "https://github.com/windwalker-io/orm/tree/4.1.3"
+                "source": "https://github.com/windwalker-io/orm/tree/4.1.4-beta1"
             },
-            "time": "2024-05-09T08:52:35+00:00"
+            "time": "2024-05-14T09:05:00+00:00"
         },
         {
             "name": "windwalker/pool",

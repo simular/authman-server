@@ -13,6 +13,7 @@ use App\Enum\ErrorCode;
 use App\Service\EncryptionService;
 use App\Service\JwtAuthService;
 use Brick\Math\BigInteger;
+use Brick\Math\Exception\NumberFormatException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Lyrasoft\Luna\Auth\SRP\SRPService;
@@ -23,6 +24,10 @@ use Windwalker\Core\Http\RequestAssert;
 use Windwalker\Crypt\Symmetric\CipherInterface;
 use Windwalker\ORM\ORM;
 use Windwalker\SRP\Exception\InvalidSessionProofException;
+
+use Windwalker\SRP\Step\PasswordFile;
+
+use Windwalker\SRP\Step\ProofResult;
 
 use function Windwalker\Query\uuid2bin;
 use function Windwalker\uid;
@@ -101,8 +106,6 @@ class AuthController
         ORM $orm,
         JwtAuthService $jwtAuthService,
         CipherInterface $cipher,
-        SRPService $srpService,
-        EncryptionService $encryptionService,
     ): array {
         [
             $email,
@@ -130,48 +133,17 @@ class AuthController
             ErrorCode::INVALID_CREDENTIALS->throw();
         }
 
-        $userSecret = $orm->mustFindOne(
-            UserSecret::class,
-            ['user_id' => uuid2bin($user->getId())]
+        [$result, $loginPayload, $userSecret] = $app->call(
+            $this->srpValidate(...),
+            compact(
+                'user',
+                'A',
+                'M1',
+                'sess'
+            )
         );
-
-        if (!$loginToken = $user->getLoginToken()) {
-            ErrorCode::INVALID_SESSION->throw();
-        }
-
-        $loginPayload = JWT::decode(
-            $loginToken,
-            new Key($userSecret->getDecodedServerSecret(), 'HS512')
-        );
-
-        $sessPayload = JWT::decode(
-            $sess,
-            new Key($userSecret->getDecodedServerSecret(), 'HS512')
-        );
-
-        if ($loginPayload->sess !== $sessPayload->sess) {
-            ErrorCode::INVALID_SESSION->throw();
-        }
-
-        $password = $user->getPassword();
-
-        $pf = SRPService::decodePasswordVerifier($password);
-
-        $A = BigInteger::fromBase($A, 16);
-        $M1 = BigInteger::fromBase($M1, 16);
 
         try {
-            $server = $srpService->getSRPServer();
-            $result = $server->step2(
-                $email,
-                $pf->salt,
-                $pf->verifier,
-                $A,
-                BigInteger::fromBase($loginPayload->B, 16),
-                BigInteger::fromBase($loginPayload->b, 16),
-                $M1
-            );
-
             // Save enc secrets
             if ($loginPayload->updateSecrets && $encSecret && $encMaster) {
                 $encSecret = $cipher->decrypt($encSecret, $result->preMasterSecret->toBase(10));
@@ -279,5 +251,112 @@ class AuthController
     public function me(\CurrentUser $currentUser): \CurrentUser
     {
         return $currentUser;
+    }
+
+    public function deleteMe(
+        AppContext $app,
+        ORM $orm,
+        \CurrentUser $user,
+    ): true {
+        [
+            $A,
+            $M1,
+            $sess,
+        ] = $app->input(
+            'A',
+            'M1',
+            'sess',
+        )->values();
+
+        RequestAssert::assert($A, 'Invalid credentials');
+        RequestAssert::assert($M1, 'Invalid credentials');
+
+        $app->call(
+            $this->srpValidate(...),
+            compact(
+                'user',
+                'A',
+                'M1',
+                'sess'
+            )
+        );
+
+        // Delete User
+        $orm->deleteWhere(User::class, ['id' => uuid2bin($user->getId())]);
+
+        return true;
+    }
+
+    /**
+     * @param  ORM         $orm
+     * @param  SRPService  $srpService
+     * @param  User        $user
+     * @param  string      $A
+     * @param  string      $M1
+     * @param  string      $sess
+     *
+     * @return  array{ 0: ProofResult, 1: \stdClass, 2: UserSecret }
+     *
+     * @throws NumberFormatException
+     * @throws \Brick\Math\Exception\DivisionByZeroException
+     * @throws \Brick\Math\Exception\MathException
+     * @throws \Brick\Math\Exception\NegativeNumberException
+     */
+    protected function srpValidate(
+        ORM $orm,
+        SRPService $srpService,
+        User $user,
+        string $A,
+        string $M1,
+        string $sess
+    ): array {
+        $userSecret = $orm->mustFindOne(
+            UserSecret::class,
+            ['user_id' => uuid2bin($user->getId())]
+        );
+
+        if (!$loginToken = $user->getLoginToken()) {
+            ErrorCode::INVALID_SESSION->throw();
+        }
+
+        $loginPayload = JWT::decode(
+            $loginToken,
+            new Key($userSecret->getDecodedServerSecret(), 'HS512')
+        );
+
+        $sessPayload = JWT::decode(
+            $sess,
+            new Key($userSecret->getDecodedServerSecret(), 'HS512')
+        );
+
+        if ($loginPayload->sess !== $sessPayload->sess) {
+            ErrorCode::INVALID_SESSION->throw();
+        }
+
+        $password = $user->getPassword();
+
+        $pf = SRPService::decodePasswordVerifier($password);
+
+        $A = BigInteger::fromBase($A, 16);
+        $M1 = BigInteger::fromBase($M1, 16);
+        $b = BigInteger::fromBase($loginPayload->b, 16);
+        $B = BigInteger::fromBase($loginPayload->B, 16);
+
+        try {
+            $server = $srpService->getSRPServer();
+            $result = $server->step2(
+                $user->getEmail(),
+                $pf->salt,
+                $pf->verifier,
+                $A,
+                $B,
+                $b,
+                $M1
+            );
+
+            return [$result, $loginPayload, $userSecret];
+        } catch (InvalidSessionProofException) {
+            ErrorCode::INVALID_CREDENTIALS->throw();
+        }
     }
 }

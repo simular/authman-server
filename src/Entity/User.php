@@ -43,6 +43,7 @@ class User implements EntityInterface, UserEntityInterface
     use EntityTrait;
 
     #[Column('id'), PK, AutoIncrement]
+
     #[UUIDBin]
     #[CastNullable('uuid_bin', 'uuid_bin')]
     protected ?UuidInterface $id = null;
@@ -166,6 +167,7 @@ class User implements EntityInterface, UserEntityInterface
         $orm = $event->getORM();
 
         $orm->deleteWhere(UserSecret::class, ['user_id' => uuid2bin($entity->getId())]);
+        $orm->deleteWhere(Account::class, ['user_id' => uuid2bin($entity->getId())]);
     }
 
     public function can(string $action, ...$args): bool
