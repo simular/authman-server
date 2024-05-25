@@ -15,6 +15,8 @@ use Brick\Math\Exception\NumberFormatException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Lyrasoft\Luna\Auth\SRP\SRPService;
+use Windwalker\Core\Form\Exception\ValidateFailException;
+use Windwalker\Filter\Rule\EmailAddress;
 use Windwalker\ORM\ORM;
 use Windwalker\SRP\Exception\InvalidSessionProofException;
 
@@ -92,6 +94,18 @@ trait SRPValidationTrait
             return [$result, $loginPayload, $userSecret];
         } catch (InvalidSessionProofException) {
             ErrorCode::INVALID_CREDENTIALS->throw();
+        }
+    }
+
+    protected function isEmail(string $email): bool
+    {
+        return (new EmailAddress())->test($email);
+    }
+
+    protected function validateEmail(string $email): void
+    {
+        if (!$this->isEmail($email)) {
+            throw new ValidateFailException('Invalid Email');
         }
     }
 }

@@ -25,6 +25,7 @@ use Windwalker\SRP\Exception\InvalidSessionProofException;
 
 use function Windwalker\Query\uuid2bin;
 use function Windwalker\uid;
+use function Windwalker\validate;
 
 #[Controller]
 class AuthController
@@ -39,6 +40,8 @@ class AuthController
         $email = $app->input('email');
 
         RequestAssert::assert($email, 'No email');
+
+        $this->validateEmail($email);
 
         $sessId = uid();
         $user = $orm->findOne(User::class, compact('email'));
@@ -123,10 +126,7 @@ class AuthController
         RequestAssert::assert($A, 'Invalid credentials');
         RequestAssert::assert($M1, 'Invalid credentials');
 
-        if (!str_contains($email, '@')) {
-            // Todo: Use email filters
-            throw new \RuntimeException('Invalid Email format');
-        }
+        $this->validateEmail($email);
 
         $user = $orm->findOne(User::class, compact('email'));
 
@@ -201,10 +201,7 @@ class AuthController
 
         RequestAssert::assert($email, 'No Email');
 
-        if (!str_contains($email, '@')) {
-            // Todo: Use email filters
-            throw new \RuntimeException('Invalid Email format');
-        }
+        $this->validateEmail($email);
 
         $verifier = BigInteger::fromBase($verifier, 16);
         $salt = BigInteger::fromBase($salt, 16);
