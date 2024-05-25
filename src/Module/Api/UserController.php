@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Module\Api;
 
 use App\Entity\User;
+use App\Module\Api\Traits\SRPValidationTrait;
 use Psr\Container\ContainerExceptionInterface;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
@@ -17,6 +18,8 @@ use function Windwalker\Query\uuid2bin;
 #[Controller]
 class UserController
 {
+    use SRPValidationTrait;
+
     public function refreshSessions(\CurrentUser $currentUser, ORM $orm): true
     {
         $orm->updateBatch(
