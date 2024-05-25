@@ -156,6 +156,7 @@ class AuthController
                 $orm->updateOne($userSecret);
             }
 
+            $user->setLoginToken('');
             $user->setLastLogin('now');
 
             $orm->updateOne($user);

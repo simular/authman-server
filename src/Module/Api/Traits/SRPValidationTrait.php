@@ -91,6 +91,15 @@ trait SRPValidationTrait
                 $M1
             );
 
+            // Clear Login Token
+            $orm->updateBatch(
+                User::class,
+                [
+                    'login_token' => ''
+                ],
+                ['id' => uuid2bin($user->getId())]
+            );
+
             return [$result, $loginPayload, $userSecret];
         } catch (InvalidSessionProofException) {
             ErrorCode::INVALID_CREDENTIALS->throw();
