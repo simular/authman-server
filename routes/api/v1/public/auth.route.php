@@ -24,9 +24,11 @@ $router->group('auth')
             $router->post('/register')
                 ->handler('register');
 
-            $router->any('/refreshToken')
+            $router->get('/refreshToken')
                 ->handler('refreshToken');
 
+            // Deprecated
+            // -----------------------------------------------------------
             $router->any('/me')
                 ->handler('me')
                 ->middleware(ApiAuthMiddleware::class);

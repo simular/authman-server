@@ -9,6 +9,7 @@ use App\Enum\ApiTokenType;
 use App\Enum\ErrorCode;
 use App\Service\ApiUserService;
 use App\Service\JwtAuthService;
+use Firebase\JWT\ExpiredException;
 use Lyrasoft\Luna\User\UserService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,6 +37,8 @@ class ApiAuthMiddleware implements MiddlewareInterface
                 $this->jwtAuthService->extractAccessTokenFromHeader($authHeader, $user);
             } catch (NoResultException) {
                 ErrorCode::USER_NOT_FOUND->throw();
+            } catch (ExpiredException) {
+                ErrorCode::REFRESH_TOKEN_EXPIRED->throw();
             }
 
             $this->checkLastReset($request, $user);
