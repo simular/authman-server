@@ -8,6 +8,7 @@ use App\Attributes\Transaction;
 use App\DTO\UserDTO;
 use App\Entity\Account;
 use App\Repository\AccountRepository;
+use App\Service\AccountService;
 use Unicorn\Flysystem\Base64DataUri;
 use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\Controller;
@@ -135,7 +136,8 @@ class AccountController
     public function save(
         AppContext $app,
         ORM $orm,
-        \CurrentUser $currentUser
+        \CurrentUser $currentUser,
+        AccountService $accountService
     ): Account {
         $item = $app->input('item');
 
@@ -152,6 +154,8 @@ class AccountController
         if ($current) {
             $orm->updateOne(Account::class, $account);
         } else {
+            $accountService->validateUserNotExceedAccountLimit($currentUser);
+
             $account = $orm->createOne(Account::class, $account);
         }
 
@@ -162,7 +166,8 @@ class AccountController
     public function saveMultiple(
         AppContext $app,
         ORM $orm,
-        \CurrentUser $currentUser
+        \CurrentUser $currentUser,
+        AccountService $accountService
     ): array {
         $items = $app->input('items');
 
@@ -186,6 +191,7 @@ class AccountController
             if ($current) {
                 $orm->updateOne(Account::class, $account);
             } else {
+                $accountService->validateUserNotExceedAccountLimit($currentUser);
                 $account = $orm->createOne(Account::class, $account);
             }
 
