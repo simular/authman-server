@@ -186,9 +186,17 @@ class AccountController
         foreach ($accounts as $i => $account) {
             $id = $account->getId();
 
-            $current = $orm->findOne(Account::class, $id);
+            $current = null;
+
+            if ($id) {
+                $current = $orm->findOne(Account::class, $id);
+            }
 
             if ($current) {
+                if ((string) $current->getUserId() !== (string) $currentUser->getId()) {
+                    continue;
+                }
+
                 $orm->updateOne(Account::class, $account);
             } else {
                 $accountService->validateUserNotExceedAccountLimit($currentUser);
